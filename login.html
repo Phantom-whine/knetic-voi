@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KNETIC VOI — Business Portal Login</title>
+  <link rel="icon" href="media/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.14.8/dist/cdn.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Plus Jakarta Sans', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+          colors: {
+            brand: { 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+
+    body {
+      background: radial-gradient(circle at top left, #161a24 0%, #0a0a0b 45%, #060607 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
+
+    [x-cloak] {
+      display: none !important;
+    }
+
+    .panel-soft {
+      background: linear-gradient(180deg, rgba(255, 255, 255, .045), rgba(255, 255, 255, .025));
+      border: 1px solid rgba(255, 255, 255, .08);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, .4), inset 0 1px 0 rgba(255, 255, 255, .04);
+    }
+  </style>
+</head>
+
+<body class="bg-[#0a0a0b] text-neutral-300 font-sans flex items-center justify-center min-h-screen p-4 sm:p-6"
+  x-data="businessLoginApp()" x-cloak>
+
+  <!-- Toast Notification -->
+  <div x-show="toast.show" x-transition.opacity.duration.200ms
+    class="fixed top-5 right-5 z-50 flex items-center gap-3 px-4 py-3 rounded-xl shadow-2xl border text-sm font-medium"
+    :class="toast.type === 'error' ? 'bg-rose-950 border-rose-500/40 text-rose-200' : 'bg-emerald-950 border-emerald-500/40 text-emerald-200'">
+    <i :class="toast.type === 'error' ? 'fa-solid fa-circle-exclamation text-rose-400' : 'fa-solid fa-circle-check text-emerald-400'"></i>
+    <span x-text="toast.message"></span>
+    <button @click="toast.show = false" class="ml-2 text-neutral-400 hover:text-white"><i class="fa-solid fa-xmark text-xs"></i></button>
+  </div>
+
+  <div class="w-full max-w-md">
+    <!-- Brand Header -->
+    <div class="text-center mb-8">
+      <a href="index.html" class="inline-flex items-center gap-3 mb-3 group">
+        <img src="media/logo.png" alt="Knetic Logo" class="h-11 w-11 rounded-xl object-contain shadow-lg shadow-blue-600/30 group-hover:scale-105 transition-transform">
+        <div class="text-left">
+          <span class="text-xl font-bold tracking-tight text-white block">KNETIC <span class="text-blue-500 font-extrabold">VOI</span></span>
+          <span class="text-[10px] uppercase font-bold tracking-widest text-blue-400/80">Autonomous Voice Hub</span>
+        </div>
+      </a>
+      <p class="text-xs text-neutral-400 mt-1">Autonomous AI Voice Receptionist &amp; Scheduling Portal</p>
+    </div>
+
+    <!-- Login Card -->
+    <div class="panel-soft rounded-2xl p-6 sm:p-8 backdrop-blur-2xl relative overflow-hidden">
+      <!-- Top Accent Line -->
+      <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
+
+      <div class="flex items-center justify-between mb-5">
+        <div>
+          <h2 class="text-lg font-bold text-white mb-0.5">Business Sign In</h2>
+          <p class="text-xs text-neutral-400">Access your appointments, call logs &amp; calendar sync</p>
+        </div>
+        <div class="h-8 w-8 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center text-xs">
+          <i class="fa-solid fa-briefcase"></i>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form @submit.prevent="submitLogin()" class="space-y-4">
+        <!-- Email Input -->
+        <div>
+          <label class="block text-xs font-semibold text-neutral-300 mb-1.5">Business Email</label>
+          <div class="relative flex items-center">
+            <span class="absolute left-3.5 text-neutral-500 text-xs">
+              <i class="fa-solid fa-envelope"></i>
+            </span>
+            <input type="email" x-model="form.email" required placeholder="contact@yourbusiness.com"
+              class="w-full pl-9 pr-3.5 py-2.5 bg-black/40 border border-white/10 rounded-xl text-xs text-white placeholder:text-neutral-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors">
+          </div>
+        </div>
+
+        <!-- Password Input -->
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label class="text-xs font-semibold text-neutral-300">Password</label>
+          </div>
+          <div class="relative flex items-center">
+            <span class="absolute left-3.5 text-neutral-500 text-xs">
+              <i class="fa-solid fa-lock"></i>
+            </span>
+            <input :type="showPassword ? 'text' : 'password'" x-model="form.password" required placeholder="••••••••••••"
+              class="w-full pl-9 pr-10 py-2.5 bg-black/40 border border-white/10 rounded-xl text-xs text-white placeholder:text-neutral-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors">
+            <button type="button" @click="showPassword = !showPassword"
+              class="absolute right-3.5 text-neutral-500 hover:text-neutral-300 text-xs transition-colors">
+              <i :class="showPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" :disabled="loading"
+          class="w-full mt-2 py-2.5 px-4 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-semibold text-xs shadow-lg shadow-blue-600/25 transition-all duration-150 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+          <template x-if="loading">
+            <i class="fa-solid fa-circle-notch fa-spin text-xs"></i>
+          </template>
+          <span x-text="loading ? 'Authenticating...' : 'Sign In to Workspace'"></span>
+          <i x-show="!loading" class="fa-solid fa-arrow-right text-[10px]"></i>
+        </button>
+      </form>
+
+      <!-- Admin Portal Link
+      <div class="mt-5 pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs">
+        <span class="text-neutral-500 text-[11px]">System Administrator?</span>
+        <a href="admin_login.html" class="text-indigo-400 hover:text-indigo-300 font-semibold transition-colors flex items-center gap-1">
+          <i class="fa-solid fa-shield-halved text-[10px]"></i>
+          Admin Portal &rarr;
+        </a>
+      </div> -->
+    </div>
+
+    <!-- Return Link -->
+    <div class="text-center mt-6">
+      <a href="index.html" class="text-xs text-neutral-500 hover:text-neutral-300 transition-colors inline-flex items-center gap-1.5">
+        <i class="fa-solid fa-arrow-left text-[10px]"></i>
+        Return to KneticVOI Homepage
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function businessLoginApp() {
+      return {
+        showPassword: false,
+        loading: false,
+        form: {
+          email: '',
+          password: ''
+        },
+        toast: {
+          show: false,
+          message: '',
+          type: 'error'
+        },
+        showToast(message, type = 'error') {
+          this.toast = { show: true, message, type };
+          setTimeout(() => { this.toast.show = false; }, 4000);
+        },
+        async submitLogin() {
+          this.loading = true;
+          try {
+            const apiBase = window.location.origin.includes('8000') ? window.location.origin : 'http://127.0.0.1:8000';
+            const resp = await fetch(`${apiBase}/api/v1/auth/login/`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(this.form)
+            });
+            const data = await resp.json();
+
+            if (!resp.ok || data.status !== 'success') {
+              this.showToast(data.message || 'Invalid email or password', 'error');
+              this.loading = false;
+              return;
+            }
+
+            // Save tokens & profile
+            localStorage.setItem('knetic_access', data.access);
+            localStorage.setItem('knetic_refresh', data.refresh);
+            localStorage.setItem('knetic_business', JSON.stringify(data.business));
+
+            this.showToast('Login successful! Redirecting...', 'success');
+
+            setTimeout(() => {
+              if (data.business && (data.business.is_staff || data.business.is_superuser)) {
+                window.location.href = 'admin_dashboard.html';
+              } else {
+                window.location.href = 'dashboard.html';
+              }
+            }, 500);
+
+          } catch (err) {
+            this.showToast('Network error: ' + err.message, 'error');
+            this.loading = false;
+          }
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

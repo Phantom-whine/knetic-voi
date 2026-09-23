@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth antialiased">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — KNETIC VOI</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="media/logo.png">
+
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Font Awesome 6.5.2 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Premium Typography: Plus Jakarta Sans (Headings) + Inter (Body) + JetBrains Mono (Telemetry) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap"
+    rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            display: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f6fe',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+              950: '#0b1b4f',
+              accent: '#0284c7',
+            },
+            obsidian: {
+              950: '#05070c',
+              900: '#0a0d14',
+              850: '#0f141d',
+              800: '#151b26',
+              700: '#1f2937',
+            }
+          },
+          boxShadow: {
+            '3d-sm': '0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(15,23,42,0.05), inset 0 1px 0 rgba(255,255,255,0.9)',
+            '3d-card': '0 0 0 1px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.02), 0 12px 28px -6px rgba(15,23,42,0.06), 0 20px 40px -12px rgba(15,23,42,0.04), inset 0 1px 0 rgba(255,255,255,1), inset 0 -1px 2px rgba(0,0,0,0.03)',
+            '3d-dark': '0 30px 60px -15px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.8)',
+            'btn-3d': '0 4px 14px 0 rgba(37,99,235,0.35), inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -2px 0 rgba(0,0,0,0.2)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #fbfcfe;
+      color: #090d16;
+      overflow-x: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+
+    ::selection {
+      background: #2563eb;
+      color: #ffffff;
+    }
+
+    [x-cloak] {
+      display: none !important;
+    }
+
+    .bg-grid-slate {
+      background-image: radial-gradient(rgba(15, 23, 42, 0.07) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    .text-3d-dark {
+      background: linear-gradient(180deg, #05070c 0%, #18181b 45%, #3f3f46 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.8));
+    }
+
+    .btn-brand-grad {
+      background: linear-gradient(180deg, #3b82f6 0%, #2563eb 60%, #1d4ed8 100%);
+    }
+
+    .contact-fab-group:hover .contact-fab-menu,
+    .contact-fab-group:focus-within .contact-fab-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+
+    .contact-fab-group:hover .contact-fab-trigger i,
+    .contact-fab-group:focus-within .contact-fab-trigger i {
+      transform: rotate(45deg);
+    }
+
+    .contact-fab-menu {
+      transform: translateY(8px) scale(.96);
+    }
+  </style>
+</head>
+
+<body class="relative text-slate-900 bg-[#FBFDFE]" x-data="{ mobileNav: false }">
+
+  <!-- ===================================================================== -->
+  <!-- TOP NAVIGATION — Pitch Black Floating Obsidian Pill                   -->
+  <!-- ===================================================================== -->
+  <header class="fixed top-0 inset-x-0 z-50 pt-3 md:pt-4 px-3 md:px-6 flex justify-center pointer-events-none">
+    <div
+      class="pointer-events-auto w-full max-w-5xl bg-zinc-950/95 backdrop-blur-2xl rounded-full pl-5 pr-2 py-2 flex items-center justify-between border border-white/10 shadow-3d-dark transition-all duration-300">
+
+      <!-- Brand Agency Logo -->
+      <a href="index.html" class="flex items-center gap-3 shrink-0 group">
+        <img src="media/logo.png" alt="KneticLogo"
+          class="w-8 h-8 rounded-full border border-white/10 shadow-sm group-hover:shadow-md transition-all">
+        <div class="flex items-center gap-1.5">
+          <span class="font-display font-extrabold text-white text-base tracking-tight">KNETIC</span>
+          <span
+            class="font-display font-bold text-blue-400 text-xs px-1.5 py-0.5 rounded-md bg-blue-500/10 border border-blue-400/20 tracking-wider">VOI</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-1">
+        <a href="index.html"
+          class="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.08] transition-all">Home</a>
+        <a href="index.html#capabilities"
+          class="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.08] transition-all">Capabilities</a>
+        <a href="voice.html"
+          class="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.08] transition-all">Live Simulator</a>
+        <a href="index.html#compare"
+          class="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.08] transition-all">Economics & ROI</a>
+        <a href="index.html#faq"
+          class="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.08] transition-all">FAQ</a>
+      </nav>
+
+      <!-- CTA & Mobile Trigger -->
+      <div class="flex items-center gap-2">
+        <a href="index.html#contact"
+          class="btn-brand-grad inline-flex items-center gap-2 text-white text-xs font-bold px-4 sm:px-5 py-2 rounded-full shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
+          <span>Get Started</span>
+          <i class="fa-solid fa-arrow-right text-[10px]"></i>
+        </a>
+        <button @click="mobileNav = !mobileNav" aria-label="Toggle navigation"
+          class="md:hidden w-8 h-8 rounded-full bg-white/10 text-zinc-300 hover:text-white flex items-center justify-center">
+          <i class="fa-solid" :class="mobileNav ? 'fa-xmark' : 'fa-bars-staggered'"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div x-show="mobileNav" x-cloak x-transition:enter="transition ease-out duration-200"
+      x-transition:enter-start="opacity-0 -translate-y-2 scale-98"
+      x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+      x-transition:leave-end="opacity-0 -translate-y-2 scale-98"
+      class="pointer-events-auto absolute top-20 inset-x-4 max-w-lg mx-auto bg-zinc-950/95 backdrop-blur-2xl rounded-3xl p-6 border border-white/10 shadow-3d-dark z-50 flex flex-col gap-4 text-center">
+      <a @click="mobileNav = false" href="index.html" class="text-sm font-semibold text-zinc-300 hover:text-white py-1">Home</a>
+      <a @click="mobileNav = false" href="index.html#capabilities" class="text-sm font-semibold text-zinc-300 hover:text-white py-1">Capabilities</a>
+      <a @click="mobileNav = false" href="voice.html" class="text-sm font-semibold text-zinc-300 hover:text-white py-1">Live Simulator</a>
+      <a @click="mobileNav = false" href="index.html#compare" class="text-sm font-semibold text-zinc-300 hover:text-white py-1">Economics & ROI</a>
+      <a @click="mobileNav = false" href="index.html#faq" class="text-sm font-semibold text-zinc-300 hover:text-white py-1">FAQ</a>
+      <a @click="mobileNav = false" href="index.html#contact"
+        class="btn-brand-grad w-full py-3 rounded-full text-xs font-bold text-white shadow-btn-3d">
+        Hire Knetic VOI
+      </a>
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- MAIN PRIVACY CONTENT                                                  -->
+  <!-- ===================================================================== -->
+  <main class="pt-32 pb-24 relative overflow-hidden">
+    <!-- Subtle Background Grid -->
+    <div class="absolute inset-0 bg-grid-slate opacity-40 pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto px-6 relative z-10">
+
+      <!-- Header -->
+      <div class="mb-12 text-center sm:text-left">
+        <div
+          class="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-blue-700 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 shadow-3d-sm">
+          <i class="fa-solid fa-shield-halved"></i> Data Protection
+        </div>
+        <h1 class="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-slate-950 tracking-tight mb-3">
+          Privacy Policy
+        </h1>
+        <p class="text-xs sm:text-sm text-slate-500 font-mono">
+          Last Updated: September 15, 2026
+        </p>
+      </div>
+
+      <!-- Legal Document Card -->
+      <div class="bg-white border border-slate-200/90 rounded-3xl p-8 sm:p-12 shadow-3d-card space-y-8 text-slate-700 text-sm sm:text-base leading-relaxed">
+
+        <section class="space-y-3">
+          <h2 class="font-display font-bold text-lg sm:text-xl text-slate-900 flex items-center gap-2.5">
+            <span class="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 text-xs flex items-center justify-center font-bold font-mono">01</span>
+            Introduction & Scope
+          </h2>
+          <p>
+            KNETIC VOI ("we", "our", or "us") respects your privacy and is dedicated to safeguarding personal data collected through our AI voice receptionist platform, websites, and agency integrations. This Privacy Policy explains how information is gathered, used, stored, and protected.
+          </p>
+        </section>
+
+        <hr class="border-slate-100">
+
+        <section class="space-y-3">
+          <h2 class="font-display font-bold text-lg sm:text-xl text-slate-900 flex items-center gap-2.5">
+            <span class="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 text-xs flex items-center justify-center font-bold font-mono">02</span>
+            Information We Collect
+          </h2>
+          <p>
+            Depending on how you interact with our services, we may process:
+          </p>
+          <ul class="list-disc pl-5 space-y-1.5 text-slate-600">
+            <li><strong class="text-slate-900">Inbound Call Telemetry:</strong> Caller phone number, timestamp, call duration, and audio transcriptions necessary to complete bookings or transfers.</li>
+            <li><strong class="text-slate-900">Booking Metadata:</strong> Caller name, appointment date/time, requested service type, and SMS confirmation preferences.</li>
+            <li><strong class="text-slate-900">Business Knowledge Base Data:</strong> Client-provided operating policies, pricing lists, provider schedules, and staff rosters.</li>
+            <li><strong class="text-slate-900">Technical Log Data:</strong> IP address, browser type, and interaction metrics on our web simulator.</li>
+          </ul>
+        </section>
+
+        <hr class="border-slate-100">
+
+        <section class="space-y-3">
+          <h2 class="font-display font-bold text-lg sm:text-xl text-slate-900 flex items-center gap-2.5">
+            <span class="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 text-xs flex items-center justify-center font-bold font-mono">03</span>
+            How We Use Collected Information
+          </h2>
+          <p>
+            We process information strictly for authorized operational purposes:
+          </p>
+          <ul class="list-disc pl-5 space-y-1.5 text-slate-600">
+            <li>To autonomously schedule, update, or cancel bookings directly inside your connected calendar or CRM.</li>
+            <li>To generate warm transfer briefs and forward callers to designated personnel.</li>
+            <li>To transmit automated SMS/email booking confirmations to callers.</li>
+            <li>To analyze voice AI latency, accuracy scores, and system reliability.</li>
+          </ul>
+        </section>
+
+        <hr class="border-slate-100">
+
+        <section class="space-y-3">
+          <h2 class="font-display font-bold text-lg sm:text-xl text-slate-900 flex items-center gap-2.5">
+            <span class="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 text-xs flex items-center justify-center font-bold font-mono">04</span>
+            Data Protection & Security
+          </h2>
+          <p>
+            All voice streams and transcriptions are encrypted in transit via TLS 1.3 and at rest with AES-256 encryption. Access to call transcripts is restricted strictly to authorized client accounts. We do not sell, rent, or monetize client or caller data to third-party advertisers.
+          </p>
+        </section>
+
+        <hr class="border-slate-100">
+
+        <section class="space-y-3">
+          <h2 class="font-display font-bold text-lg sm:text-xl text-slate-900 flex items-center gap-2.5">
+            <span class="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 text-xs flex items-center justify-center font-bold font-mono">05</span>
+            Your Data Rights & Deletion Requests
+          </h2>
+          <p>
+            Clients and individuals may request access to, correction of, or permanent deletion of their stored call records and personal data by submitting a formal request to our privacy officer.
+          </p>
+        </section>
+
+        <hr class="border-slate-100">
+
+        <section class="space-y-3">
+          <h2 class="font-display font-bold text-lg sm:text-xl text-slate-900 flex items-center gap-2.5">
+            <span class="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 text-xs flex items-center justify-center font-bold font-mono">06</span>
+            Privacy Inquiries
+          </h2>
+          <p>
+            For questions or requests concerning your privacy rights, please reach out to:
+          </p>
+          <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 text-xs sm:text-sm">
+            <p class="font-semibold text-slate-900">KNETIC VOI Privacy & Security Office</p>
+            <p class="text-slate-600 mt-1">Email: <a href="mailto:contact@kneticvoi.com" class="text-blue-600 font-semibold hover:underline">contact@kneticvoi.com</a></p>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- FOOTER                                                                -->
+  <!-- ===================================================================== -->
+  <footer class="border-t border-slate-100 bg-[#FBFDFE]">
+    <div class="max-w-7xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-5 text-xs">
+      <div class="flex items-center gap-2.5">
+        <img src="media/logo.png" alt="Knetic VOI Logo"
+          class="w-8 h-8 rounded-full border border-slate-200 object-cover">
+        <span class="font-display font-extrabold text-slate-900 text-sm">KNETIC VOI</span>
+      </div>
+
+      <div class="flex items-center gap-4 text-slate-500 text-xs">
+        <a href="index.html" class="hover:text-slate-900 transition">Home</a>
+        <span>•</span>
+        <a href="voice.html" class="hover:text-slate-900 transition">Simulator</a>
+        <span>•</span>
+        <a href="term.html" class="hover:text-slate-900 transition">Terms of Service</a>
+        <span>•</span>
+        <a href="privacy-policy.html" class="text-blue-600 font-semibold">Privacy Policy</a>
+      </div>
+
+      <p class="text-[11px] text-slate-400 font-medium text-center">
+        &copy; <span id="currentYear"></span> KNETIC VOI Agency. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const yearElem = document.getElementById('currentYear');
+      if (yearElem) yearElem.textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>

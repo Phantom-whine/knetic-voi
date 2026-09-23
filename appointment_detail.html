@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appointment Details | Knetic VOI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="media/logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    [x-cloak] { display: none !important; }
+    body { font-family: 'DM Sans', sans-serif; }
+    h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+  </style>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-800 antialiased">
+  <main x-data="appointmentPage()" x-init="loadAppointment()" class="mx-auto w-[calc(100%-24px)] max-w-3xl py-8 sm:py-12">
+    
+    <!-- Toast Notification -->
+    <div x-cloak x-show="copyNotice.show" 
+      x-transition:enter="transition ease-out duration-300" 
+      x-transition:enter-start="opacity-0 translate-y-2" 
+      x-transition:enter-end="opacity-100 translate-y-0" 
+      x-transition:leave="transition ease-in duration-200" 
+      x-transition:leave-start="opacity-100 translate-y-0" 
+      x-transition:leave-end="opacity-0 translate-y-2"
+      class="fixed inset-x-4 top-4 z-50 mx-auto flex max-w-sm items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium shadow-xl backdrop-blur-sm sm:right-4 sm:left-auto sm:mx-0"
+      :class="copyNotice.type === 'success' ? 'border-emerald-200 bg-emerald-50/90 text-emerald-800' : 'border-rose-200 bg-rose-50/90 text-rose-800'"
+      role="status" aria-live="polite">
+      <i :class="copyNotice.type === 'success' ? 'fa-solid fa-circle-check text-emerald-600' : 'fa-solid fa-circle-exclamation text-rose-600'"></i>
+      <span x-text="copyNotice.message"></span>
+      <button type="button" @click="copyNotice.show = false" class="ml-auto text-slate-400 transition hover:text-slate-700" aria-label="Dismiss notification">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Header -->
+    <header class="mb-8 flex items-center gap-4">
+      <div class="flex h-12 w-12 items-center justify-center rounded-xl border border-slate-200 bg-white shadow-sm">
+        <img :src="appointment?.business_logo_url || 'media/logo.png'" @error="$event.target.src = 'media/logo.png'" alt="Organization Logo" class="h-8 w-8 rounded-lg object-contain">
+      </div>
+      <div>
+        <div class="text-base font-bold text-slate-900" x-text="appointment?.business_name || 'Knetic VOI'"></div>
+        <div class="mt-0.5 text-xs font-medium text-slate-500">Appointment Management</div>
+      </div>
+    </header>
+
+    <!-- Loading State -->
+    <section x-cloak x-show="loading" class="flex min-h-[50vh] flex-col items-center justify-center rounded-2xl border border-slate-200 bg-white p-12 text-center shadow-sm">
+      <div class="relative mb-4">
+        <div class="h-12 w-12 animate-spin rounded-full border-4 border-slate-100 border-t-blue-600"></div>
+      </div>
+      <p class="text-sm font-semibold text-slate-700">Loading appointment details...</p>
+      <p class="mt-1 text-xs text-slate-500">Please wait a moment</p>
+    </section>
+
+    <!-- Error State -->
+    <section x-cloak x-show="error" class="flex min-h-[50vh] flex-col items-center justify-center rounded-2xl border border-rose-200 bg-white p-12 text-center shadow-sm">
+      <div class="mb-4 grid h-14 w-14 place-items-center rounded-full bg-rose-50 text-2xl text-rose-600">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+      <h1 class="text-xl font-bold text-slate-900">Appointment details unavailable</h1>
+      <p class="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-500" x-text="error"></p>
+      <button @click="window.location.reload()" class="mt-6 inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">
+        <i class="fa-solid fa-rotate-right"></i> Try Again
+      </button>
+    </section>
+
+    <!-- Main Content -->
+    <article x-cloak x-show="!loading && !error && appointment" class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+      
+      <!-- Title Block -->
+      <div class="border-b border-slate-100 px-6 py-8 sm:px-10">
+        <div class="flex flex-wrap items-center gap-3">
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-blue-700 ring-1 ring-inset ring-blue-700/10">
+            <i class="fa-solid fa-check-circle"></i> Booking Confirmed
+          </span>
+          <span class="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-slate-600 ring-1 ring-inset ring-slate-600/10" x-text="appointment.status_label || appointment.status"></span>
+          <span x-show="appointment.staff_name || appointment.staff?.name" class="inline-flex items-center gap-1.5 rounded-full bg-indigo-50 px-2.5 py-1 text-xs font-bold tracking-wide text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
+            <i class="fa-solid fa-user-gear"></i> <span x-text="'Assigned to: ' + (appointment.staff_name || appointment.staff?.name)"></span>
+          </span>
+        </div>
+        <h1 class="mt-4 max-w-4xl whitespace-normal break-words text-2xl font-extrabold leading-tight tracking-tight text-slate-900 [overflow-wrap:anywhere] sm:text-3xl lg:text-4xl" x-text="appointment.summary || 'Appointment Details'"></h1>
+        <p class="mt-3 max-w-2xl text-base leading-7 text-slate-500">Everything you need for your appointment is collected below. Please keep this page handy for reference.</p>
+      </div>
+
+      <div class="space-y-8 px-6 py-8 sm:px-10">
+        
+        <!-- Contact Information -->
+        <section>
+          <h2 class="mb-4 flex items-center gap-2 text-base font-bold text-slate-900">
+            <i class="fa-regular fa-address-book text-blue-500"></i>
+            Contact Information
+          </h2>
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <!-- Name -->
+            <div class="rounded-xl border border-slate-100 bg-slate-50/50 p-4">
+              <div class="flex items-start gap-3">
+                <div class="mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-blue-100 text-blue-600">
+                  <i class="fa-regular fa-user"></i>
+                </div>
+                <div>
+                  <p class="text-xs font-medium uppercase tracking-wider text-slate-500">Customer Name</p>
+                  <p class="mt-1 text-base font-semibold text-slate-900" x-text="appointment.customer_name || 'N/A'"></p>
+                </div>
+              </div>
+            </div>
+            <!-- Phone -->
+            <div class="rounded-xl border border-slate-100 bg-slate-50/50 p-4">
+              <div class="flex items-start gap-3">
+                <div class="mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-blue-100 text-blue-600">
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <div class="flex-1">
+                  <p class="text-xs font-medium uppercase tracking-wider text-slate-500">Phone Number</p>
+                  <p class="mt-1 text-base font-semibold text-slate-900 break-words" x-text="appointment.customer_phone || 'N/A'"></p>
+                  <div class="mt-3 flex flex-wrap gap-2" x-show="appointment.customer_phone">
+                    <button type="button" @click="copyPhone()" title="Copy phone number"
+                      class="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-semibold text-slate-600 shadow-sm transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700">
+                      <i class="fa-regular fa-copy"></i> Copy
+                    </button>
+                    <a :href="'tel:' + appointment.customer_phone" title="Call customer"
+                      class="inline-flex items-center gap-1.5 rounded-lg border border-emerald-200 bg-emerald-50 px-2.5 py-1.5 text-xs font-semibold text-emerald-700 shadow-sm transition hover:bg-emerald-100">
+                      <i class="fa-solid fa-phone"></i> Call
+                    </a>
+                    <a :href="'https://wa.me/' + (appointment.customer_phone || '').replace(/\D/g, '')" target="_blank" rel="noopener" title="Message customer on WhatsApp"
+                      class="inline-flex items-center gap-1.5 rounded-lg border border-green-200 bg-green-50 px-2.5 py-1.5 text-xs font-semibold text-green-700 shadow-sm transition hover:bg-green-100">
+                      <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Conversation Summary -->
+        <section x-show="appointment && appointment.conversation_summary">
+          <h2 class="mb-3 flex items-center gap-2 text-base font-bold text-slate-900">
+            <i class="fa-solid fa-clipboard-list text-indigo-500"></i>
+            Conversation Summary
+          </h2>
+          <div class="relative overflow-hidden rounded-xl border border-indigo-100 bg-indigo-50/40 p-5 text-[15px] leading-7 text-slate-700 shadow-sm">
+            <div class="absolute inset-y-0 left-0 w-1 bg-indigo-500"></div>
+            <div class="relative whitespace-pre-wrap break-words pl-3" x-text="appointment.conversation_summary"></div>
+          </div>
+        </section>
+
+        <!-- When and Where -->
+        <section>
+          <h2 class="mb-4 flex items-center gap-2 text-base font-bold text-slate-900">
+            <i class="fa-regular fa-calendar-check text-blue-500"></i>
+            Appointment Details
+          </h2>
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <!-- Assigned Staff / Engineer (Featured) -->
+            <div class="rounded-xl border border-indigo-100 bg-indigo-50/30 p-4 sm:col-span-2" x-show="appointment.staff_name || appointment.staff?.name">
+              <div class="flex items-start gap-3">
+                <div class="mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-indigo-100 text-indigo-600">
+                  <i class="fa-solid fa-user-gear"></i>
+                </div>
+                <div class="flex-1">
+                  <p class="text-xs font-medium uppercase tracking-wider text-indigo-600">Assigned Engineer / Staff</p>
+                  <p class="mt-1 text-base font-bold text-slate-900" x-text="appointment.staff_name || appointment.staff?.name"></p>
+                  <p class="text-xs font-medium text-slate-500" x-show="appointment.staff?.role" x-text="appointment.staff?.role"></p>
+                </div>
+              </div>
+            </div>
+            <!-- Date -->
+            <div class="rounded-xl border border-slate-100 bg-slate-50/50 p-4">
+              <div class="flex items-start gap-3">
+                <div class="mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-blue-100 text-blue-600">
+                  <i class="fa-regular fa-calendar"></i>
+                </div>
+                <div>
+                  <p class="text-xs font-medium uppercase tracking-wider text-slate-500">Date</p>
+                  <p class="mt-1 text-base font-semibold text-slate-900" x-text="formatDate(appointment.start_time)"></p>
+                </div>
+              </div>
+            </div>
+            <!-- Time -->
+            <div class="rounded-xl border border-slate-100 bg-slate-50/50 p-4">
+              <div class="flex items-start gap-3">
+                <div class="mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-blue-100 text-blue-600">
+                  <i class="fa-regular fa-clock"></i>
+                </div>
+                <div>
+                  <p class="text-xs font-medium uppercase tracking-wider text-slate-500">Time</p>
+                  <p class="mt-1 text-base font-semibold text-slate-900" x-text="formatTimeRange(appointment.start_time, appointment.end_time)"></p>
+                </div>
+              </div>
+            </div>
+            <!-- Organization -->
+            <div class="rounded-xl border border-slate-100 bg-slate-50/50 p-4">
+              <div class="flex items-start gap-3">
+                <div class="mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-slate-200 text-slate-600">
+                  <i class="fa-regular fa-building"></i>
+                </div>
+                <div>
+                  <p class="text-xs font-medium uppercase tracking-wider text-slate-500">Organization</p>
+                  <p class="mt-1 text-base font-semibold text-slate-900" x-text="appointment.business_name"></p>
+                </div>
+              </div>
+            </div>
+            <!-- Booked On -->
+            <div class="rounded-xl border border-slate-100 bg-slate-50/50 p-4">
+              <div class="flex items-start gap-3">
+                <div class="mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-slate-200 text-slate-600">
+                  <i class="fa-solid fa-clock-rotate-left"></i>
+                </div>
+                <div>
+                  <p class="text-xs font-medium uppercase tracking-wider text-slate-500">Booked On</p>
+                  <p class="mt-1 text-base font-semibold text-slate-900" x-text="formatDateTime(appointment.created_at)"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Appointment Notes -->
+        <section x-show="appointment && appointment.description">
+          <h2 class="mb-3 flex items-center gap-2 text-base font-bold text-slate-900">
+            <i class="fa-regular fa-note-sticky text-amber-500"></i>
+            Appointment Notes
+          </h2>
+          <div class="rounded-xl border border-slate-200 bg-white p-5 text-[15px] leading-7 text-slate-700 shadow-sm">
+            <div class="whitespace-pre-wrap break-words" x-text="appointment.description"></div>
+          </div>
+        </section>
+
+      </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="mt-8 text-center">
+      <p class="text-xs font-medium text-slate-400">Powered by <span class="font-semibold text-slate-600">Knetic VOI</span></p>
+    </footer>
+
+  </main>
+
+  <script>
+    function appointmentPage() {
+      return {
+        appointment: null,
+        loading: true,
+        error: '',
+        copyNotice: { show: false, message: '', type: 'success' },
+        copyNoticeTimer: null,
+        apiBase: 'http://127.0.0.1:8000', // Update this to your production API URL
+        
+        async loadAppointment() {
+          const appointmentId = new URLSearchParams(window.location.search).get('appointment');
+          if (!appointmentId) {
+            this.loading = false;
+            this.error = 'No appointment was specified in this link.';
+            return;
+          }
+
+          try {
+            const response = await fetch(`${this.apiBase}/api/v1/appointments/${encodeURIComponent(appointmentId)}/`);
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.message || 'We could not find this appointment.');
+            this.appointment = data.appointment;
+          } catch (error) {
+            this.error = error.message || 'We could not load the appointment details.';
+          } finally {
+            this.loading = false;
+          }
+        },
+        
+        formatDate(value) {
+          if (!value) return 'Not available';
+          return new Date(value).toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+        },
+        
+        formatTime(value) {
+          if (!value) return 'Not available';
+          return new Date(value).toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
+        },
+        
+        formatTimeRange(start, end) {
+          if (!start) return 'Not available';
+          const startTime = this.formatTime(start);
+          if (!end) return startTime;
+          return `${startTime} to ${this.formatTime(end)}`;
+        },
+        
+        formatDateTime(value) {
+          if (!value) return 'Not available';
+          return `${this.formatDate(value)} at ${this.formatTime(value)}`;
+        },
+        
+        async copyPhone() {
+          if (!this.appointment?.customer_phone) return;
+          try {
+            await navigator.clipboard.writeText(this.appointment.customer_phone);
+            this.showCopyNotice('Phone number copied to clipboard.', 'success');
+          } catch (error) {
+            this.showCopyNotice('Unable to copy the phone number.', 'error');
+          }
+        },
+        
+        showCopyNotice(message, type) {
+          this.copyNotice = { show: true, message, type };
+          clearTimeout(this.copyNoticeTimer);
+          this.copyNoticeTimer = setTimeout(() => {
+            this.copyNotice.show = false;
+          }, 3000);
+        }
+      };
+    }
+  </script>
+</body>
+</html>

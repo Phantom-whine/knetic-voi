@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KNETIC VOI — System Administration Login</title>
+  <link rel="icon" href="media/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.14.8/dist/cdn.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Plus Jakarta Sans', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+          colors: {
+            brand: { 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' },
+            admin: { 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+
+    body {
+      background: radial-gradient(circle at top center, #1b1734 0%, #0c0b12 40%, #060608 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
+
+    [x-cloak] {
+      display: none !important;
+    }
+
+    .panel-soft {
+      background: linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .02));
+      border: 1px solid rgba(255, 255, 255, .09);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 255, 255, .06);
+    }
+  </style>
+</head>
+
+<body class="bg-[#060608] text-neutral-300 font-sans flex items-center justify-center min-h-screen p-4 sm:p-6"
+  x-data="adminLoginApp()" x-cloak>
+
+  <!-- Toast Notification -->
+  <div x-show="toast.show" x-transition.opacity.duration.200ms
+    class="fixed top-5 right-5 z-50 flex items-center gap-3 px-4 py-3 rounded-xl shadow-2xl border text-sm font-medium"
+    :class="toast.type === 'error' ? 'bg-rose-950 border-rose-500/40 text-rose-200' : 'bg-emerald-950 border-emerald-500/40 text-emerald-200'">
+    <i :class="toast.type === 'error' ? 'fa-solid fa-circle-exclamation text-rose-400' : 'fa-solid fa-circle-check text-emerald-400'"></i>
+    <span x-text="toast.message"></span>
+    <button @click="toast.show = false" class="ml-2 text-neutral-400 hover:text-white"><i class="fa-solid fa-xmark text-xs"></i></button>
+  </div>
+
+  <div class="w-full max-w-md">
+    <!-- Brand Header -->
+    <div class="text-center mb-8">
+      <div class="inline-flex items-center gap-3 mb-3 group">
+        <div class="relative">
+          <img src="media/logo.png" alt="Knetic Logo" class="h-11 w-11 rounded-xl object-contain shadow-lg shadow-indigo-600/30">
+          <div class="absolute -bottom-1 -right-1 h-5 w-5 rounded-full bg-indigo-600 border-2 border-[#0c0b12] flex items-center justify-center text-[10px] text-white">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+        </div>
+        <div class="text-left">
+          <span class="text-xl font-bold tracking-tight text-white block">KNETIC <span class="text-indigo-400 font-extrabold">ADMIN</span></span>
+          <span class="text-[10px] uppercase font-bold tracking-widest text-indigo-400/80">Superuser Console</span>
+        </div>
+      </div>
+      <p class="text-xs text-neutral-400 mt-1">Authorized system administrator credentials required</p>
+    </div>
+
+    <!-- Login Card -->
+    <div class="panel-soft rounded-2xl p-6 sm:p-8 backdrop-blur-2xl relative overflow-hidden">
+      <!-- Top Decorative Accent -->
+      <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-indigo-500 to-transparent"></div>
+
+      <div class="flex items-center justify-between mb-5">
+        <div>
+          <h2 class="text-lg font-bold text-white mb-0.5">Administrator Sign In</h2>
+          <p class="text-xs text-neutral-400">Manage client organizations, telemetry &amp; webhooks</p>
+        </div>
+        <div class="h-8 w-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs">
+          <i class="fa-solid fa-lock"></i>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form @submit.prevent="submitLogin()" class="space-y-4">
+        <!-- Email Input -->
+        <div>
+          <label class="block text-xs font-semibold text-neutral-300 mb-1.5">Admin Email</label>
+          <div class="relative flex items-center">
+            <span class="absolute left-3.5 text-neutral-500 text-xs">
+              <i class="fa-solid fa-envelope"></i>
+            </span>
+            <input type="email" x-model="form.email" required placeholder="admin@kneticvoi.com"
+              class="w-full pl-9 pr-3.5 py-2.5 bg-black/40 border border-white/10 rounded-xl text-xs text-white placeholder:text-neutral-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors">
+          </div>
+        </div>
+
+        <!-- Password Input -->
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label class="text-xs font-semibold text-neutral-300">Master Password</label>
+          </div>
+          <div class="relative flex items-center">
+            <span class="absolute left-3.5 text-neutral-500 text-xs">
+              <i class="fa-solid fa-key"></i>
+            </span>
+            <input :type="showPassword ? 'text' : 'password'" x-model="form.password" required placeholder="••••••••••••"
+              class="w-full pl-9 pr-10 py-2.5 bg-black/40 border border-white/10 rounded-xl text-xs text-white placeholder:text-neutral-600 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors">
+            <button type="button" @click="showPassword = !showPassword"
+              class="absolute right-3.5 text-neutral-500 hover:text-neutral-300 text-xs transition-colors">
+              <i :class="showPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" :disabled="loading"
+          class="w-full mt-2 py-2.5 px-4 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white font-semibold text-xs shadow-lg shadow-indigo-600/25 transition-all duration-150 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+          <template x-if="loading">
+            <i class="fa-solid fa-circle-notch fa-spin text-xs"></i>
+          </template>
+          <span x-text="loading ? 'Verifying Superuser Privileges...' : 'Enter System Console'"></span>
+          <i x-show="!loading" class="fa-solid fa-arrow-right text-[10px]"></i>
+        </button>
+      </form>
+
+      <!-- Security Notice -->
+      <div class="mt-5 pt-4 border-t border-white/[0.06] flex items-center gap-2 text-[11px] text-neutral-500">
+        <i class="fa-solid fa-shield-halved text-indigo-400 text-xs shrink-0"></i>
+        <span>Restricted administrative environment. All sessions and actions are logged.</span>
+      </div>
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="text-center mt-6 flex items-center justify-between px-2 text-xs">
+      <a href="login.html" class="text-neutral-400 hover:text-white transition-colors inline-flex items-center gap-1.5">
+        <i class="fa-solid fa-briefcase text-[10px]"></i>
+        Client Business Login
+      </a>
+      <a href="index.html" class="text-neutral-500 hover:text-neutral-300 transition-colors inline-flex items-center gap-1.5">
+        <i class="fa-solid fa-house text-[10px]"></i>
+        Homepage
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function adminLoginApp() {
+      return {
+        showPassword: false,
+        loading: false,
+        form: {
+          email: '',
+          password: ''
+        },
+        toast: {
+          show: false,
+          message: '',
+          type: 'error'
+        },
+        showToast(message, type = 'error') {
+          this.toast = { show: true, message, type };
+          setTimeout(() => { this.toast.show = false; }, 4000);
+        },
+        async submitLogin() {
+          this.loading = true;
+          try {
+            const apiBase = window.location.origin.includes('8000') ? window.location.origin : 'http://127.0.0.1:8000';
+            const resp = await fetch(`${apiBase}/api/v1/auth/login/`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(this.form)
+            });
+            const data = await resp.json();
+
+            if (!resp.ok || data.status !== 'success') {
+              this.showToast(data.message || 'Invalid administrator credentials', 'error');
+              this.loading = false;
+              return;
+            }
+
+            // Check admin privilege
+            const biz = data.business || {};
+            if (!biz.is_staff && !biz.is_superuser) {
+              this.showToast('Access denied: Administrator privileges required for this console.', 'error');
+              this.loading = false;
+              return;
+            }
+
+            // Save tokens & profile
+            localStorage.setItem('knetic_access', data.access);
+            localStorage.setItem('knetic_refresh', data.refresh);
+            localStorage.setItem('knetic_business', JSON.stringify(data.business));
+
+            this.showToast('Superuser verified! Accessing Console...', 'success');
+
+            setTimeout(() => {
+              window.location.href = 'admin_dashboard.html';
+            }, 500);
+
+          } catch (err) {
+            this.showToast('Network error: ' + err.message, 'error');
+            this.loading = false;
+          }
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>
