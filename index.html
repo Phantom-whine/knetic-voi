@@ -499,8 +499,8 @@
       <nav class="hidden md:flex items-center gap-1">
         <a href="#capabilities"
           class="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.08] transition-all">Capabilities</a>
-        <a href="#infrastructure"
-          class="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.08] transition-all">Architecture</a>
+        <!-- <a href="#infrastructure"
+          class="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.08] transition-all">Architecture</a> -->
         <a href="#demo"
           class="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.08] transition-all">Live
           Simulator</a>
@@ -517,11 +517,11 @@
           <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
           <span>0.38s Latency</span>
         </div> -->
-        <a href="#contact"
+        <button onclick="openContactModal()"
           class="btn-brand-grad inline-flex items-center gap-2 text-white text-xs font-bold px-4 sm:px-5 py-2 rounded-full shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
           <span>Get Started</span>
           <i class="fa-solid fa-arrow-right text-[10px]"></i>
-        </a>
+        </button>
         <button @click="mobileNav = !mobileNav" aria-label="Toggle navigation"
           class="md:hidden w-8 h-8 rounded-full bg-white/10 text-zinc-300 hover:text-white flex items-center justify-center">
           <i class="fa-solid" :class="mobileNav ? 'fa-xmark' : 'fa-bars-staggered'"></i>
@@ -548,9 +548,9 @@
         & ROI</a>
       <a @click="mobileNav = false" href="#faq"
         class="px-4 py-2.5 rounded-xl text-sm font-semibold text-zinc-900 hover:text-white hover:bg-white/10">FAQ</a>
-      <a @click="mobileNav = false" href="#contact"
+      <button @click="mobileNav = false; openContactModal()"
         class="btn-brand-grad mt-2 py-2.5 rounded-xl text-xs font-bold text-white text-center shadow-btn-3d">Deploy AI
-        Receptionist</a>
+        Receptionist</button>
     </div>
   </header>
 
@@ -596,11 +596,11 @@
 
         <!-- CTA Action Buttons -->
         <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-10">
-          <a href="#contact"
+          <button onclick="openContactModal()"
             class="btn-brand-grad w-full sm:w-auto inline-flex items-center justify-center gap-2.5 text-white font-bold text-sm px-8 py-4 rounded-full shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
             <i class="fa-solid fa-bolt text-xs text-white"></i>
             <span>Deploy For Your Business</span>
-          </a>
+          </button>
           <a href="#demo"
             class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-white/90 backdrop-blur-md text-slate-800 font-bold text-sm px-7 py-4 rounded-full border border-slate-200/90 shadow-3d-sm hover:bg-white hover:text-blue-600 hover:border-blue-300 active:translate-y-0.5 transition-all">
             <i class="fa-solid fa-play text-xs text-blue-600"></i>
@@ -1208,10 +1208,10 @@
             </p>
           </div>
           <div class="lg:col-span-4 flex flex-col gap-3">
-            <a href="#contact"
+            <button onclick="openContactModal()"
               class="btn-brand-grad text-white font-bold text-sm py-3.5 px-6 rounded-full text-center shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
               Deploy For Your Business Today
-            </a>
+            </button>
             <a href="#capabilities"
               class="bg-white border border-slate-200 text-slate-800 font-bold text-xs py-3 px-6 rounded-full text-center hover:bg-slate-50 hover:text-blue-600 transition-colors">
               Explore All 6 Core Abilitys
@@ -2522,7 +2522,7 @@
         <div class="mt-5 flex flex-wrap items-center gap-4">
           <a href="#contact"
             class="flex items-center gap-3 rounded-full bg-[#0a84ff] py-1.5 pl-6 pr-1.5 text-sm font-bold text-white shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
-            Book Demo
+            Get your own Receptionist
             <span class="flex h-8 w-8 items-center justify-center rounded-full bg-[#4aa3ff]">
               <i class="fa-solid fa-arrow-right -rotate-45 text-[11px]"></i>
             </span>
@@ -3429,11 +3429,11 @@
           </p>
 
           <div class="flex flex-col sm:flex-row justify-center gap-3.5 mb-10">
-            <a href="mailto:contact@kneticvoi.com"
+            <button onclick="openContactModal()"
               class="btn-brand-grad inline-flex items-center justify-center gap-2.5 text-white font-bold text-sm px-8 py-4 rounded-full shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
               <i class="fa-solid fa-bolt text-xs text-white"></i>
               <span>Hire Knetic VOI Agency</span>
-            </a>
+            </button>
             <a href="voice.html"
               class="inline-flex items-center justify-center gap-2.5 bg-white/10 border border-white/15 text-white font-bold text-sm px-7 py-4 rounded-full hover:bg-white/20 active:translate-y-0.5 transition-all">
               <i class="fa-solid fa-phone text-xs text-emerald-400"></i>
@@ -3470,15 +3470,72 @@
           &copy; <span id="currentYear"></span> KNETIC VOI Agency. All rights reserved.
         </p>
 
-        <a href="mailto:contact@kneticvoi.com"
+        <button onclick="openContactModal()"
           class="btn-brand-grad inline-flex items-center justify-center gap-2 text-white font-bold text-xs px-4 py-2.5 rounded-full shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
           <span>Hire Knetic VOI</span>
           <i class="fa-solid fa-arrow-right text-[10px]"></i>
-        </a>
+        </button>
       </div>
     </div>
 
   </footer>
+
+  <!-- Contact Modal -->
+  <div id="contactModal"
+    class="fixed inset-0 z-[60] flex items-center justify-center p-4 pointer-events-none opacity-0 transition-opacity duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]">
+    <!-- Backdrop -->
+    <div id="contactModalBackdrop"
+      class="absolute inset-0 bg-black/40 backdrop-blur-sm"
+      onclick="closeContactModal()"></div>
+    <!-- Modal Card -->
+    <div class="relative w-full max-w-sm bg-white rounded-3xl shadow-[0_24px_60px_-12px_rgba(0,0,0,0.25)] border border-slate-100 scale-95 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+         id="contactModalCard">
+      <!-- Close Button -->
+      <button type="button" onclick="closeContactModal()"
+        class="absolute -top-3 -right-3 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-b from-slate-700 to-slate-800 text-white transition-all duration-200 hover:from-slate-600 hover:to-slate-700 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-slate-400"
+        aria-label="Close contact options">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+      <!-- Header -->
+      <div class="px-6 pt-6 pb-4 border-b border-slate-100">
+        <h3 class="text-base font-bold text-slate-800">Contact Knetic VOI</h3>
+        <p class="text-xs text-slate-500 mt-0.5">Choose your preferred way to reach us.</p>
+      </div>
+      <!-- Contact Options -->
+      <div class="flex flex-col gap-1.5 p-3">
+        <a href="mailto:knetic@gmail.com"
+          class="group flex items-center gap-3 rounded-full px-4 py-2.5 transition-all duration-200 hover:bg-slate-50">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-blue-50 to-blue-100 border border-blue-200 text-blue-600 transition-all duration-300 group-hover:from-blue-500 group-hover:to-blue-600 group-hover:text-white group-hover:border-blue-700">
+            <i class="fa-solid fa-envelope text-sm"></i>
+          </span>
+          <div class="flex flex-col">
+            <span class="text-sm font-semibold text-slate-800 group-hover:text-blue-700">Email us</span>
+            <span class="text-xs text-slate-500">knetic@gmail.com</span>
+          </div>
+        </a>
+        <a href="https://web.facebook.com/profile.php?id=61594198045779" target="_blank" rel="noopener"
+          class="group flex items-center gap-3 rounded-full px-4 py-2.5 transition-all duration-200 hover:bg-slate-50">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-indigo-50 to-indigo-100 border border-indigo-200 text-indigo-600 transition-all duration-300 group-hover:from-indigo-500 group-hover:to-indigo-600 group-hover:text-white group-hover:border-indigo-700">
+            <i class="fa-brands fa-facebook-f text-sm"></i>
+          </span>
+          <div class="flex flex-col">
+            <span class="text-sm font-semibold text-slate-800 group-hover:text-indigo-700">Facebook</span>
+            <span class="text-xs text-slate-500">Send a message</span>
+          </div>
+        </a>
+        <a href="https://www.instagram.com/kneticvoi/" target="_blank" rel="noopener"
+          class="group flex items-center gap-3 rounded-full px-4 py-2.5 transition-all duration-200 hover:bg-slate-50">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-pink-50 to-pink-100 border border-pink-200 text-pink-600 transition-all duration-300 group-hover:from-pink-500 group-hover:to-pink-600 group-hover:text-white group-hover:border-pink-700">
+            <i class="fa-brands fa-instagram text-base"></i>
+          </span>
+          <div class="flex flex-col">
+            <span class="text-sm font-semibold text-slate-800 group-hover:text-pink-700">Instagram</span>
+            <span class="text-xs text-slate-500">Send a message</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- Floating Contact Launcher -->
   <div class="contact-fab-group fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4 sm:bottom-8 sm:right-8">
@@ -3571,6 +3628,30 @@
   </div>
 
   <script>
+    function openContactModal() {
+      const modal = document.getElementById('contactModal');
+      const card = document.getElementById('contactModalCard');
+      modal.classList.remove('pointer-events-none', 'opacity-0');
+      modal.classList.add('pointer-events-auto', 'opacity-100');
+      card.classList.remove('scale-95');
+      card.classList.add('scale-100');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeContactModal() {
+      const modal = document.getElementById('contactModal');
+      const card = document.getElementById('contactModalCard');
+      modal.classList.remove('pointer-events-auto', 'opacity-100');
+      modal.classList.add('pointer-events-none', 'opacity-0');
+      card.classList.remove('scale-100');
+      card.classList.add('scale-95');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeContactModal();
+    });
+
     function toggleContactMenu() {
       const menu = document.getElementById('contactMenu');
       const triggerText = document.getElementById('triggerText');
