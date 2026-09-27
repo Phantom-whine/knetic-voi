@@ -2303,450 +2303,403 @@
 
 
   <!-- ===================================================================== -->
-  <!-- 3D INTERACTIVE COMPARISON MATRIX & LIVE ROI CALCULATOR                 -->
-  <!-- ===================================================================== -->
-  <section id="compare" class="py-24 bg-slate-50/70 border-y border-slate-200/80 relative overflow-hidden" x-data="{ 
-      activeCategory: 'all', 
-      monthlyCalls: 450,
-      avgTicket: 180,
-      get missedDayCalls() { return Math.round(this.monthlyCalls * 0.40); },
-      get missedNightCalls() { return Math.round(this.monthlyCalls * 0.57); },
-      get recoveredBookings() { return Math.round((this.missedDayCalls + this.missedNightCalls) * 0.35); },
-      get monthlyRevenueSaved() { return this.recoveredBookings * this.avgTicket; }
-    }">
+<!-- 3D INTERACTIVE COMPARISON MATRIX & LIVE ROI CALCULATOR                -->
+<!-- ===================================================================== -->
+<section id="compare" class="py-12 sm:py-16 md:py-24 bg-slate-50/70 border-y border-slate-200/80 relative overflow-hidden" x-data="{ 
+    activeCategory: 'all', 
+    monthlyCalls: 450,
+    avgTicket: 180,
+    get missedDayCalls() { return Math.round(this.monthlyCalls * 0.40); },
+    get missedNightCalls() { return Math.round(this.monthlyCalls * 0.57); },
+    get recoveredBookings() { return Math.round((this.missedDayCalls + this.missedNightCalls) * 0.35); },
+    get monthlyRevenueSaved() { return this.recoveredBookings * this.avgTicket; }
+  }">
 
-    <!-- Subtle Background Grid -->
-    <div class="absolute inset-0 bg-grid-slate opacity-25 pointer-events-none"></div>
+  <!-- Subtle Background Grid -->
+  <div class="absolute inset-0 bg-grid-slate opacity-25 pointer-events-none"></div>
 
-    <div class="max-w-6xl mx-auto px-6 relative z-10">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
 
-      <!-- Section Header -->
-      <div class="text-center max-w-3xl mx-auto mb-14 reveal">
-        <div
-          class="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-blue-700 px-3.5 py-1 rounded-full text-xs font-bold uppercase mb-4 shadow-3d-sm">
-          <i class="fa-solid fa-scale-balanced"></i> Financial & Operational Reality
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14 reveal">
+      <div class="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-blue-700 px-3 py-1.5 sm:px-3.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase mb-4 shadow-3d-sm">
+        <i class="fa-solid fa-scale-balanced"></i> Financial & Operational Reality
+      </div>
+      <h2 class="font-display font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-slate-950 tracking-tight mb-4 leading-tight">
+        Compare the real economics.
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-base md:text-lg font-normal leading-relaxed">
+        Traditional front desks are limited by human capacity. See how Knetic VOI agency compares across speed,
+        coverage, and bottom-line profit.
+      </p>
+
+      <!-- Category View Filter Buttons -->
+      <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mt-8">
+        <button @click="activeCategory = 'all'"
+          :class="activeCategory === 'all' ? 'bg-slate-900 text-white shadow-3d-sm' : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'"
+          class="px-3 py-2 sm:px-4 sm:py-2 rounded-full text-xs font-bold transition-all">
+          All Metrics
+        </button>
+        <button @click="activeCategory = 'financial'"
+          :class="activeCategory === 'financial' ? 'bg-slate-900 text-white shadow-3d-sm' : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'"
+          class="px-3 py-2 sm:px-4 sm:py-2 rounded-full text-xs font-bold transition-all">
+          Financial & Cost
+        </button>
+        <button @click="activeCategory = 'coverage'"
+          :class="activeCategory === 'coverage' ? 'bg-slate-900 text-white shadow-3d-sm' : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'"
+          class="px-3 py-2 sm:px-4 sm:py-2 rounded-full text-xs font-bold transition-all">
+          Speed & Coverage
+        </button>
+        <button @click="activeCategory = 'capabilities'"
+          :class="activeCategory === 'capabilities' ? 'bg-slate-900 text-white shadow-3d-sm' : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'"
+          class="px-3 py-2 sm:px-4 sm:py-2 rounded-full text-xs font-bold transition-all">
+          Capabilities & Setup
+        </button>
+      </div>
+    </div>
+
+    <!-- 3D Protruding Comparison Matrix Grid -->
+    <div class="grid lg:grid-cols-12 gap-6 md:gap-8 items-stretch mb-12">
+
+      <!-- Column 1: Traditional Human Receptionist -->
+      <div class="lg:col-span-6 protrude-card bg-white border border-slate-200/90 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 shadow-3d-card flex flex-col justify-between reveal d-1">
+        <div>
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="w-8 h-8 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center text-sm shrink-0">
+                  <i class="fa-solid fa-user-clock"></i>
+                </span>
+                <h3 class="font-display font-bold text-base sm:text-lg text-slate-900">Traditional Front Desk</h3>
+              </div>
+              <p class="text-xs text-slate-500 mt-1">Limited by human bandwidth & hours</p>
+            </div>
+            <span class="text-[10px] sm:text-[11px] font-bold text-rose-600 bg-rose-50 border border-rose-200 px-2 py-1 sm:px-2.5 sm:py-1 rounded-full whitespace-nowrap">
+              High Overhead
+            </span>
+          </div>
+
+          <!-- Features List -->
+          <div class="space-y-3 sm:space-y-4 text-xs sm:text-sm">
+            <div x-show="activeCategory === 'all' || activeCategory === 'coverage'" class="p-3 sm:p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
+              <div class="flex items-center justify-between font-semibold text-slate-700">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-clock text-slate-400"></i> Weekly Hours</span>
+                <span class="text-rose-600 font-bold text-right">40 Hrs / Week</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mt-1">Closed evenings, nights, weekends & holidays (57% volume missed).</p>
+            </div>
+
+            <div x-show="activeCategory === 'all' || activeCategory === 'coverage'" class="p-3 sm:p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
+              <div class="flex items-center justify-between font-semibold text-slate-700">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-phone-slash text-slate-400"></i> Call Capacity</span>
+                <span class="text-rose-600 font-bold text-right">1 Line at a Time</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mt-1">2nd & 3rd callers put on hold or sent to voicemail.</p>
+            </div>
+
+            <div x-show="activeCategory === 'all' || activeCategory === 'coverage'" class="p-3 sm:p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
+              <div class="flex items-center justify-between font-semibold text-slate-700">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-stopwatch text-slate-400"></i> Answer Latency</span>
+                <span class="text-slate-700 font-bold text-right">20 – 45 Seconds</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mt-1">Delayed while attending to in-person clients or tasks.</p>
+            </div>
+
+            <div x-show="activeCategory === 'all' || activeCategory === 'capabilities'" class="p-3 sm:p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
+              <div class="flex items-center justify-between font-semibold text-slate-700">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-list-check text-slate-400"></i> Workflow Execution</span>
+                <span class="text-slate-700 font-bold text-right">Manual Entry</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mt-1">Prone to scheduling typos, double-bookings, or forgotten messages.</p>
+            </div>
+
+            <div x-show="activeCategory === 'all' || activeCategory === 'financial'" class="p-3 sm:p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
+              <div class="flex items-center justify-between font-semibold text-slate-700">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-sack-dollar text-slate-400"></i> Monthly Overhead</span>
+                <span class="text-rose-600 font-bold text-right">$3,500 – $5,000 / mo</span>
+              </div>
+              <p class="text-[11px] text-slate-500 mt-1">Salary + benefits + PTO + recruiting and training costs.</p>
+            </div>
+          </div>
         </div>
-        <h2 class="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-slate-950 tracking-tight mb-4">
-          Compare the real economics.
-        </h2>
-        <p class="text-slate-600 text-base md:text-lg font-normal leading-relaxed">
-          Traditional front desks are limited by human capacity. See how Knetic VOI agency compares across speed,
-          coverage, and bottom-line profit.
-        </p>
 
-        <!-- Category View Filter Buttons -->
-        <div class="flex flex-wrap justify-center gap-2 mt-8">
-          <button @click="activeCategory = 'all'"
-            :class="activeCategory === 'all' ? 'bg-slate-900 text-white shadow-3d-sm' : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'"
-            class="px-4 py-2 rounded-full text-xs font-bold transition-all">
-            All Metrics
-          </button>
-          <button @click="activeCategory = 'financial'"
-            :class="activeCategory === 'financial' ? 'bg-slate-900 text-white shadow-3d-sm' : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'"
-            class="px-4 py-2 rounded-full text-xs font-bold transition-all">
-            Financial & Cost
-          </button>
-          <button @click="activeCategory = 'coverage'"
-            :class="activeCategory === 'coverage' ? 'bg-slate-900 text-white shadow-3d-sm' : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'"
-            class="px-4 py-2 rounded-full text-xs font-bold transition-all">
-            Speed & Coverage
-          </button>
-          <button @click="activeCategory = 'capabilities'"
-            :class="activeCategory === 'capabilities' ? 'bg-slate-900 text-white shadow-3d-sm' : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'"
-            class="px-4 py-2 rounded-full text-xs font-bold transition-all">
-            Capabilities & Setup
-          </button>
+        <div class="mt-6 sm:mt-8 pt-4 border-t border-slate-100 text-[11px] text-slate-400 text-center font-medium">
+          Subject to human burnout, sick leave, and turnover.
         </div>
       </div>
 
-      <!-- 3D Protruding Comparison Matrix Grid -->
-      <div class="grid lg:grid-cols-12 gap-8 items-stretch mb-12">
+      <!-- Column 2: Knetic VOI Agency -->
+      <div class="lg:col-span-6 protrude-card bg-gradient-to-b from-white to-blue-50/40 border-2 border-blue-600 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 shadow-3d-protrude flex flex-col justify-between relative reveal d-2">
 
-        <!-- Column 1: Traditional Human Receptionist -->
-        <div
-          class="lg:col-span-6 protrude-card bg-white border border-slate-200/90 rounded-3xl p-7 md:p-8 shadow-3d-card flex flex-col justify-between reveal d-1">
-          <div>
-            <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
-              <div>
-                <div class="flex items-center gap-2">
-                  <span class="w-8 h-8 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center text-sm">
-                    <i class="fa-solid fa-user-clock"></i>
-                  </span>
-                  <h3 class="font-display font-bold text-lg text-slate-900">Traditional Front Desk</h3>
-                </div>
-                <p class="text-xs text-slate-500 mt-1">Limited by human bandwidth & hours</p>
+        <!-- Top Floating 3D Badge -->
+        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 sm:right-4 md:sm:right-8 bg-blue-600 text-white font-bold text-[10px] sm:text-xs tracking-wider uppercase px-3 py-1.5 rounded-full shadow-btn-3d flex items-center gap-1.5 whitespace-nowrap z-10">
+          <i class="fa-solid fa-bolt text-amber-300"></i>
+          <span>Recommended Agency Solution</span>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between pb-4 border-b border-blue-100 mb-6">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="shrink-0">
+                  <img src="media/logo.png" alt="Logo" class="w-8 h-8 rounded-md shadow-md border border-zinc-200 border-2 object-contain bg-white">
+                </span>
+                <h3 class="font-display font-extrabold text-base sm:text-lg text-slate-950">KNETIC VOI AGENCY</h3>
               </div>
-              <span
-                class="text-[11px]  font-bold text-rose-600 bg-rose-50 border border-rose-200 px-2.5 py-1 rounded-full">
-                High Overhead
-              </span>
+              <p class="text-xs text-blue-700 font-medium mt-1">Tailored for your business workflows</p>
             </div>
-
-            <!-- Features List -->
-            <div class="space-y-4 text-xs sm:text-sm">
-              <div x-show="activeCategory === 'all' || activeCategory === 'coverage'"
-                class="p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
-                <div class="flex items-center justify-between font-semibold text-slate-700">
-                  <span class="flex items-center gap-2"><i class="fa-solid fa-clock text-slate-400"></i> Weekly
-                    Hours</span>
-                  <span class="text-rose-600 font-bold">40 Hrs / Week</span>
-                </div>
-                <p class="text-[11px] text-slate-500 mt-1">Closed evenings, nights, weekends & holidays (57% volume
-                  missed).</p>
-              </div>
-
-              <div x-show="activeCategory === 'all' || activeCategory === 'coverage'"
-                class="p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
-                <div class="flex items-center justify-between font-semibold text-slate-700">
-                  <span class="flex items-center gap-2"><i class="fa-solid fa-phone-slash text-slate-400"></i> Call
-                    Capacity</span>
-                  <span class="text-rose-600 font-bold">1 Line at a Time</span>
-                </div>
-                <p class="text-[11px] text-slate-500 mt-1">2nd & 3rd callers put on hold or sent to voicemail.</p>
-              </div>
-
-              <div x-show="activeCategory === 'all' || activeCategory === 'coverage'"
-                class="p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
-                <div class="flex items-center justify-between font-semibold text-slate-700">
-                  <span class="flex items-center gap-2"><i class="fa-solid fa-stopwatch text-slate-400"></i> Answer
-                    Latency</span>
-                  <span class="text-slate-700 font-bold">20 – 45 Seconds</span>
-                </div>
-                <p class="text-[11px] text-slate-500 mt-1">Delayed while attending to in-person clients or tasks.</p>
-              </div>
-
-              <div x-show="activeCategory === 'all' || activeCategory === 'capabilities'"
-                class="p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
-                <div class="flex items-center justify-between font-semibold text-slate-700">
-                  <span class="flex items-center gap-2"><i class="fa-solid fa-list-check text-slate-400"></i> Workflow
-                    Execution</span>
-                  <span class="text-slate-700 font-bold">Manual Entry</span>
-                </div>
-                <p class="text-[11px] text-slate-500 mt-1">Prone to scheduling typos, double-bookings, or forgotten
-                  messages.</p>
-              </div>
-
-              <div x-show="activeCategory === 'all' || activeCategory === 'financial'"
-                class="p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
-                <div class="flex items-center justify-between font-semibold text-slate-700">
-                  <span class="flex items-center gap-2"><i class="fa-solid fa-sack-dollar text-slate-400"></i> Monthly
-                    Overhead</span>
-                  <span class="text-rose-600 font-bold">$3,500 – $5,000 / mo</span>
-                </div>
-                <p class="text-[11px] text-slate-500 mt-1">Salary + benefits + PTO + recruiting and training costs.</p>
-              </div>
-            </div>
+            <span class="text-[10px] sm:text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-1 sm:px-2.5 sm:py-1 rounded-full whitespace-nowrap">
+              Zero Missed Calls
+            </span>
           </div>
 
-          <div class="mt-8 pt-4 border-t border-slate-100 text-[11px] text-slate-400 text-center font-medium">
-            Subject to human burnout, sick leave, and turnover.
+          <!-- Features List -->
+          <div class="space-y-3 sm:space-y-4 text-xs sm:text-sm">
+            <div x-show="activeCategory === 'all' || activeCategory === 'coverage'" class="p-3 sm:p-3.5 rounded-2xl bg-white border border-blue-200/80 shadow-3d-sm">
+              <div class="flex items-center justify-between font-bold text-slate-900">
+                <span class="flex items-center gap-2 text-blue-700"><i class="fa-solid fa-clock"></i> Weekly Hours</span>
+                <span class="text-emerald-600 font-extrabold flex items-center gap-1 text-right">
+                  <i class="fa-solid fa-check text-[10px] sm:text-xs"></i> 168 Hrs (24/7/365)
+                </span>
+              </div>
+              <p class="text-[11px] text-slate-600 mt-1">Always on at 2:00 PM or 2:00 AM. Nights, weekends, and holidays covered.</p>
+            </div>
+
+            <div x-show="activeCategory === 'all' || activeCategory === 'coverage'" class="p-3 sm:p-3.5 rounded-2xl bg-white border border-blue-200/80 shadow-3d-sm">
+              <div class="flex items-center justify-between font-bold text-slate-900">
+                <span class="flex items-center gap-2 text-blue-700"><i class="fa-solid fa-infinity"></i> Call Capacity</span>
+                <span class="text-emerald-600 font-extrabold flex items-center gap-1 text-right">
+                  <i class="fa-solid fa-check text-[10px] sm:text-xs"></i> Unlimited Concurrency
+                </span>
+              </div>
+              <p class="text-[11px] text-slate-600 mt-1">Handles 10+ simultaneous calls at the exact same second with zero hold time.</p>
+            </div>
+
+            <div x-show="activeCategory === 'all' || activeCategory === 'coverage'" class="p-3 sm:p-3.5 rounded-2xl bg-white border border-blue-200/80 shadow-3d-sm">
+              <div class="flex items-center justify-between font-bold text-slate-900">
+                <span class="flex items-center gap-2 text-blue-700"><i class="fa-solid fa-bolt"></i> Answer Latency</span>
+                <span class="text-emerald-600 font-extrabold flex items-center gap-1 text-right">
+                  <i class="fa-solid fa-check text-[10px] sm:text-xs"></i> 0.38s Instant Pickup
+                </span>
+              </div>
+              <p class="text-[11px] text-slate-600 mt-1">Answers before the 2nd ring completes. Zero hold music abandonments.</p>
+            </div>
+
+            <div x-show="activeCategory === 'all' || activeCategory === 'capabilities'" class="p-3 sm:p-3.5 rounded-2xl bg-white border border-blue-200/80 shadow-3d-sm">
+              <div class="flex items-center justify-between font-bold text-slate-900">
+                <span class="flex items-center gap-2 text-blue-700"><i class="fa-solid fa-circle-check"></i> Workflow Execution</span>
+                <span class="text-emerald-600 font-extrabold flex items-center gap-1 text-right">
+                  <i class="fa-solid fa-check text-[10px] sm:text-xs"></i> 7 Core Abilities
+                </span>
+              </div>
+              <p class="text-[11px] text-slate-600 mt-1">Book, Reschedule, Cancel, Lookup, Q&A, and Warm Call Transfer.</p>
+            </div>
+
+            <div x-show="activeCategory === 'all' || activeCategory === 'financial'" class="p-3 sm:p-3.5 rounded-2xl bg-white border border-blue-200/80 shadow-3d-sm">
+              <div class="flex items-center justify-between font-bold text-slate-900">
+                <span class="flex items-center gap-2 text-blue-700"><i class="fa-solid fa-sack-dollar"></i> Direct Investment</span>
+                <span class="text-emerald-600 font-extrabold flex items-center gap-1 text-right">
+                  <i class="fa-solid fa-check text-[10px] sm:text-xs"></i> 80%+ Cost Savings
+                </span>
+              </div>
+              <p class="text-[11px] text-slate-600 mt-1">Done-for-you agency service with zero training ramp time.</p>
+            </div>
           </div>
         </div>
 
-        <!-- Column 2: Knetic VOI Agency -->
-        <div
-          class="lg:col-span-6 protrude-card bg-gradient-to-b from-white to-blue-50/40 border-2 border-blue-600 rounded-3xl p-7 md:p-8 shadow-3d-protrude flex flex-col justify-between relative reveal d-2">
-
-          <!-- Top Floating 3D Badge -->
-          <div
-            class="absolute -top-3.5 right-8 bg-blue-600 text-white font-bold text-[10px] tracking-wider uppercase px-3 py-1 rounded-full shadow-btn-3d flex items-center gap-1.5">
-            <i class="fa-solid fa-bolt text-amber-300"></i>
-            <span>Recommended Agency Solution</span>
-          </div>
-
-          <div>
-            <div class="flex items-center justify-between pb-4 border-b border-blue-100 mb-6">
-              <div>
-                <div class="flex items-center gap-2">
-                  <span>
-                    <img src="media/logo.png" alt="Logo"
-                      class="w-8 h-8 rounded-md shadow-md border border-zinc-200 border-2 object-contain">
-                  </span>
-                  <h3 class="font-display font-extrabold text-lg text-slate-950">KNETIC VOI AGENCY</h3>
-                </div>
-                <p class="text-xs text-blue-700 font-medium mt-1">Tailored for your business workflows</p>
-              </div>
-              <span
-                class="text-[11px]  font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full">
-                Zero Missed Calls
-              </span>
-            </div>
-
-            <!-- Features List -->
-            <div class="space-y-4 text-xs sm:text-sm">
-              <div x-show="activeCategory === 'all' || activeCategory === 'coverage'"
-                class="p-3.5 rounded-2xl bg-white border border-blue-200/80 shadow-3d-sm">
-                <div class="flex items-center justify-between font-bold text-slate-900">
-                  <span class="flex items-center gap-2 text-blue-700"><i class="fa-solid fa-clock"></i> Weekly
-                    Hours</span>
-                  <span class="text-emerald-600 font-extrabold flex items-center gap-1">
-                    <i class="fa-solid fa-check"></i> 168 Hrs (24/7/365)
-                  </span>
-                </div>
-                <p class="text-[11px] text-slate-600 mt-1">Always on at 2:00 PM or 2:00 AM. Nights, weekends, and
-                  holidays covered.</p>
-              </div>
-
-              <div x-show="activeCategory === 'all' || activeCategory === 'coverage'"
-                class="p-3.5 rounded-2xl bg-white border border-blue-200/80 shadow-3d-sm">
-                <div class="flex items-center justify-between font-bold text-slate-900">
-                  <span class="flex items-center gap-2 text-blue-700"><i class="fa-solid fa-infinity"></i> Call
-                    Capacity</span>
-                  <span class="text-emerald-600 font-extrabold flex items-center gap-1">
-                    <i class="fa-solid fa-check"></i> Unlimited Concurrency
-                  </span>
-                </div>
-                <p class="text-[11px] text-slate-600 mt-1">Handles 10+ simultaneous calls at the exact same second with
-                  zero hold time.</p>
-              </div>
-
-              <div x-show="activeCategory === 'all' || activeCategory === 'coverage'"
-                class="p-3.5 rounded-2xl bg-white border border-blue-200/80 shadow-3d-sm">
-                <div class="flex items-center justify-between font-bold text-slate-900">
-                  <span class="flex items-center gap-2 text-blue-700"><i class="fa-solid fa-bolt"></i> Answer
-                    Latency</span>
-                  <span class="text-emerald-600 font-extrabold flex items-center gap-1">
-                    <i class="fa-solid fa-check"></i> 0.38s Instant Pickup
-                  </span>
-                </div>
-                <p class="text-[11px] text-slate-600 mt-1">Answers before the 2nd ring completes. Zero hold music
-                  abandonments.</p>
-              </div>
-
-              <div x-show="activeCategory === 'all' || activeCategory === 'capabilities'"
-                class="p-3.5 rounded-2xl bg-white border border-blue-200/80 shadow-3d-sm">
-                <div class="flex items-center justify-between font-bold text-slate-900">
-                  <span class="flex items-center gap-2 text-blue-700"><i class="fa-solid fa-circle-check"></i> Workflow
-                    Execution</span>
-                  <span class="text-emerald-600 font-extrabold flex items-center gap-1">
-                    <i class="fa-solid fa-check"></i> 7 Core Abilitys
-                  </span>
-                </div>
-                <p class="text-[11px] text-slate-600 mt-1">Book, Reschedule, Cancel, Lookup, Q&A, and Warm Call
-                  Transfer.</p>
-              </div>
-
-              <div x-show="activeCategory === 'all' || activeCategory === 'financial'"
-                class="p-3.5 rounded-2xl bg-white border border-blue-200/80 shadow-3d-sm">
-                <div class="flex items-center justify-between font-bold text-slate-900">
-                  <span class="flex items-center gap-2 text-blue-700"><i class="fa-solid fa-sack-dollar"></i> Direct
-                    Investment</span>
-                  <span class="text-emerald-600 font-extrabold flex items-center gap-1">
-                    <i class="fa-solid fa-check"></i> 80%+ Cost Savings
-                  </span>
-                </div>
-                <p class="text-[11px] text-slate-600 mt-1">Done-for-you agency service with zero training ramp time.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-8 pt-4 border-t border-blue-100 flex items-center justify-between">
-            <span class="text-xs font-bold text-blue-900">Ready to eliminate missed calls?</span>
-            <a href="#contact"
-              class="btn-brand-grad text-white text-xs font-bold px-4 py-2 rounded-full shadow-btn-3d hover:brightness-110 transition-all">
-              Deploy Receptionist
-            </a>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- ================================================================= -->
-      <!-- INTERACTIVE MISSED-CALL REVENUE LOSS CALCULATOR (simplified)        -->
-      <!-- Logic: 40% of business-hours calls missed, 85% of after-hours     -->
-      <!-- ================================================================= -->
-
-      <div x-data="{
-    monthlyCalls: 300,
-    avgValue: 200,
-    
-    /* Dropdown UI states */
-    callsOpen: false,
-    valueOpen: false,
-    callsOptions: [50, 100, 150, 200, 300, 400, 500, 750, 1000],
-    valueOptions: [50, 75, 100, 150, 200, 300, 500, 750, 1000],
-
-    /* Fixed assumptions */
-    afterHoursShare: 35,
-    bookingRate: 30,
-    businessMissRate: 0.40,
-    afterHoursMissRate: 0.85,
-
-    get businessCalls()  { return Math.round(this.monthlyCalls * (100 - this.afterHoursShare) / 100); },
-    get afterCalls()     { return this.monthlyCalls - this.businessCalls; },
-    get missedBusiness() { return Math.round(this.businessCalls * this.businessMissRate); },
-    get missedAfter()    { return Math.round(this.afterCalls * this.afterHoursMissRate); },
-    get totalMissed()    { return this.missedBusiness + this.missedAfter; },
-    get lostCustomers()  { return Math.round(this.totalMissed * this.bookingRate / 100); },
-    get lostRevenue()    { return this.lostCustomers * this.avgValue; }
-}" class="protrude-card rounded-[28px] border border-slate-900/70 bg-[#141e26] shadow-3d-card reveal d-3 p-2 overflow-hidden">
-
-        <div class="grid lg:grid-cols-[360px_1fr] items-stretch">
-
-          <!-- ============ LEFT: WHITE CONTROL PANEL ============ -->
-          <div class="bg-white rounded-[22px] px-8 py-9 flex flex-col space-y-7 relative z-10">
-
-            <!-- Fixed assumptions info strip -->
-            <div
-              class="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs font-semibold text-slate-600 space-y-1">
-              <div class="flex items-center justify-between">
-                <span><i class="fa-solid fa-sun text-amber-500 mr-2"></i>Missed during business hours</span>
-                <span class="font-extrabold text-slate-900">40%</span>
-              </div>
-              <div class="flex items-center justify-between">
-                <span><i class="fa-solid fa-moon text-indigo-400 mr-2"></i>Missed after hours</span>
-                <span class="font-extrabold text-slate-900">85%</span>
-              </div>
-              <div class="flex items-center justify-between pt-2 border-t border-slate-200 mt-2">
-                <span><i class="fa-solid fa-chart-pie text-blue-500 mr-2"></i>Assumed booking rate</span>
-                <span class="font-extrabold text-slate-900">20%</span>
-              </div>
-              <div class="flex items-center justify-between">
-                <span><i class="fa-solid fa-clock text-purple-500 mr-2"></i>After-hours call share</span>
-                <span class="font-extrabold text-slate-900">30%</span>
-              </div>
-            </div>
-
-            <!-- Average inbound calls per month (Custom Dropdown) -->
-            <div>
-              <label class="block text-sm font-semibold text-slate-800 mb-3">Average inbound calls per month</label>
-              <div class="relative" @click.outside="callsOpen = false">
-                <button type="button" @click="callsOpen = !callsOpen"
-                  class="w-full flex items-center justify-between rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/40 transition-colors hover:border-slate-400">
-                  <span x-text="monthlyCalls.toLocaleString()"></span>
-                  <i class="fa-solid fa-chevron-down text-[11px] text-slate-800 transition-transform duration-200"
-                    :class="{ 'rotate-180': callsOpen }"></i>
-                </button>
-
-                <div x-show="callsOpen" x-transition.opacity.duration.150ms x-transition.scale.origin.top.duration.150ms
-                  class="absolute z-30 mt-2 w-full rounded-lg border border-slate-200 bg-white shadow-xl max-h-60 overflow-auto py-1">
-                  <template x-for="opt in callsOptions" :key="opt">
-                    <button type="button" @click="monthlyCalls = opt; callsOpen = false"
-                      class="w-full text-left px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors flex items-center justify-between"
-                      :class="{ 'bg-blue-50/60 text-blue-600': monthlyCalls === opt }">
-                      <span x-text="opt.toLocaleString()"></span>
-                      <i x-show="monthlyCalls === opt" class="fa-solid fa-check text-[10px] text-blue-500"></i>
-                    </button>
-                  </template>
-                </div>
-              </div>
-            </div>
-
-            <!-- Average value per customer / job (Custom Dropdown) -->
-            <div>
-              <label class="block text-sm font-semibold text-slate-800 mb-3">Average value per customer / job</label>
-              <div class="relative" @click.outside="valueOpen = false">
-                <button type="button" @click="valueOpen = !valueOpen"
-                  class="w-full flex items-center justify-between rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/40 transition-colors hover:border-slate-400">
-                  <span x-text="'$' + avgValue.toLocaleString()"></span>
-                  <i class="fa-solid fa-chevron-down text-[11px] text-slate-800 transition-transform duration-200"
-                    :class="{ 'rotate-180': valueOpen }"></i>
-                </button>
-
-                <div x-show="valueOpen" x-transition.opacity.duration.150ms x-transition.scale.origin.top.duration.150ms
-                  class="absolute z-30 mt-2 w-full rounded-lg border border-slate-200 bg-white shadow-xl max-h-60 overflow-auto py-1">
-                  <template x-for="opt in valueOptions" :key="opt">
-                    <button type="button" @click="avgValue = opt; valueOpen = false"
-                      class="w-full text-left px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors flex items-center justify-between"
-                      :class="{ 'bg-blue-50/60 text-blue-600': avgValue === opt }">
-                      <span x-text="'$' + opt.toLocaleString()"></span>
-                      <i x-show="avgValue === opt" class="fa-solid fa-check text-[10px] text-blue-500"></i>
-                    </button>
-                  </template>
-                </div>
-              </div>
-            </div>
-
-            <p class="mt-auto pt-6 text-xs leading-relaxed text-slate-500">
-              unsure? schedule a time with us <a href="#contact"
-                class="font-semibold text-blue-600 hover:underline">here</a> and our
-              ROI specialist will go over this with you.
-            </p>
-          </div>
-
-          <!-- ============ RIGHT: DARK RESULTS PANEL ============ -->
-          <div
-            class="flex flex-col px-8 py-10 lg:px-12 lg:py-12 bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:18px_18px]">
-
-            <!-- Headline number -->
-            <div>
-              <div class="flex items-baseline gap-2">
-                <span class="font-display text-4xl sm:text-5xl font-extrabold tracking-tight text-white tabular-nums"
-                  x-text="'$' + lostRevenue.toLocaleString()"></span>
-                <span class="text-sm font-bold text-white/80">/ month</span>
-              </div>
-              <p class="mt-2 text-xs font-bold text-white">Estimated monthly revenue lost to missed calls — revenue VOI
-                can recover for you</p>
-            </div>
-
-            <!-- Breakdown card -->
-            <div
-              class="mt-8 rounded-2xl bg-white/[0.05] border border-white/5 p-7 space-y-6 text-[13px] font-bold text-white">
-              <div class="flex items-center justify-between gap-4">
-                <span x-text="`Business-hours calls (${100 - afterHoursShare}% of total)`"></span>
-                <span class="tabular-nums" x-text="businessCalls"></span>
-              </div>
-              <div class="flex items-center justify-between gap-4">
-                <span>Missed during business hours (40%)</span>
-                <span class="tabular-nums" x-text="missedBusiness"></span>
-              </div>
-              <div class="flex items-center justify-between gap-4">
-                <span x-text="`After-hours calls (${afterHoursShare}% of total)`"></span>
-                <span class="tabular-nums" x-text="afterCalls"></span>
-              </div>
-              <div class="flex items-center justify-between gap-4">
-                <span>Missed after hours (85%)</span>
-                <span class="tabular-nums" x-text="missedAfter"></span>
-              </div>
-              <div class="flex items-center justify-between gap-4 border-t border-white/10 pt-5">
-                <span>Total missed calls / month</span>
-                <span class="tabular-nums" x-text="totalMissed"></span>
-              </div>
-              <div class="flex items-center justify-between gap-4">
-                <span x-text="`Lost customers (${bookingRate}% of missed)`"></span>
-                <span class="tabular-nums" x-text="lostCustomers"></span>
-              </div>
-              <div class="flex items-center justify-between gap-4">
-                <span>Average value per customer / job</span>
-                <span class="tabular-nums" x-text="'$' + avgValue.toLocaleString()"></span>
-              </div>
-            </div>
-
-            <!-- Total card -->
-            <div
-              class="mt-4 rounded-2xl bg-white/[0.05] border border-white/5 px-7 py-6 flex items-center justify-between text-[13px] font-bold text-white">
-              <span>Total revenue lost / month</span>
-              <span class="tabular-nums text-emerald-400" x-text="'$' + lostRevenue.toLocaleString()"></span>
-            </div>
-
-            <!-- Footer note + CTAs -->
-            <div class="mt-auto pt-12">
-              <p class="text-xs font-bold text-white">Not sure what to enter? Most businesses underestimate how many
-                calls they miss.</p>
-              <div class="mt-5 flex flex-wrap items-center gap-4">
-                <a href="#contact"
-                  class="flex items-center gap-3 rounded-full bg-[#0a84ff] py-1.5 pl-6 pr-1.5 text-sm font-bold text-white shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
-                  Get your own Receptionist
-                  <span class="flex h-8 w-8 items-center justify-center rounded-full bg-[#4aa3ff]">
-                    <i class="fa-solid fa-arrow-right -rotate-45 text-[11px]"></i>
-                  </span>
-                </a>
-                <a href="#contact"
-                  class="flex items-center gap-3 rounded-full bg-white py-1.5 pl-6 pr-1.5 text-sm font-bold text-slate-900 shadow-btn-3d hover:brightness-95 active:translate-y-0.5 transition-all">
-                  Request Call Report
-                  <span class="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100">
-                    <i class="fa-solid fa-arrow-right -rotate-45 text-[11px] text-slate-700"></i>
-                  </span>
-                </a>
-              </div>
-            </div>
-          </div>
-
+        <div class="mt-6 sm:mt-8 pt-4 border-t border-blue-100 flex flex-col sm:flex-row items-center sm:items-center justify-between gap-3 sm:gap-0">
+          <span class="text-xs sm:text-sm font-bold text-blue-900 text-center sm:text-left">Ready to eliminate missed calls?</span>
+          <a href="#contact" class="btn-brand-grad w-full sm:w-auto text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-full text-center shadow-btn-3d hover:brightness-110 transition-all">
+            Deploy Receptionist
+          </a>
         </div>
       </div>
 
     </div>
-  </section>
+
+    <!-- ================================================================= -->
+    <!-- INTERACTIVE MISSED-CALL REVENUE LOSS CALCULATOR                   -->
+    <!-- ================================================================= -->
+
+    <div x-data="{
+      monthlyCalls: 300,
+      avgValue: 200,
+      callsOpen: false,
+      valueOpen: false,
+      callsOptions: [50, 100, 150, 200, 300, 400, 500, 750, 1000],
+      valueOptions: [50, 75, 100, 150, 200, 300, 500, 750, 1000],
+      afterHoursShare: 35,
+      bookingRate: 30,
+      businessMissRate: 0.40,
+      afterHoursMissRate: 0.85,
+
+      get businessCalls()  { return Math.round(this.monthlyCalls * (100 - this.afterHoursShare) / 100); },
+      get afterCalls()     { return this.monthlyCalls - this.businessCalls; },
+      get missedBusiness() { return Math.round(this.businessCalls * this.businessMissRate); },
+      get missedAfter()    { return Math.round(this.afterCalls * this.afterHoursMissRate); },
+      get totalMissed()    { return this.missedBusiness + this.missedAfter; },
+      get lostCustomers()  { return Math.round(this.totalMissed * this.bookingRate / 100); },
+      get lostRevenue()    { return this.lostCustomers * this.avgValue; }
+    }" class="protrude-card rounded-2xl sm:rounded-[28px] border border-slate-900/70 bg-[#141e26] shadow-3d-card reveal d-3 p-2 sm:p-3 md:p-4 overflow-hidden">
+
+      <div class="grid lg:grid-cols-[360px_1fr] items-stretch">
+
+        <!-- ============ LEFT: WHITE CONTROL PANEL ============ -->
+        <div class="bg-white rounded-t-2xl sm:rounded-t-[22px] lg:rounded-l-[22px] lg:rounded-r-none px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-9 flex flex-col space-y-6 sm:space-y-7 relative z-10">
+
+          <!-- Fixed assumptions info strip -->
+          <div class="rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 sm:px-4 sm:py-3 text-xs font-semibold text-slate-600 space-y-2">
+            <div class="flex items-center justify-between">
+              <span><i class="fa-solid fa-sun text-amber-500 mr-2"></i>Missed during business hours</span>
+              <span class="font-extrabold text-slate-900">40%</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span><i class="fa-solid fa-moon text-indigo-400 mr-2"></i>Missed after hours</span>
+              <span class="font-extrabold text-slate-900">85%</span>
+            </div>
+            <div class="flex items-center justify-between pt-2 border-t border-slate-200 mt-2">
+              <span><i class="fa-solid fa-chart-pie text-blue-500 mr-2"></i>Assumed booking rate</span>
+              <span class="font-extrabold text-slate-900">30%</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span><i class="fa-solid fa-clock text-purple-500 mr-2"></i>After-hours call share</span>
+              <span class="font-extrabold text-slate-900">35%</span>
+            </div>
+          </div>
+
+          <!-- Average inbound calls per month (Custom Dropdown) -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-800 mb-3">Average inbound calls per month</label>
+            <div class="relative" @click.outside="callsOpen = false">
+              <button type="button" @click="callsOpen = !callsOpen"
+                class="w-full flex items-center justify-between rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/40 transition-colors hover:border-slate-400">
+                <span x-text="monthlyCalls.toLocaleString()"></span>
+                <i class="fa-solid fa-chevron-down text-[11px] text-slate-800 transition-transform duration-200"
+                  :class="{ 'rotate-180': callsOpen }"></i>
+              </button>
+
+              <div x-show="callsOpen" x-transition.opacity.duration.150ms x-transition.scale.origin.top.duration.150ms
+                class="absolute z-30 mt-2 w-full rounded-lg border border-slate-200 bg-white shadow-xl max-h-60 overflow-auto py-1">
+                <template x-for="opt in callsOptions" :key="opt">
+                  <button type="button" @click="monthlyCalls = opt; callsOpen = false"
+                    class="w-full text-left px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors flex items-center justify-between"
+                    :class="{ 'bg-blue-50/60 text-blue-600': monthlyCalls === opt }">
+                    <span x-text="opt.toLocaleString()"></span>
+                    <i x-show="monthlyCalls === opt" class="fa-solid fa-check text-[10px] text-blue-500"></i>
+                  </button>
+                </template>
+              </div>
+            </div>
+          </div>
+
+          <!-- Average value per customer / job (Custom Dropdown) -->
+          <div>
+            <label class="block text-sm font-semibold text-slate-800 mb-3">Average value per customer / job</label>
+            <div class="relative" @click.outside="valueOpen = false">
+              <button type="button" @click="valueOpen = !valueOpen"
+                class="w-full flex items-center justify-between rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/40 transition-colors hover:border-slate-400">
+                <span x-text="'$' + avgValue.toLocaleString()"></span>
+                <i class="fa-solid fa-chevron-down text-[11px] text-slate-800 transition-transform duration-200"
+                  :class="{ 'rotate-180': valueOpen }"></i>
+              </button>
+
+              <div x-show="valueOpen" x-transition.opacity.duration.150ms x-transition.scale.origin.top.duration.150ms
+                class="absolute z-30 mt-2 w-full rounded-lg border border-slate-200 bg-white shadow-xl max-h-60 overflow-auto py-1">
+                <template x-for="opt in valueOptions" :key="opt">
+                  <button type="button" @click="avgValue = opt; valueOpen = false"
+                    class="w-full text-left px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors flex items-center justify-between"
+                    :class="{ 'bg-blue-50/60 text-blue-600': avgValue === opt }">
+                    <span x-text="'$' + opt.toLocaleString()"></span>
+                    <i x-show="avgValue === opt" class="fa-solid fa-check text-[10px] text-blue-500"></i>
+                  </button>
+                </template>
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-auto pt-4 sm:pt-6 text-xs leading-relaxed text-slate-500 text-center sm:text-left">
+            Unsure? Schedule a time with us <a href="#contact" class="font-semibold text-blue-600 hover:underline">here</a> and our ROI specialist will go over this with you.
+          </p>
+        </div>
+
+        <!-- ============ RIGHT: DARK RESULTS PANEL ============ -->
+        <div class="flex flex-col px-4 py-6 sm:px-6 sm:py-8 lg:px-12 lg:py-12 bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:18px_18px]">
+
+          <!-- Headline number -->
+          <div>
+            <div class="flex items-baseline gap-2 flex-wrap">
+              <span class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white tabular-nums"
+                x-text="'$' + lostRevenue.toLocaleString()"></span>
+              <span class="text-sm font-bold text-white/80">/ month</span>
+            </div>
+            <p class="mt-2 text-xs sm:text-sm font-bold text-white/90 leading-snug">Estimated monthly revenue lost to missed calls — revenue VOI can recover for you.</p>
+          </div>
+
+          <!-- Breakdown card -->
+          <div class="mt-6 sm:mt-8 rounded-2xl bg-white/[0.05] border border-white/5 p-4 sm:p-6 space-y-4 sm:space-y-6 text-xs sm:text-[13px] font-bold text-white">
+            <div class="flex items-center justify-between gap-4">
+              <span x-text="`Business-hours calls (${100 - afterHoursShare}% of total)`"></span>
+              <span class="tabular-nums shrink-0" x-text="businessCalls"></span>
+            </div>
+            <div class="flex items-center justify-between gap-4">
+              <span>Missed during business hours (40%)</span>
+              <span class="tabular-nums shrink-0" x-text="missedBusiness"></span>
+            </div>
+            <div class="flex items-center justify-between gap-4">
+              <span x-text="`After-hours calls (${afterHoursShare}% of total)`"></span>
+              <span class="tabular-nums shrink-0" x-text="afterCalls"></span>
+            </div>
+            <div class="flex items-center justify-between gap-4">
+              <span>Missed after hours (85%)</span>
+              <span class="tabular-nums shrink-0" x-text="missedAfter"></span>
+            </div>
+            <div class="flex items-center justify-between gap-4 border-t border-white/10 pt-4 sm:pt-5">
+              <span>Total missed calls / month</span>
+              <span class="tabular-nums shrink-0" x-text="totalMissed"></span>
+            </div>
+            <div class="flex items-center justify-between gap-4">
+              <span x-text="`Lost customers (${bookingRate}% of missed)`"></span>
+              <span class="tabular-nums shrink-0" x-text="lostCustomers"></span>
+            </div>
+            <div class="flex items-center justify-between gap-4">
+              <span>Average value per customer / job</span>
+              <span class="tabular-nums shrink-0" x-text="'$' + avgValue.toLocaleString()"></span>
+            </div>
+          </div>
+
+          <!-- Total card -->
+          <div class="mt-4 rounded-2xl bg-white/[0.05] border border-white/5 px-4 py-4 sm:px-7 sm:py-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 text-xs sm:text-[13px] font-bold text-white">
+            <span>Total revenue lost / month</span>
+            <span class="tabular-nums text-emerald-400 text-base sm:text-lg" x-text="'$' + lostRevenue.toLocaleString()"></span>
+          </div>
+
+          <!-- Footer note + CTAs -->
+          <div class="mt-auto pt-8 sm:pt-12">
+            <p class="text-xs sm:text-sm font-bold text-white/90 text-center sm:text-left">Not sure what to enter? Most businesses underestimate how many calls they miss.</p>
+            <div class="mt-5 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+              <a href="#contact"
+                class="flex items-center justify-center sm:justify-start gap-3 rounded-full bg-[#0a84ff] py-3 sm:py-2 pl-6 pr-2 text-sm font-bold text-white shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
+                Get your own Receptionist
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#4aa3ff]">
+                  <i class="fa-solid fa-arrow-right -rotate-45 text-[11px]"></i>
+                </span>
+              </a>
+              <a href="#contact"
+                class="flex items-center justify-center sm:justify-start gap-3 rounded-full bg-white py-3 sm:py-2 pl-6 pr-2 text-sm font-bold text-slate-900 shadow-btn-3d hover:brightness-95 active:translate-y-0.5 transition-all">
+                Request Call Report
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-100">
+                  <i class="fa-solid fa-arrow-right -rotate-45 text-[11px] text-slate-700"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
 
   <!-- ===================================================================== -->
   <!-- INTERACTIVE SCENARIO SIMULATOR                                        -->
