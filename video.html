@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth antialiased">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KNETIC VOI — See It In Action</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="media/logo.png">
+
+  <!-- Alpine.js Collapse Plugin + Core -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Font Awesome 6.5.2 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Premium Typography: Plus Jakarta Sans (Headings) + Inter (Body) + JetBrains Mono (Telemetry) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap"
+    rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            display: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f6fe',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+              950: '#0b1b4f',
+              accent: '#0284c7',
+            },
+            obsidian: {
+              950: '#05070c',
+              900: '#0a0d14',
+              850: '#0f141d',
+              800: '#151b26',
+              700: '#1f2937',
+            }
+          },
+          boxShadow: {
+            '3d-sm': '0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(15,23,42,0.05), inset 0 1px 0 rgba(255,255,255,0.9)',
+            '3d-card': '0 0 0 1px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.02), 0 12px 28px -6px rgba(15,23,42,0.06), 0 20px 40px -12px rgba(15,23,42,0.04), inset 0 1px 0 rgba(255,255,255,1), inset 0 -1px 2px rgba(0,0,0,0.03)',
+            '3d-protrude': '0 24px 48px -12px rgba(15,23,42,0.12), 0 0 0 1px rgba(15,23,42,0.06), inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -2px 0 rgba(0,0,0,0.05)',
+            '3d-dark': '0 30px 60px -15px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.8)',
+            '3d-dark-card': '0 20px 40px -10px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.07), inset 0 1px 0 rgba(255,255,255,0.12)',
+            'btn-3d': '0 4px 14px 0 rgba(37,99,235,0.35), inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -2px 0 rgba(0,0,0,0.2)',
+            'btn-dark-3d': '0 4px 14px 0 rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -2px 0 rgba(0,0,0,0.7)',
+            'video-glow': '0 0 0 1px rgba(59,130,246,0.25), 0 40px 80px -20px rgba(0,0,0,0.8), 0 0 60px -10px rgba(37,99,235,0.15)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ============================================================
+       CORE STYLING — matches kneticVOI index.html
+       ============================================================ */
+    html { scroll-padding-top: 100px; }
+
+    body {
+      background-color: #05070c;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: #2563eb; color: #ffffff; }
+    [x-cloak] { display: none !important; }
+
+    /* Architectural dot-grid (dark variant) */
+    .bg-grid-dark {
+      background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    /* 3-D gradient text */
+    .text-3d-silver {
+      background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 60%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .text-3d-blue {
+      background: linear-gradient(180deg, #60a5fa 0%, #3b82f6 55%, #2563eb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 2px 4px rgba(37,99,235,0.25));
+    }
+
+    /* Button gradient */
+    .btn-brand-grad {
+      background: linear-gradient(180deg, #3b82f6 0%, #2563eb 60%, #1d4ed8 100%);
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d-1 { transition-delay: 0.08s; }
+    .d-2 { transition-delay: 0.16s; }
+    .d-3 { transition-delay: 0.24s; }
+    .d-4 { transition-delay: 0.40s; }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 7px; }
+    ::-webkit-scrollbar-track { background: #0a0d14; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+    /* ============================================================
+       VIDEO PLAYER — YouTube responsive embed
+       ============================================================ */
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      background: #000;
+      box-shadow:
+        0 0 0 1px rgba(59,130,246,0.22),
+        0 50px 100px -20px rgba(0,0,0,0.9),
+        0 0 80px -15px rgba(37,99,235,0.18);
+    }
+
+    /* 16:9 aspect-ratio letterbox */
+    .yt-embed-wrap {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+    }
+    .yt-embed-wrap iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* Ambient glow under the video */
+    .video-ambient-glow {
+      position: absolute;
+      bottom: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      height: 120px;
+      background: radial-gradient(ellipse, rgba(37,99,235,0.22) 0%, transparent 70%);
+      pointer-events: none;
+      filter: blur(20px);
+    }
+
+    /* Feature pills */
+    .feature-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 9999px;
+      padding: 0.45rem 1rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      backdrop-filter: blur(8px);
+    }
+    .feature-pill i { color: #60a5fa; font-size: 0.7rem; }
+
+    /* Ambient header glow */
+    @keyframes subtle-glow {
+      0%, 100% { opacity: 0.35; transform: scale(1); }
+      50%       { opacity: 0.65; transform: scale(1.04); }
+    }
+    .animate-subtle-glow { animation: subtle-glow 5s ease-in-out infinite; }
+
+    /* Nav protrude card */
+    .protrude-card-dark {
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .protrude-card-dark:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 28px 56px -12px rgba(0,0,0,0.7), 0 0 0 1px rgba(59,130,246,0.3), inset 0 1px 0 rgba(255,255,255,0.15);
+    }
+  </style>
+</head>
+
+<body class="relative font-sans" x-data="{ mobileNav: false }">
+
+  <!-- ================================================================= -->
+  <!-- TOP NAVIGATION — Pitch Black Floating Obsidian Pill               -->
+  <!-- ================================================================= -->
+  <header class="fixed top-0 inset-x-0 z-50 pt-3 md:pt-4 px-3 md:px-6 flex justify-center pointer-events-none">
+    <div
+      class="pointer-events-auto w-full max-w-5xl bg-zinc-950/95 backdrop-blur-2xl rounded-full pl-5 pr-2 py-2 flex items-center justify-between border border-white/10 shadow-3d-dark transition-all duration-300">
+
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center gap-3 shrink-0 group">
+        <img src="media/logo.png" alt="KneticLogo"
+          class="w-8 h-8 rounded-full border border-white/10 shadow-sm group-hover:shadow-md transition-all">
+        <div class="flex items-center gap-1.5">
+          <span class="font-display font-extrabold text-white text-base tracking-tight">KNETIC</span>
+          <span
+            class="font-display font-bold text-blue-400 text-xs px-1.5 py-0.5 rounded-md bg-blue-500/10 border border-blue-400/20 tracking-wider">VOI</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-1">
+        <a href="index.html#capabilities"
+          class="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.08] transition-all">Capabilities</a>
+        <a href="index.html#demo"
+          class="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.08] transition-all">Live Simulator</a>
+        <a href="index.html#compare"
+          class="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.08] transition-all">Economics &amp; ROI</a>
+        <a href="index.html#faq"
+          class="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.08] transition-all">FAQ</a>
+      </nav>
+
+      <!-- CTA + Mobile Toggle -->
+      <div class="flex items-center gap-2">
+        <a href="index.html"
+          class="btn-brand-grad inline-flex items-center gap-2 text-white text-xs font-bold px-4 sm:px-5 py-2 rounded-full shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
+          <span>Get Started</span>
+          <i class="fa-solid fa-arrow-right text-[10px]"></i>
+        </a>
+        <button @click="mobileNav = !mobileNav" aria-label="Toggle navigation"
+          class="md:hidden w-8 h-8 rounded-full bg-white/10 text-zinc-300 hover:text-white flex items-center justify-center">
+          <i class="fa-solid" :class="mobileNav ? 'fa-xmark' : 'fa-bars-staggered'"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div x-show="mobileNav" x-cloak
+      x-transition:enter="transition ease-out duration-200"
+      x-transition:enter-start="opacity-0 -translate-y-2 scale-98"
+      x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+      x-transition:leave-end="opacity-0 -translate-y-2 scale-98"
+      class="md:hidden absolute top-full mt-2 w-[94%] max-w-sm bg-zinc-950/98 border border-white/15 rounded-2xl p-4 shadow-2xl backdrop-blur-2xl flex flex-col gap-1 pointer-events-auto">
+      <a @click="mobileNav = false" href="index.html#capabilities"
+        class="px-4 py-2.5 rounded-xl text-sm font-semibold text-zinc-300 hover:text-white hover:bg-white/10">Capabilities</a>
+      <a @click="mobileNav = false" href="index.html#demo"
+        class="px-4 py-2.5 rounded-xl text-sm font-semibold text-zinc-300 hover:text-white hover:bg-white/10">Live Simulator</a>
+      <a @click="mobileNav = false" href="index.html#compare"
+        class="px-4 py-2.5 rounded-xl text-sm font-semibold text-zinc-300 hover:text-white hover:bg-white/10">Economics &amp; ROI</a>
+      <a @click="mobileNav = false" href="index.html#faq"
+        class="px-4 py-2.5 rounded-xl text-sm font-semibold text-zinc-300 hover:text-white hover:bg-white/10">FAQ</a>
+      <a @click="mobileNav = false" href="index.html"
+        class="btn-brand-grad mt-2 py-2.5 rounded-xl text-xs font-bold text-white text-center shadow-btn-3d">Get Started</a>
+    </div>
+  </header>
+
+  <!-- ================================================================= -->
+  <!-- HERO SECTION — Video page                                          -->
+  <!-- ================================================================= -->
+  <main class="relative min-h-screen bg-grid-dark pt-28 pb-24 px-4 md:px-6">
+
+    <!-- Ambient radial gradient blobs -->
+    <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      <div class="animate-subtle-glow absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-blue-600/10 blur-3xl"></div>
+      <div class="animate-subtle-glow absolute top-1/2 -left-40 w-[400px] h-[400px] rounded-full bg-blue-800/8 blur-3xl" style="animation-delay:-2.5s"></div>
+      <div class="animate-subtle-glow absolute bottom-0 right-0 w-[500px] h-[400px] rounded-full bg-blue-900/10 blur-3xl" style="animation-delay:-4s"></div>
+    </div>
+
+    <div class="relative max-w-5xl mx-auto">
+
+      <!-- Badge -->
+      <div class="reveal visible flex justify-center mb-6">
+        <div class="inline-flex items-center gap-2.5 bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-4 py-1.5 shadow-3d-dark">
+          <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+          <span class="text-xs font-bold tracking-wider uppercase text-slate-300">
+            Knetic VOI — Platform Demo
+          </span>
+        </div>
+      </div>
+
+      <!-- Headline -->
+      <div class="reveal visible d-1 text-center mb-4">
+        <h1 class="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl leading-[1.08] tracking-tight">
+          <span class="text-3d-silver">See Knetic VOI</span><br>
+          <span class="text-3d-blue">in action.</span>
+        </h1>
+      </div>
+
+      <!-- Sub-headline -->
+      <p class="reveal visible d-2 text-center text-slate-400 text-base sm:text-lg max-w-xl mx-auto leading-relaxed mb-10">
+        Watch a real end-to-end walkthrough — from inbound call handling to live appointment booking and warm transfer.
+      </p>
+
+      <!-- ============================================================= -->
+      <!-- VIDEO PLAYER                                                   -->
+      <!-- ============================================================= -->
+      <div class="reveal visible d-3 relative">
+
+        <!-- Ambient glow below video -->
+        <div class="video-ambient-glow"></div>
+
+        <div class="video-wrapper" id="videoWrapper">
+          <div class="yt-embed-wrap">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/R_9eiGDIbDw"
+              title="Knetic VOI — Platform Demo"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div><!-- /.video-wrapper -->
+      </div><!-- /.reveal -->
+
+      <!-- Feature pills -->
+      <div class="reveal visible d-4 flex flex-wrap justify-center gap-2.5 mt-10 mb-12">
+        <span class="feature-pill"><i class="fa-solid fa-phone-volume"></i> Real Inbound Call</span>
+        <span class="feature-pill"><i class="fa-solid fa-calendar-check"></i> Live Appointment Booking</span>
+        <span class="feature-pill"><i class="fa-solid fa-bolt"></i> Sub-400ms Latency</span>
+        <span class="feature-pill"><i class="fa-solid fa-phone-arrow-right"></i> Warm Call Transfer</span>
+        <span class="feature-pill"><i class="fa-solid fa-clock"></i> 24/7 Availability</span>
+      </div>
+
+      <!-- CTA block -->
+      <div class="reveal visible text-center">
+        <p class="text-slate-500 text-sm mb-4 font-medium">Ready to deploy this for your business?</p>
+        <a href="index.html"
+          class="btn-brand-grad inline-flex items-center gap-2.5 text-white font-bold text-sm px-8 py-4 rounded-full shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
+          <i class="fa-solid fa-bolt text-xs"></i>
+          <span>Deploy For Your Business</span>
+        </a>
+      </div>
+
+    </div><!-- /.max-w-5xl -->
+  </main>
+
+  <!-- ================================================================= -->
+  <!-- FOOTER — minimal                                                   -->
+  <!-- ================================================================= -->
+  <footer class="border-t border-white/5 py-8 px-6 text-center">
+    <div class="flex flex-col items-center gap-3">
+      <div class="flex items-center gap-2">
+        <img src="media/logo.png" alt="Knetic VOI" class="w-6 h-6 rounded-full border border-white/10">
+        <span class="font-display font-extrabold text-white text-sm tracking-tight">KNETIC</span>
+        <span class="font-display font-bold text-blue-400 text-[10px] px-1.5 py-0.5 rounded-md bg-blue-500/10 border border-blue-400/20 tracking-wider">VOI</span>
+      </div>
+      <p class="text-slate-600 text-xs">&copy; 2025 Knetic VOI. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ================================================================= -->
+  <!-- SCROLL REVEAL SCRIPT                                              -->
+  <!-- ================================================================= -->
+  <script>
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
