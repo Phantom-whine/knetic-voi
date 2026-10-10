@@ -1,388 +1,1035 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth antialiased">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KNETIC VOI — See It In Action</title>
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="icon" href="media/logo.png">
-
-  <!-- Alpine.js Collapse Plugin + Core -->
-  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-  <!-- Font Awesome 6.5.2 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-  <!-- Premium Typography: Plus Jakarta Sans (Headings) + Inter (Body) + JetBrains Mono (Telemetry) -->
+  <meta name="theme-color" content="#f2f2f3">
+  <title>KneticVOI — Water heater service demo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap"
     rel="stylesheet">
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-            display: ['"Plus Jakarta Sans"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-          },
-          colors: {
-            brand: {
-              50: '#f0f6fe',
-              100: '#dbeafe',
-              200: '#bfdbfe',
-              300: '#93c5fd',
-              400: '#60a5fa',
-              500: '#3b82f6',
-              600: '#2563eb',
-              700: '#1d4ed8',
-              800: '#1e40af',
-              900: '#1e3a8a',
-              950: '#0b1b4f',
-              accent: '#0284c7',
-            },
-            obsidian: {
-              950: '#05070c',
-              900: '#0a0d14',
-              850: '#0f141d',
-              800: '#151b26',
-              700: '#1f2937',
-            }
-          },
-          boxShadow: {
-            '3d-sm': '0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(15,23,42,0.05), inset 0 1px 0 rgba(255,255,255,0.9)',
-            '3d-card': '0 0 0 1px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.02), 0 12px 28px -6px rgba(15,23,42,0.06), 0 20px 40px -12px rgba(15,23,42,0.04), inset 0 1px 0 rgba(255,255,255,1), inset 0 -1px 2px rgba(0,0,0,0.03)',
-            '3d-protrude': '0 24px 48px -12px rgba(15,23,42,0.12), 0 0 0 1px rgba(15,23,42,0.06), inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -2px 0 rgba(0,0,0,0.05)',
-            '3d-dark': '0 30px 60px -15px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.8)',
-            '3d-dark-card': '0 20px 40px -10px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.07), inset 0 1px 0 rgba(255,255,255,0.12)',
-            'btn-3d': '0 4px 14px 0 rgba(37,99,235,0.35), inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -2px 0 rgba(0,0,0,0.2)',
-            'btn-dark-3d': '0 4px 14px 0 rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -2px 0 rgba(0,0,0,0.7)',
-            'video-glow': '0 0 0 1px rgba(59,130,246,0.25), 0 40px 80px -20px rgba(0,0,0,0.8), 0 0 60px -10px rgba(37,99,235,0.15)',
-          }
-        }
-      }
-    }
-  </script>
-
   <style>
-    /* ============================================================
-       CORE STYLING — matches kneticVOI index.html
-       ============================================================ */
-    html { scroll-padding-top: 100px; }
+    :root {
+      color-scheme: light;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      font-family: var(--font-sans);
+      --page-bg: #f2f2f3;
+      --card-bg: #e9e9e9;
+      --card-head: #e3e3e4;
+      --ink: #1c1c22;
+      --muted: #77777e;
+    }
+
+    * { box-sizing: border-box; }
 
     body {
-      background-color: #05070c;
-      color: #e2e8f0;
-      overflow-x: hidden;
-    }
-
-    ::selection { background: #2563eb; color: #ffffff; }
-    [x-cloak] { display: none !important; }
-
-    /* Architectural dot-grid (dark variant) */
-    .bg-grid-dark {
-      background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
-      background-size: 24px 24px;
-    }
-
-    /* 3-D gradient text */
-    .text-3d-silver {
-      background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 60%, #94a3b8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .text-3d-blue {
-      background: linear-gradient(180deg, #60a5fa 0%, #3b82f6 55%, #2563eb 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 2px 4px rgba(37,99,235,0.25));
-    }
-
-    /* Button gradient */
-    .btn-brand-grad {
-      background: linear-gradient(180deg, #3b82f6 0%, #2563eb 60%, #1d4ed8 100%);
-    }
-
-    /* Scroll reveal */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .d-1 { transition-delay: 0.08s; }
-    .d-2 { transition-delay: 0.16s; }
-    .d-3 { transition-delay: 0.24s; }
-    .d-4 { transition-delay: 0.40s; }
-
-    /* Custom scrollbar */
-    ::-webkit-scrollbar { width: 7px; }
-    ::-webkit-scrollbar-track { background: #0a0d14; }
-    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 9999px; }
-    ::-webkit-scrollbar-thumb:hover { background: #475569; }
-
-    /* ============================================================
-       VIDEO PLAYER — YouTube responsive embed
-       ============================================================ */
-    .video-wrapper {
-      position: relative;
-      width: 100%;
-      border-radius: 1.25rem;
+      min-width: 280px;
+      min-height: 100vh;
+      min-height: 100svh;
+      margin: 0;
+      display: grid;
+      place-items: center;
       overflow: hidden;
-      background: #000;
-      box-shadow:
-        0 0 0 1px rgba(59,130,246,0.22),
-        0 50px 100px -20px rgba(0,0,0,0.9),
-        0 0 80px -15px rgba(37,99,235,0.18);
+      background: var(--page-bg);
+      color: #52525b;
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* 16:9 aspect-ratio letterbox */
-    .yt-embed-wrap {
+    .card {
       position: relative;
-      width: 100%;
-      padding-bottom: 56.25%; /* 16:9 */
-      height: 0;
-    }
-    .yt-embed-wrap iframe {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      border: none;
-      display: block;
+      width: 90%;
+      height: min(760px, calc(100svh - 28px));
+      display: flex;
+      flex-direction: column;
+      background: var(--card-bg);
+      border-radius: 24px;
+      /* box-shadow: 0 18px 50px -18px rgba(0, 0, 0, 0.18); */
+      overflow: hidden;
     }
 
-    /* Ambient glow under the video */
-    .video-ambient-glow {
-      position: absolute;
-      bottom: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 70%;
-      height: 120px;
-      background: radial-gradient(ellipse, rgba(37,99,235,0.22) 0%, transparent 70%);
-      pointer-events: none;
-      filter: blur(20px);
-    }
-
-    /* Feature pills */
-    .feature-pill {
-      display: inline-flex;
+    /* ---------- Card header ---------- */
+    .card-header {
+      display: flex;
       align-items: center;
-      gap: 0.5rem;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.09);
-      border-radius: 9999px;
-      padding: 0.45rem 1rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: #cbd5e1;
-      backdrop-filter: blur(8px);
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 20px;
+      background: var(--card-head);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
     }
-    .feature-pill i { color: #60a5fa; font-size: 0.7rem; }
 
-    /* Ambient header glow */
-    @keyframes subtle-glow {
-      0%, 100% { opacity: 0.35; transform: scale(1); }
-      50%       { opacity: 0.65; transform: scale(1.04); }
+    .head-left { display: flex; align-items: center; gap: 14px; }
+
+    .head-icon {
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      background: #fff;
+      display: grid; place-items: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      flex: none;
     }
-    .animate-subtle-glow { animation: subtle-glow 5s ease-in-out infinite; }
 
-    /* Nav protrude card */
-    .protrude-card-dark {
+    .head-icon svg { width: 22px; height: 22px; }
+
+    .card-header h1 {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .card-header p { margin: 2px 0 0; font-size: 13px; color: var(--muted); }
+
+    .demo-pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: #fff; border-radius: 999px;
+      padding: 7px 14px;
+      font-size: 12.5px; font-weight: 600; color: #44444b;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      white-space: nowrap;
+    }
+
+    .demo-pill .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 6px rgba(34, 197, 94, 0.8);
+    }
+
+    .appointment-toast[hidden] { display: none; }
+
+    .appointment-toast {
+      position: absolute;
+      z-index: 5;
+      bottom: 86px;
+      left: 50%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 230px;
+      padding: 12px 16px 12px 12px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.97);
+      box-shadow: 0 14px 38px rgba(15, 23, 42, 0.16);
+      transform: translateX(-50%);
+    }
+
+    .appointment-toast.is-entering {
+      animation: toast-in 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .appointment-toast.is-leaving {
+      animation: toast-out 380ms cubic-bezier(0.4, 0, 1, 1) both;
+    }
+
+    .appointment-toast img {
+      width: 34px;
+      height: 34px;
+      flex: none;
+      object-fit: contain;
+      border-radius: 9px;
+    }
+
+    .toast-title {
+      margin: 0;
+      color: #202027;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .toast-detail {
+      margin: 2px 0 0;
+      color: #77777e;
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    @keyframes toast-in {
+      from { opacity: 0; transform: translate(-50%, 12px) scale(0.96); }
+      to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+    }
+
+    @keyframes toast-out {
+      from { opacity: 1; transform: translate(-50%, 0) scale(1); }
+      to { opacity: 0; transform: translate(-50%, 8px) scale(0.97); }
+    }
+
+    /* ---------- Card body ---------- */
+    .card-body { flex: 1; display: flex; min-height: 0; }
+
+    .stage {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      padding: 16px;
+      min-width: 0;
+    }
+
+    .orb-wrap { position: relative; }
+
+    .orb {
       position: relative;
-      transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+      width: clamp(234px, 41.6vh, 291px);
+      aspect-ratio: 1;
+      overflow: hidden;
+      border-radius: 50%;
+      background: #6fae57;
+      box-shadow: 0 20px 56px -20px rgba(71, 132, 55, 0.4);
+      isolation: isolate;
+      transition: box-shadow 1s ease-out;
     }
-    .protrude-card-dark:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 28px 56px -12px rgba(0,0,0,0.7), 0 0 0 1px rgba(59,130,246,0.3), inset 0 1px 0 rgba(255,255,255,0.15);
+
+    .orb-pulse {
+      position: absolute;
+      inset: 0;
+      transition: transform 1.4s ease-in-out;
+    }
+
+    .orb-breathe {
+      position: absolute;
+      inset: 0;
+      animation: breathe 5.5s ease-in-out infinite;
+    }
+
+    .orb-surface {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      border-radius: 50%;
+    }
+
+    .orb-swirl {
+      position: absolute;
+      inset: 0;
+      will-change: transform;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 9999px;
+      transition: background-color 900ms ease;
+      will-change: transform;
+    }
+
+    .blob-1 {
+      top: 2%;
+      left: 2%;
+      width: 75%;
+      height: 75%;
+      background: #8fc069;
+      opacity: 0.9;
+      filter: blur(24px);
+      animation: drift1 14s ease-in-out infinite;
+      animation-delay: -3s;
+    }
+
+    .blob-2 {
+      top: -6%;
+      left: 42%;
+      width: 46%;
+      height: 46%;
+      background: #eaf7cf;
+      opacity: 0.8;
+      filter: blur(16px);
+      animation: drift2 11s ease-in-out infinite;
+      animation-delay: -6s;
+    }
+
+    .blob-3 {
+      top: 28%;
+      right: -12%;
+      width: 55%;
+      height: 55%;
+      background: #c6ecf4;
+      opacity: 0.9;
+      filter: blur(24px);
+      animation: drift3 16s ease-in-out infinite;
+      animation-delay: -9s;
+    }
+
+    .blob-4 {
+      bottom: -28%;
+      left: 8%;
+      width: 72%;
+      height: 72%;
+      background: #2e9fe6;
+      opacity: 0.95;
+      filter: blur(24px);
+      animation: drift4 13s ease-in-out infinite;
+      animation-delay: -5s;
+    }
+
+    .grain,
+    .orb-shading {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .grain {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.5;
+      mix-blend-mode: overlay;
+    }
+
+    .orb-shading {
+      border-radius: inherit;
+      box-shadow: inset 0 -14px 32px rgba(0, 0, 0, 0.1), inset 0 8px 24px rgba(255, 255, 255, 0.25);
+    }
+
+    /* Play / pause button */
+    .play-btn {
+      position: absolute;
+      left: 50%; bottom: -14px;
+      transform: translateX(-50%);
+      width: 66px; height: 66px;
+      border: none; border-radius: 50%;
+      background: #0a0a0a;
+      display: grid; place-items: center;
+      cursor: pointer;
+      box-shadow: 0 0 0 7px var(--card-bg), 0 12px 26px -6px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s ease;
+      z-index: 2;
+    }
+    .play-btn:hover { transform: translateX(-50%) scale(1.07); }
+    .play-btn:active { transform: translateX(-50%) scale(0.97); }
+    .play-btn svg { width: 26px; height: 26px; }
+    .play-btn .icon-play { margin-left: 3px; }
+    .play-btn .icon-pause { display: none; }
+    .is-playing .play-btn .icon-pause { display: block; }
+    .is-playing .play-btn .icon-play { display: none; }
+
+    .is-playing .orb {
+      box-shadow: 0 20px 56px -20px rgba(71, 132, 55, 0.67);
+    }
+    .is-playing .orb-pulse { transform: scale(1.045); }
+    .is-playing .orb-breathe { animation-duration: 2.4s; }
+
+    .caption {
+      margin: 0;
+      font-size: 15px;
+      color: #6b6b72;
+      text-align: center;
+      min-height: 22px;
+    }
+
+    /* ---------- Transcript ---------- */
+    .transcript-panel {
+      width: 400px;
+      flex: none;
+      margin: 16px 16px 16px 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .transcript-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 13px 16px;
+      font-size: 14px; font-weight: 700; color: #333338;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .transcript-head .total {
+      font-size: 12px; font-weight: 600; color: #8a8a93;
+      background: #ececee; border-radius: 999px; padding: 3px 10px;
+    }
+
+    .transcript-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      scroll-behavior: smooth;
+    }
+
+    .transcript-body::-webkit-scrollbar { width: 1px; }
+    .transcript-body::-webkit-scrollbar-track { background: transparent; }
+    .transcript-body::-webkit-scrollbar-thumb { background: transparent; border-radius: 4px; }
+
+    .t-item {
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .t-item.hidden { display: none; }
+
+    .t-item.revealed {
+      display: block;
+      animation: slideIn 0.4s ease forwards;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .t-item.active {
+      background: #fff;
+      border-color: rgba(0, 0, 0, 0.06);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    }
+
+    .t-head {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    .t-speaker {
+      font-size: 12px; font-weight: 700;
+      padding: 2px 9px; border-radius: 999px;
+    }
+    .t-speaker.s1 { color: #2f7a3d; background: #dff0d8; }
+    .t-speaker.s2 { color: #1b6ea8; background: #dcecf7; }
+
+    .t-dur {
+      font-size: 11px; font-weight: 600; color: #8a8a93;
+      background: #ececee; border-radius: 999px; padding: 2px 8px;
+    }
+
+    .t-text {
+      margin: 0;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: #4b4b52;
+      white-space: pre-wrap;
+    }
+
+    /* ---------- Card footer ---------- */
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 20px;
+    }
+
+    .foot-left { display: flex; align-items: center; gap: 10px; min-width: 0; border: 2px solid white; background-color: white; border-radius:30px; padding: 5px;}
+
+    .foot-logo {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #fff;
+      flex: none;
+    }
+
+    .foot-brand {
+      font-family: var(--font-display);
+      font-size: 15px; font-weight: 800;
+      letter-spacing: 0.01em;
+      color: #111116;
+      white-space: nowrap;
+    }
+
+    .verified { width: 17px; height: 17px; flex: none; }
+
+    .foot-pill {
+      background: #fff;
+      border-radius: 999px;
+      padding: 9px 18px;
+      font-size: 14px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      white-space: nowrap;
+    }
+    .foot-pill strong { color: #222228; font-weight: 700; }
+    .foot-pill span { color: #9a9aa2; margin-left: 6px; }
+
+    .cta {
+      display: inline-flex; align-items: center; gap: 12px;
+      border: none; cursor: pointer;
+      background: #0a0a0a; color: #fff;
+      border-radius: 999px;
+      padding: 8px 8px 8px 22px;
+      font-family: inherit;
+      font-size: 15px; font-weight: 700;
+      white-space: nowrap;
+      transition: transform 0.2s ease;
+    }
+    .cta:hover { transform: scale(1.03); }
+
+    .cta-arrow {
+      width: 34px; height: 34px; flex: none;
+      border-radius: 50%;
+      background: #fff;
+      display: grid; place-items: center;
+    }
+    .cta-arrow svg { width: 17px; height: 17px; }
+
+    /* ---------- Animations ---------- */
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.018); }
+    }
+
+    @keyframes drift1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(18%, 8%) scale(1.12); }
+      66% { transform: translate(-6%, 14%) scale(0.94); }
+    }
+
+    @keyframes drift2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      40% { transform: translate(-25%, 22%) scale(1.2); }
+      70% { transform: translate(10%, -10%) scale(0.9); }
+    }
+
+    @keyframes drift3 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      30% { transform: translate(-18%, -12%) scale(1.15); }
+      65% { transform: translate(-6%, 18%) scale(1.05); }
+    }
+
+    @keyframes drift4 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      35% { transform: translate(12%, -18%) scale(1.18); }
+      70% { transform: translate(-14%, -6%) scale(0.92); }
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      body { overflow: auto; }
+      .card { height: auto; min-height: calc(100svh - 28px); }
+      .card-body { flex-direction: column; }
+      .stage { padding: 32px 16px; }
+      .transcript-panel { width: auto; margin: 0 16px 16px; max-height: 45vh; }
+      .foot-pill { display: none; }
+      .card-footer { flex-wrap: wrap; }
+    }
+
+    @media (max-width: 480px) {
+      .card-header { padding: 12px 14px; }
+      .demo-pill { padding: 7px 10px; font-size: 11px; }
+      .orb { width: min(41.6vh, 78vw, 291px); }
+      .appointment-toast { bottom: 74px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
     }
   </style>
 </head>
 
-<body class="relative font-sans" x-data="{ mobileNav: false }">
-
-  <!-- ================================================================= -->
-  <!-- TOP NAVIGATION — Pitch Black Floating Obsidian Pill               -->
-  <!-- ================================================================= -->
-  <header class="fixed top-0 inset-x-0 z-50 pt-3 md:pt-4 px-3 md:px-6 flex justify-center pointer-events-none">
-    <div
-      class="pointer-events-auto w-full max-w-5xl bg-zinc-950/95 backdrop-blur-2xl rounded-full pl-5 pr-2 py-2 flex items-center justify-between border border-white/10 shadow-3d-dark transition-all duration-300">
-
-      <!-- Brand Logo -->
-      <a href="index.html" class="flex items-center gap-3 shrink-0 group">
-        <img src="media/logo.png" alt="KneticLogo"
-          class="w-8 h-8 rounded-full border border-white/10 shadow-sm group-hover:shadow-md transition-all">
-        <div class="flex items-center gap-1.5">
-          <span class="font-display font-extrabold text-white text-base tracking-tight">KNETIC</span>
-          <span
-            class="font-display font-bold text-blue-400 text-xs px-1.5 py-0.5 rounded-md bg-blue-500/10 border border-blue-400/20 tracking-wider">VOI</span>
+<body>
+  <main class="card">
+    <header class="card-header">
+      <div class="head-left">
+        <div class="head-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0f8a4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="16" rx="3"/>
+            <path d="M8 3v4M16 3v4M3 10h18"/>
+            <path d="M9 15l2 2 4-4"/>
+          </svg>
         </div>
-      </a>
-
-      <!-- Desktop Nav -->
-      <nav class="hidden md:flex items-center gap-1">
-        <a href="index.html#capabilities"
-          class="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.08] transition-all">Capabilities</a>
-        <a href="index.html#demo"
-          class="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.08] transition-all">Live Simulator</a>
-        <a href="index.html#compare"
-          class="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.08] transition-all">Economics &amp; ROI</a>
-        <a href="index.html#faq"
-          class="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.08] transition-all">FAQ</a>
-      </nav>
-
-      <!-- CTA + Mobile Toggle -->
-      <div class="flex items-center gap-2">
-        <a href="index.html"
-          class="btn-brand-grad inline-flex items-center gap-2 text-white text-xs font-bold px-4 sm:px-5 py-2 rounded-full shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
-          <span>Get Started</span>
-          <i class="fa-solid fa-arrow-right text-[10px]"></i>
-        </a>
-        <button @click="mobileNav = !mobileNav" aria-label="Toggle navigation"
-          class="md:hidden w-8 h-8 rounded-full bg-white/10 text-zinc-300 hover:text-white flex items-center justify-center">
-          <i class="fa-solid" :class="mobileNav ? 'fa-xmark' : 'fa-bars-staggered'"></i>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobile Drawer -->
-    <div x-show="mobileNav" x-cloak
-      x-transition:enter="transition ease-out duration-200"
-      x-transition:enter-start="opacity-0 -translate-y-2 scale-98"
-      x-transition:enter-end="opacity-100 translate-y-0 scale-100"
-      x-transition:leave="transition ease-in duration-150"
-      x-transition:leave-start="opacity-100 translate-y-0 scale-100"
-      x-transition:leave-end="opacity-0 -translate-y-2 scale-98"
-      class="md:hidden absolute top-full mt-2 w-[94%] max-w-sm bg-zinc-950/98 border border-white/15 rounded-2xl p-4 shadow-2xl backdrop-blur-2xl flex flex-col gap-1 pointer-events-auto">
-      <a @click="mobileNav = false" href="index.html#capabilities"
-        class="px-4 py-2.5 rounded-xl text-sm font-semibold text-zinc-300 hover:text-white hover:bg-white/10">Capabilities</a>
-      <a @click="mobileNav = false" href="index.html#demo"
-        class="px-4 py-2.5 rounded-xl text-sm font-semibold text-zinc-300 hover:text-white hover:bg-white/10">Live Simulator</a>
-      <a @click="mobileNav = false" href="index.html#compare"
-        class="px-4 py-2.5 rounded-xl text-sm font-semibold text-zinc-300 hover:text-white hover:bg-white/10">Economics &amp; ROI</a>
-      <a @click="mobileNav = false" href="index.html#faq"
-        class="px-4 py-2.5 rounded-xl text-sm font-semibold text-zinc-300 hover:text-white hover:bg-white/10">FAQ</a>
-      <a @click="mobileNav = false" href="index.html"
-        class="btn-brand-grad mt-2 py-2.5 rounded-xl text-xs font-bold text-white text-center shadow-btn-3d">Get Started</a>
-    </div>
-  </header>
-
-  <!-- ================================================================= -->
-  <!-- HERO SECTION — Video page                                          -->
-  <!-- ================================================================= -->
-  <main class="relative min-h-screen bg-grid-dark pt-28 pb-24 px-4 md:px-6">
-
-    <!-- Ambient radial gradient blobs -->
-    <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-      <div class="animate-subtle-glow absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-blue-600/10 blur-3xl"></div>
-      <div class="animate-subtle-glow absolute top-1/2 -left-40 w-[400px] h-[400px] rounded-full bg-blue-800/8 blur-3xl" style="animation-delay:-2.5s"></div>
-      <div class="animate-subtle-glow absolute bottom-0 right-0 w-[500px] h-[400px] rounded-full bg-blue-900/10 blur-3xl" style="animation-delay:-4s"></div>
-    </div>
-
-    <div class="relative max-w-5xl mx-auto">
-
-      <!-- Badge -->
-      <div class="reveal visible flex justify-center mb-6">
-        <div class="inline-flex items-center gap-2.5 bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-4 py-1.5 shadow-3d-dark">
-          <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-          <span class="text-xs font-bold tracking-wider uppercase text-slate-300">
-            Knetic VOI — Platform Demo
-          </span>
+        <div>
+          <h1>Home Service</h1>
         </div>
       </div>
+      <span class="demo-pill"><span class="dot"></span>Voice demo</span>
+    </header>
 
-      <!-- Headline -->
-      <div class="reveal visible d-1 text-center mb-4">
-        <h1 class="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl leading-[1.08] tracking-tight">
-          <span class="text-3d-silver">See Knetic VOI</span><br>
-          <span class="text-3d-blue">in action.</span>
-        </h1>
-      </div>
-
-      <!-- Sub-headline -->
-      <p class="reveal visible d-2 text-center text-slate-400 text-base sm:text-lg max-w-xl mx-auto leading-relaxed mb-10">
-        Watch a real end-to-end walkthrough — from inbound call handling to live appointment booking and warm transfer.
-      </p>
-
-      <!-- ============================================================= -->
-      <!-- VIDEO PLAYER                                                   -->
-      <!-- ============================================================= -->
-      <div class="reveal visible d-3 relative">
-
-        <!-- Ambient glow below video -->
-        <div class="video-ambient-glow"></div>
-
-        <div class="video-wrapper" id="videoWrapper">
-          <div class="yt-embed-wrap">
-            <iframe
-              src="https://www.youtube-nocookie.com/embed/R_9eiGDIbDw"
-              title="Knetic VOI — Platform Demo"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen>
-            </iframe>
+    <div class="card-body">
+      <section class="stage" id="simulator">
+        <div class="orb-wrap">
+          <div class="orb" aria-hidden="true">
+            <div class="orb-pulse">
+              <div class="orb-breathe">
+                <div class="orb-surface">
+                  <div class="orb-swirl" id="orbSwirl">
+                    <span class="blob blob-1"></span>
+                    <span class="blob blob-2"></span>
+                    <span class="blob blob-3"></span>
+                    <span class="blob blob-4"></span>
+                  </div>
+                  <div class="grain"></div>
+                  <div class="orb-shading"></div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div><!-- /.video-wrapper -->
-      </div><!-- /.reveal -->
+          <button class="play-btn" id="playBtn" aria-label="Play or pause the demo">
+            <svg class="icon-play" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
+              <rect x="7" y="5" width="3.6" height="14" rx="1.2"/>
+              <rect x="13.4" y="5" width="3.6" height="14" rx="1.2"/>
+            </svg>
+          </button>
+        </div>
+        <p class="caption" id="statusText" role="status" aria-live="polite">Tap play to hear the water heater service demo</p>
+      </section>
 
-      <!-- Feature pills -->
-      <div class="reveal visible d-4 flex flex-wrap justify-center gap-2.5 mt-10 mb-12">
-        <span class="feature-pill"><i class="fa-solid fa-phone-volume"></i> Real Inbound Call</span>
-        <span class="feature-pill"><i class="fa-solid fa-calendar-check"></i> Live Appointment Booking</span>
-        <span class="feature-pill"><i class="fa-solid fa-bolt"></i> Sub-400ms Latency</span>
-        <span class="feature-pill"><i class="fa-solid fa-phone-arrow-right"></i> Warm Call Transfer</span>
-        <span class="feature-pill"><i class="fa-solid fa-clock"></i> 24/7 Availability</span>
+      <aside class="transcript-panel">
+        <div class="transcript-head">
+          <span>Call transcript</span>
+          <span class="total" id="totalTime"></span>
+        </div>
+        <div class="transcript-body" id="transcript"></div>
+      </aside>
+    </div>
+
+    <footer class="card-footer">
+      <div class="foot-left">
+        <img src="media/logo.png" alt="KneticVOI logo" class="foot-logo">
+        <span class="foot-brand">KNETIC VOI</span>
+        <svg class="verified" viewBox="0 0 24 24" aria-label="Verified">
+          <circle cx="12" cy="12" r="10" fill="#3b82f6"/>
+          <path d="M8.2 12.4l2.4 2.4 5-5.2" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
-
-      <!-- CTA block -->
-      <div class="reveal visible text-center">
-        <p class="text-slate-500 text-sm mb-4 font-medium">Ready to deploy this for your business?</p>
-        <a href="index.html"
-          class="btn-brand-grad inline-flex items-center gap-2.5 text-white font-bold text-sm px-8 py-4 rounded-full shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
-          <i class="fa-solid fa-bolt text-xs"></i>
-          <span>Deploy For Your Business</span>
-        </a>
+      <div class="foot-pill"><strong>Voice</strong><span>(KneticVOI Agent)</span></div>
+      <button class="cta">
+        Get Your Own Receptionist
+        <span class="cta-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </span>
+      </button>
+    </footer>
+    <div class="appointment-toast" id="appointmentToast" role="status" aria-live="polite" hidden>
+      <img src="media/google.webp" alt="Google">
+      <div>
+        <p class="toast-title">Appointment booked</p>
+        <p class="toast-detail">Today at 2:00 p.m.</p>
       </div>
-
-    </div><!-- /.max-w-5xl -->
+    </div>
   </main>
 
-  <!-- ================================================================= -->
-  <!-- FOOTER — minimal                                                   -->
-  <!-- ================================================================= -->
-  <footer class="border-t border-white/5 py-8 px-6 text-center">
-    <div class="flex flex-col items-center gap-3">
-      <div class="flex items-center gap-2">
-        <img src="media/logo.png" alt="Knetic VOI" class="w-6 h-6 rounded-full border border-white/10">
-        <span class="font-display font-extrabold text-white text-sm tracking-tight">KNETIC</span>
-        <span class="font-display font-bold text-blue-400 text-[10px] px-1.5 py-0.5 rounded-md bg-blue-500/10 border border-blue-400/20 tracking-wider">VOI</span>
-      </div>
-      <p class="text-slate-600 text-xs">&copy; 2025 Knetic VOI. All rights reserved.</p>
-    </div>
-  </footer>
+  <audio id="demoAudio" src="media/booking.mp3" preload="auto"></audio>
 
-  <!-- ================================================================= -->
-  <!-- SCROLL REVEAL SCRIPT                                              -->
-  <!-- ================================================================= -->
   <script>
-    const revealEls = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    revealEls.forEach(el => observer.observe(el));
-  </script>
+    // range: [start, end] in M:SS.cc / MM:SS.cc format; null end = until audio ends
+    const transcriptData = [
+      { speaker: 1, range: ["0:00", "3:16"], text: "Thank you for calling Mountain View Plumbing. How may I help you?" },
+      { speaker: 2, range: ["5:13", "16:10"], text: "Hi, I just wanted to take a shower before work and realized I have no hot water. I think my water heater stopped working. I bought it from you guys five years ago, so I'm hoping it's still under warranty." },
+      { speaker: 1, range: ["17:10", "32:07"], text: "I'm sorry to hear that. No hot water is never a great way to start the day. Thankfully, if your water heater is only five years old, it should still be under warranty.\n\nJust a few quick questions so I can help get the right technician to you as quickly as possible. Are you the homeowner or the person responsible for the property?" },
+      { speaker: 2, range: ["33:15", "34:17"], text: "Yes, it's my house." },
+      { speaker: 1, range: ["35:23", "39:01"], text: "Great. Do you have easy access to where the water heater is located?" },
+      { speaker: 2, range: ["39:20", "41:05"], text: "Yeah, it's in my basement." },
+      { speaker: 1, range: ["42:05", "44:06"], text: "Do you know the brand of your hot water heater?" },
+      { speaker: 2, range: ["45:01", "46:01"], text: "Yeah, it's a Rheem." },
+      { speaker: 1, range: ["47:06", "51:00"], text: "Could you tell me the model name of the unit? That will help us bring the right parts." },
+      { speaker: 2, range: ["52:08", "55:10"], text: "Yeah, it's labeled Rheem Performance Platinum." },
+      { speaker: 1, range: ["56:10", "1:00:19"], text: "Rheem Performance Platinum. Noted. Thank you.\n\nCan I get your full name, please?" },
+      { speaker: 2, range: ["1:02:00", "1:03:18"], text: "It's Ryan Whitmore." },
+      { speaker: 1, range: ["1:04:25", "1:12:09"], text: "Thanks, Ryan. Is the number you're calling from 510-738-2146 the best way to reach you?" },
+      { speaker: 2, range: ["1:13:07", "1:18:18"], text: "Yes. One question. Do you guys charge extra for same-day appointments?" },
+      { speaker: 1, range: ["1:20:00", "1:29:00"], text: "Same-day appointments are available at no extra charge during normal business hours 9 to 5. If after-hour service is required, you will be notified of additional fees before scheduling." },
+      { speaker: 2, range: ["1:30:16", "1:35:28"], text: "Great. How long do these diagnostics usually take? I'll need to notify my boss at work." },
+      { speaker: 1, range: ["1:36:22", "1:45:01"], text: "Most diagnostic appointments take 30 to 60 minutes, depending on the issue. If a full repair is needed, the technician will let you know the estimated time and cost on-site." },
+      { speaker: 2, range: ["1:46:12", "1:49:22"], text: "Okay, that's fine. Do I need to be home the whole time?" },
+      { speaker: 1, range: ["1:51:00", "1:54:22"], text: "We do recommend that someone over the age of 18 is present during the service window." },
+      { speaker: 2, range: ["1:56:13", "1:57:27"], text: "Okay, that's no problem." },
+      { speaker: 1, range: ["1:59:19", "2:03:11"], text: "Let me check how soon we could get a technician to you. What is your zip code?" },
+      { speaker: 2, range: ["2:04:25", "2:07:12"], text: "It's 94544." },
+      { speaker: 1, range: ["2:09:07", "2:13:20"], text: "Great. The earliest we have available is today at 2 p.m. Does that work for you?" },
+      { speaker: 2, range: ["2:14:12", "2:15:24"], text: "Yeah, let's do 2 p.m. You got it." },
+      { speaker: 1, range: ["2:17:03", "2:19:28"], text: "Finally, what's the street address for your house?" },
+      { speaker: 2, range: ["2:21:07", "2:25:03"], text: "It's 27468 Mission Hills Drive in Hayward, California." },
+      { speaker: 1, range: ["2:27:03", null], text: "Great. You're all set for 2 p.m. today. A text confirmation will be sent shortly, including the direct phone number for your technician.\n\nIf anything changes, just give them a call. Thanks again. We'll see you this afternoon." }
+    ];
 
+    // ----- Timestamp parsing ("S.cc" or "M:SS.cc") -----
+    function parseTs(str) {
+      const p = str.split(':').map(Number);
+      if (p.length === 2) return p[0] + p[1] / 100;        // SS.cc
+      if (p.length === 3) return p[0] * 60 + p[1] + p[2] / 100; // M:SS.cc
+      return p[0];
+    }
+
+    function fmtClock(s) {
+      const m = Math.floor(s / 60);
+      const ss = Math.round(s % 60).toString().padStart(2, '0');
+      return m + ':' + ss;
+    }
+
+    const turns = transcriptData.map(d => ({
+      speaker: d.speaker,
+      text: d.text,
+      start: parseTs(d.range[0]),
+      end: d.range[1] ? parseTs(d.range[1]) : null
+    }));
+
+    // ----- Build transcript (hidden until playback reaches each turn) -----
+    const transcriptBody = document.getElementById('transcript');
+    const totalTimeEl = document.getElementById('totalTime');
+    const items = [];
+    const durEls = [];
+
+    turns.forEach((turn) => {
+      const item = document.createElement('div');
+      item.className = 't-item hidden';
+
+      const head = document.createElement('div');
+      head.className = 't-head';
+
+      const name = document.createElement('span');
+      name.className = 't-speaker s' + turn.speaker;
+      name.textContent = turn.speaker === 1 ? 'Agent' : 'Customer';
+
+      const durEl = document.createElement('span');
+      durEl.className = 't-dur';
+      durEl.textContent = turn.end ? Math.max(1, Math.round(turn.end - turn.start)) + 's' : '…';
+
+      head.append(name, durEl);
+
+      const text = document.createElement('p');
+      text.className = 't-text';
+      text.textContent = turn.text;
+
+      item.append(head, text);
+      transcriptBody.appendChild(item);
+      items.push(item);
+      durEls.push(durEl);
+    });
+
+    totalTimeEl.textContent = fmtClock(turns[turns.length - 1].start) + '+';
+
+    // ----- Sequential reveal + active highlight synced to audio time -----
+    let revealedCount = 0;
+    let activeIdx = -1;
+
+    function setActive(idx) {
+      if (idx === activeIdx) return;
+      if (activeIdx >= 0 && items[activeIdx]) items[activeIdx].classList.remove('active');
+      activeIdx = idx;
+      if (idx >= 0 && items[idx]) items[idx].classList.add('active');
+    }
+
+    function syncTranscript() {
+      const t = audio.currentTime;
+      if (t >= bookingConfirmationTime) showAppointmentToast();
+      else hideAppointmentToast(true);
+
+      let newlyRevealed = false;
+      while (revealedCount < turns.length && t >= turns[revealedCount].start) {
+        items[revealedCount].classList.remove('hidden');
+        items[revealedCount].classList.add('revealed');
+        revealedCount++;
+        newlyRevealed = true;
+      }
+      if (newlyRevealed) {
+        transcriptBody.scrollTo({ top: transcriptBody.scrollHeight, behavior: 'smooth' });
+      }
+
+      let idx = -1;
+      for (let i = 0; i < revealedCount; i++) {
+        const end = turns[i].end !== null ? turns[i].end : Infinity;
+        if (t >= turns[i].start && t < end) { idx = i; break; }
+      }
+      if (idx === -1 && revealedCount > 0) idx = revealedCount - 1; // silence gaps keep last turn lit
+      setActive(idx);
+    }
+
+    // ----- Play / pause + status -----
+    const simulator = document.getElementById('simulator');
+    const playBtn = document.getElementById('playBtn');
+    const audio = document.getElementById('demoAudio');
+    const statusText = document.getElementById('statusText');
+    const orbSwirl = document.getElementById('orbSwirl');
+    const appointmentToast = document.getElementById('appointmentToast');
+    const bookingConfirmationTime = turns[23].start;
+    let appointmentToastTimer;
+    let appointmentBookedShown = false;
+    let videoRecorder = null;
+    let exportStreams = [];
+    let recordedChunks = [];
+    let isExporting = false;
+    let exportPending = false;
+    let cancelExport = false;
+
+    function hideAppointmentToast(reset = false) {
+      window.clearTimeout(appointmentToastTimer);
+      appointmentToast.hidden = true;
+      appointmentToast.classList.remove('is-entering', 'is-leaving');
+      if (reset) appointmentBookedShown = false;
+    }
+
+    function showAppointmentToast() {
+      if (appointmentBookedShown) return;
+      appointmentBookedShown = true;
+      window.clearTimeout(appointmentToastTimer);
+      appointmentToast.hidden = false;
+      appointmentToast.classList.remove('is-leaving');
+      appointmentToast.classList.add('is-entering');
+
+      appointmentToastTimer = window.setTimeout(() => {
+        appointmentToast.classList.remove('is-entering');
+        appointmentToast.classList.add('is-leaving');
+        appointmentToastTimer = window.setTimeout(() => {
+          hideAppointmentToast();
+        }, 400);
+      }, 3400);
+    }
+
+    function startOrbAnimation() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      let angle = 0;
+      let speed = 7.5;
+      let last = performance.now();
+      const step = (now) => {
+        const dt = Math.min((now - last) / 1000, 0.05);
+        last = now;
+        const target = simulator.classList.contains('is-playing') ? 22.5 : 7.5;
+        speed += (target - speed) * (1 - Math.exp(-dt * 2.2));
+        angle = (angle + speed * dt) % 360;
+        orbSwirl.style.transform = `rotate(${angle}deg)`;
+        requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+
+    function resetTranscript() {
+      setActive(-1);
+      items.forEach(item => {
+        item.classList.remove('revealed', 'active');
+        item.classList.add('hidden');
+      });
+      revealedCount = 0;
+      activeIdx = -1;
+      transcriptBody.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function releaseExportStreams() {
+      const tracks = new Set(exportStreams.flatMap(stream => stream.getTracks()));
+      tracks.forEach(track => track.stop());
+      exportStreams = [];
+    }
+
+    function finishVideoExport() {
+      if (videoRecorder && videoRecorder.state !== 'inactive') videoRecorder.stop();
+    }
+
+    function startVideoExport() {
+      if (isExporting || exportPending) return;
+      if (!navigator.mediaDevices?.getDisplayMedia || typeof MediaRecorder === 'undefined') {
+        statusText.textContent = 'Video recording is not supported in this browser';
+        return;
+      }
+      if (typeof audio.captureStream !== 'function') {
+        statusText.textContent = 'Audio recording is not supported in this browser';
+        return;
+      }
+
+      statusText.textContent = 'Choose this tab to export the demo video';
+      exportPending = true;
+      navigator.mediaDevices.getDisplayMedia({
+        video: { displaySurface: 'browser', frameRate: 30 },
+        audio: false,
+        preferCurrentTab: true
+      }).then((displayStream) => {
+        exportPending = false;
+        let audioStream;
+        try {
+          audioStream = audio.captureStream();
+        } catch (error) {
+          displayStream.getTracks().forEach(track => track.stop());
+          statusText.textContent = 'Could not capture demo audio';
+          console.error('Audio capture setup failed:', error);
+          return;
+        }
+        const videoTracks = displayStream.getVideoTracks();
+        const audioTracks = audioStream.getAudioTracks();
+        if (!videoTracks.length || !audioTracks.length) {
+          displayStream.getTracks().forEach(track => track.stop());
+          audioStream.getTracks().forEach(track => track.stop());
+          statusText.textContent = 'Could not capture the tab video and audio';
+          return;
+        }
+
+        exportStreams = [displayStream, audioStream];
+        recordedChunks = [];
+        cancelExport = false;
+
+        const mimeType = [
+          'video/webm;codecs=vp9,opus',
+          'video/webm;codecs=vp8,opus',
+          'video/webm'
+        ].find(type => MediaRecorder.isTypeSupported(type));
+
+        try {
+          videoRecorder = new MediaRecorder(
+            new MediaStream([...videoTracks, ...audioTracks]),
+            mimeType ? { mimeType } : undefined
+          );
+        } catch (error) {
+          releaseExportStreams();
+          statusText.textContent = 'Could not start video recording';
+          console.error('Video recording setup failed:', error);
+          return;
+        }
+
+        videoRecorder.addEventListener('dataavailable', event => {
+          if (event.data.size > 0) recordedChunks.push(event.data);
+        });
+
+        videoRecorder.addEventListener('error', event => {
+          cancelExport = true;
+          statusText.textContent = 'Video recording failed';
+          console.error('Video recording failed:', event.error);
+          finishVideoExport();
+        });
+
+        videoRecorder.addEventListener('stop', () => {
+          const hasVideoData = recordedChunks.length > 0;
+          if (!cancelExport && hasVideoData) {
+            const blob = new Blob(recordedChunks, { type: videoRecorder.mimeType || 'video/webm' });
+            const downloadUrl = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = 'home-service-demo.webm';
+            link.click();
+            window.setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000);
+          }
+
+          isExporting = false;
+          simulator.classList.remove('is-exporting');
+          videoRecorder = null;
+          recordedChunks = [];
+          releaseExportStreams();
+
+          if (audio.ended) resetTranscript();
+          statusText.textContent = cancelExport
+            ? 'Video export could not be completed'
+            : hasVideoData
+              ? 'Video exported — tap play to replay'
+              : 'No video data was captured';
+        });
+
+        videoTracks[0].addEventListener('ended', () => {
+          if (!audio.ended) audio.pause();
+          finishVideoExport();
+        }, { once: true });
+
+        audio.currentTime = 0;
+        resetTranscript();
+        hideAppointmentToast(true);
+        simulator.classList.add('is-exporting');
+        try {
+          videoRecorder.start();
+        } catch (error) {
+          videoRecorder = null;
+          simulator.classList.remove('is-exporting');
+          releaseExportStreams();
+          statusText.textContent = 'Could not start video recording';
+          console.error('Video recording failed to start:', error);
+          return;
+        }
+        isExporting = true;
+        statusText.textContent = 'Recording demo video…';
+
+        audio.play().catch(error => {
+          cancelExport = true;
+          statusText.textContent = error.name === 'NotAllowedError'
+            ? 'Audio playback was blocked; video export cancelled'
+            : 'Audio could not be played; video export cancelled';
+          finishVideoExport();
+        });
+      }).catch(error => {
+        exportPending = false;
+        statusText.textContent = error.name === 'NotAllowedError'
+          ? 'Screen sharing was cancelled or blocked'
+          : 'Could not start tab capture';
+        console.warn('Tab capture failed:', error);
+      });
+    }
+
+    startOrbAnimation();
+
+    document.addEventListener('keydown', (event) => {
+      if (event.code === 'KeyY' && event.ctrlKey && !event.altKey && !event.metaKey && !event.repeat) {
+        if (event.target instanceof HTMLElement &&
+          (event.target.isContentEditable || event.target.closest('button, input, select, textarea, a'))) return;
+        event.preventDefault();
+        startVideoExport();
+        return;
+      }
+
+      if (event.code !== 'Space' || event.repeat || event.altKey || event.ctrlKey || event.metaKey) return;
+      if (event.target instanceof HTMLElement &&
+        (event.target.isContentEditable || event.target.closest('button, input, select, textarea, a'))) return;
+
+      event.preventDefault();
+      playBtn.click();
+    });
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play().catch((error) => {
+          statusText.textContent = error.name === 'NotAllowedError'
+            ? 'Audio playback blocked by browser'
+            : 'Audio could not be played';
+        });
+      } else {
+        audio.pause();
+      }
+    });
+
+    audio.addEventListener('play', () => {
+      simulator.classList.add('is-playing');
+      simulator.classList.remove('is-error');
+      statusText.textContent = isExporting
+        ? 'Recording demo video…'
+        : 'Playing the water heater service demo';
+      syncTranscript();
+    });
+
+    audio.addEventListener('pause', () => {
+      simulator.classList.remove('is-playing');
+      if (!audio.ended) statusText.textContent = 'Paused — tap play to resume';
+    });
+
+    audio.addEventListener('timeupdate', syncTranscript);
+
+    audio.addEventListener('loadedmetadata', () => {
+      totalTimeEl.textContent = fmtClock(audio.duration);
+      const last = turns[turns.length - 1];
+      if (last.end === null && isFinite(audio.duration)) {
+        durEls[durEls.length - 1].textContent = Math.max(1, Math.round(audio.duration - last.start)) + 's';
+      }
+    });
+
+    audio.addEventListener('ended', () => {
+      simulator.classList.remove('is-playing');
+      hideAppointmentToast(true);
+      if (isExporting) {
+        statusText.textContent = 'Finishing video export…';
+        finishVideoExport();
+      } else {
+        resetTranscript();
+        statusText.textContent = 'Demo finished — tap play to replay';
+      }
+    });
+
+    audio.addEventListener('error', () => {
+      simulator.classList.remove('is-playing');
+      statusText.textContent = 'Audio could not be loaded';
+    });
+  </script>
 </body>
 </html>

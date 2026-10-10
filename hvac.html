@@ -34,6 +34,19 @@
             mono: ['"JetBrains Mono"', 'monospace'],
           },
           colors: {
+            cyan: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+              950: '#172554',
+            },
             brand: {
               50: '#f0f6fe',
               100: '#dbeafe',
@@ -72,7 +85,7 @@
             '3d-protrude': '0 24px 48px -12px rgba(15,23,42,0.12), 0 0 0 1px rgba(15,23,42,0.06), inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -2px 0 rgba(0,0,0,0.05)',
             '3d-dark': '0 30px 60px -15px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.8)',
             '3d-dark-card': '0 20px 40px -10px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.07), inset 0 1px 0 rgba(255,255,255,0.12)',
-            'btn-3d': '0 4px 14px 0 rgba(6,182,212,0.35), inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -2px 0 rgba(0,0,0,0.2)',
+            'btn-3d': '0 4px 14px 0 rgba(37,99,235,0.38), inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -2px 0 rgba(0,0,0,0.2)',
             'btn-dark-3d': '0 4px 14px 0 rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -2px 0 rgba(0,0,0,0.7)',
           }
         }
@@ -84,7 +97,7 @@
     /* ========================================================================== */
     html { scroll-padding-top: 100px; }
     body { background-color: #f8fdfe; color: #090d16; overflow-x: hidden; }
-    ::selection { background: #0891b2; color: #ffffff; }
+    ::selection { background: #2563eb; color: #ffffff; }
     [x-cloak] { display: none !important; }
 
     .bg-grid-slate {
@@ -104,10 +117,10 @@
       filter: drop-shadow(0 1px 0 rgba(255,255,255,0.8));
     }
     .text-3d-cyan {
-      background: linear-gradient(180deg, #22d3ee 0%, #0891b2 55%, #0e7490 100%);
+      background: linear-gradient(180deg, #60a5fa 0%, #2563eb 55%, #1d4ed8 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 2px 4px rgba(8,145,178,0.25));
+      filter: drop-shadow(0 2px 4px rgba(37,99,235,0.25));
     }
     .text-3d-red {
       background: linear-gradient(180deg, #ef4444 0%, #dc2626 55%, #b91c1c 100%);
@@ -122,10 +135,10 @@
     }
 
     .hero-panel-grad {
-      background: linear-gradient(180deg, #ffffff 0%, #f0fafa 45%, #ccf2f4 80%, #a5f3fc 100%);
+      background: linear-gradient(180deg, #ffffff 0%, #eff6ff 45%, #dbeafe 80%, #bfdbfe 100%);
     }
     .btn-hvac-grad {
-      background: linear-gradient(180deg, #22d3ee 0%, #0891b2 60%, #0e7490 100%);
+      background: linear-gradient(180deg, #60a5fa 0%, #2563eb 60%, #1d4ed8 100%);
     }
 
     .protrude-card {
@@ -134,7 +147,7 @@
     }
     .protrude-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 24px 48px -12px rgba(15,23,42,0.12), 0 0 0 1px rgba(8,145,178,0.25), inset 0 1px 0 #ffffff;
+      box-shadow: 0 24px 48px -12px rgba(15,23,42,0.12), 0 0 0 1px rgba(37,99,235,0.25), inset 0 1px 0 #ffffff;
     }
     .protrude-card-dark {
       position: relative;
@@ -290,7 +303,7 @@
 
       <!-- CTA -->
       <div class="flex items-center gap-2">
-        <a href="index.html#contact"
+        <a href="contact.html"
           class="btn-hvac-grad inline-flex items-center gap-2 text-white text-xs font-bold px-4 sm:px-5 py-2 rounded-full shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
           <span>Get Started</span>
           <i class="fa-solid fa-arrow-right text-[10px]"></i>
@@ -318,7 +331,7 @@
         class="px-4 py-2.5 rounded-xl text-sm font-semibold text-zinc-300 hover:text-white hover:bg-white/10">Economics &amp; ROI</a>
       <a @click="mobileNav = false" href="#faq"
         class="px-4 py-2.5 rounded-xl text-sm font-semibold text-zinc-300 hover:text-white hover:bg-white/10">FAQ</a>
-      <a href="index.html#contact" @click="mobileNav = false"
+      <a href="contact.html" @click="mobileNav = false"
         class="btn-hvac-grad mt-2 py-2.5 rounded-xl text-xs font-bold text-white text-center shadow-btn-3d">Deploy AI Receptionist</a>
     </div>
   </header>
@@ -362,7 +375,7 @@
 
         <!-- CTAs -->
         <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-3.5 mb-8 sm:mb-10 max-w-md sm:max-w-none mx-auto sm:mx-0">
-          <a href="index.html#contact"
+          <a href="contact.html"
             class="btn-hvac-grad inline-flex items-center justify-center gap-2.5 text-white font-bold text-sm px-6 sm:px-8 py-3.5 sm:py-4 rounded-full shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
             <i class="fa-solid fa-bolt text-xs text-white"></i>
             <span>Deploy For My HVAC Business</span>
@@ -395,126 +408,10 @@
         </div>
 
         <!-- HERO Dashboard / Chat Mockup -->
-        <div class="max-w-5xl mx-auto overflow-hidden rounded-t-xl border border-black border-[6px] sm:border-[10px] bg-slate-950 shadow-2xl">
-          <!-- Window Bar -->
-          <div class="flex items-center justify-between px-4 py-2.5 bg-zinc-900 border-b border-white/10">
-            <div class="flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-rose-400/90"></span>
-              <span class="w-2.5 h-2.5 rounded-full bg-amber-400/90"></span>
-              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400/90"></span>
-              <span class="ml-2 text-[11px] font-semibold text-zinc-400">knetic-hvac-receptionist.node</span>
-            </div>
-            <div class="flex items-center gap-2 text-[11px] font-bold">
-              <span class="inline-flex items-center gap-1.5 bg-emerald-950/80 text-emerald-400 border border-emerald-500/30 px-2.5 py-0.5 rounded-full">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                Active · HVAC Emergency Line
-              </span>
-              <div class="hidden sm:flex items-end gap-[2.5px] h-4 px-2 bg-white/5 rounded-md">
-                <span class="wave-bar-live w-[3px] bg-cyan-400 rounded-full" style="animation-delay:0.1s"></span>
-                <span class="wave-bar-live w-[3px] bg-cyan-500 rounded-full" style="animation-delay:0.3s"></span>
-                <span class="wave-bar-live w-[3px] bg-cyan-300 rounded-full" style="animation-delay:0.05s"></span>
-                <span class="wave-bar-live w-[3px] bg-cyan-400 rounded-full" style="animation-delay:0.4s"></span>
-                <span class="wave-bar-live w-[3px] bg-cyan-500 rounded-full" style="animation-delay:0.25s"></span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Conversation + Side Panel -->
-          <div class="grid lg:grid-cols-[1fr_260px] bg-zinc-950 text-left">
-            <!-- Chat -->
-            <div class="p-5 md:p-6 border-r border-white/5 flex flex-col gap-4">
-              <!-- Caller info bar -->
-              <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-1">
-                <div class="flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-full bg-cyan-700 text-white font-bold text-[11px] flex items-center justify-center">MR</div>
-                  <div>
-                    <p class="font-bold text-white text-sm">Mike Reynolds <span class="text-[11px] font-normal text-zinc-500">+1 (555) 812-0044</span></p>
-                    <p class="text-[11px] text-emerald-400 font-medium flex items-center gap-1">
-                      <i class="fa-solid fa-circle-check text-[10px]"></i> Caller Verified · HVAC Emergency
-                    </p>
-                  </div>
-                </div>
-                <span class="text-[11px] font-bold bg-red-950/60 text-red-400 border border-red-500/30 rounded-full px-2.5 py-1">
-                  <i class="fa-solid fa-fire-flame-curved mr-1 text-[10px]"></i> Emergency Job
-                </span>
-              </div>
-
-              <div class="space-y-3">
-                <!-- Caller -->
-                <div class="flex gap-2.5">
-                  <span class="w-7 h-7 rounded-full bg-zinc-700 text-zinc-200 flex items-center justify-center text-[10px] font-bold shrink-0">MR</span>
-                  <div class="bg-zinc-800 border border-white/5 rounded-2xl rounded-tl-sm px-3.5 py-2.5 max-w-[85%]">
-                    <p class="text-xs text-zinc-200 leading-relaxed">My AC unit completely stopped working — it's 95 degrees in here and I have elderly parents at home. Can you send someone out today?</p>
-                    <span class="text-[9px] text-zinc-500 block mt-1">Caller · 00:08</span>
-                  </div>
-                </div>
-                <!-- VOI -->
-                <div class="flex gap-2.5 flex-row-reverse">
-                  <span class="w-7 h-7 rounded-full bg-cyan-600 text-white flex items-center justify-center text-[10px] shrink-0 shadow-sm">
-                    <i class="fa-solid fa-wave-square"></i>
-                  </span>
-                  <div class="bg-cyan-950/60 border border-cyan-500/20 rounded-2xl rounded-tr-sm px-3.5 py-2.5 max-w-[85%]">
-                    <p class="text-xs text-cyan-100 leading-relaxed">I hear you, Mr. Reynolds — that's an urgent situation. I'm flagging this as an emergency job. Our nearest technician is 14 minutes away. Can I confirm your address as 4821 Birchwood Ave?</p>
-                    <span class="text-[9px] text-cyan-400 font-medium block mt-1">Knetic VOI · Emergency Flagged · Technician Located</span>
-                  </div>
-                </div>
-                <!-- Caller reply -->
-                <div class="flex gap-2.5">
-                  <span class="w-7 h-7 rounded-full bg-zinc-700 text-zinc-200 flex items-center justify-center text-[10px] font-bold shrink-0">MR</span>
-                  <div class="bg-zinc-800 border border-white/5 rounded-2xl rounded-tl-sm px-3.5 py-2.5 max-w-[85%]">
-                    <p class="text-xs text-zinc-200 leading-relaxed">Yes, that's correct. Thank you — please hurry.</p>
-                    <span class="text-[9px] text-zinc-500 block mt-1">Caller · 00:21</span>
-                  </div>
-                </div>
-                <!-- VOI dispatched -->
-                <div class="flex gap-2.5 flex-row-reverse">
-                  <span class="w-7 h-7 rounded-full bg-cyan-600 text-white flex items-center justify-center text-[10px] shrink-0 shadow-sm">
-                    <i class="fa-solid fa-wave-square"></i>
-                  </span>
-                  <div class="bg-cyan-950/60 border border-cyan-500/20 rounded-2xl rounded-tr-sm px-3.5 py-2.5 max-w-[85%]">
-                    <p class="text-xs text-cyan-100 leading-relaxed">Done! Tech James Park is on his way — ETA 14 minutes. You'll receive an SMS with his contact and a live tracker link. Is there anything else I can help with?</p>
-                    <span class="text-[9px] text-cyan-400 font-medium block mt-1">Knetic VOI · Tech Dispatched · SMS &amp; Tracker Sent</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Right panel -->
-            <div class="hidden lg:flex flex-col p-4 bg-zinc-900/50 gap-3 border-l border-white/5">
-              <p class="text-[10px] font-bold uppercase tracking-wider text-zinc-500">Live Dispatch Board</p>
-              <div class="bg-zinc-800/80 border border-white/5 rounded-xl p-3 space-y-2">
-                <div class="flex justify-between items-center text-[11px]">
-                  <span class="text-zinc-400 font-medium">Job Type</span>
-                  <span class="font-bold text-red-400">AC Emergency</span>
-                </div>
-                <div class="flex justify-between items-center text-[11px]">
-                  <span class="text-zinc-400 font-medium">Priority</span>
-                  <span class="font-bold text-amber-400">Critical</span>
-                </div>
-                <div class="flex justify-between items-center text-[11px]">
-                  <span class="text-zinc-400 font-medium">Tech Assigned</span>
-                  <span class="font-bold text-emerald-400">James Park</span>
-                </div>
-                <div class="flex justify-between items-center text-[11px]">
-                  <span class="text-zinc-400 font-medium">ETA</span>
-                  <span class="font-bold text-cyan-400">14 min</span>
-                </div>
-              </div>
-              <div class="bg-emerald-950/60 border border-emerald-500/20 rounded-xl p-3">
-                <p class="text-[10px] font-bold uppercase tracking-wider text-emerald-400 mb-1">
-                  <i class="fa-solid fa-comment-sms mr-1"></i> SMS Dispatched
-                </p>
-                <p class="text-[10px] text-zinc-300 leading-relaxed bg-white/5 p-2 rounded-lg border border-white/5">
-                  "Tech James is en route — ETA 14 min. Track live: knetic.io/track/8812"
-                </p>
-              </div>
-              <div class="bg-zinc-800/80 border border-white/5 rounded-xl p-3">
-                <p class="text-[10px] font-bold uppercase tracking-wider text-zinc-500 mb-1">Response Speed</p>
-                <p class="text-lg font-extrabold text-cyan-400">0.38s</p>
-                <p class="text-[10px] text-zinc-500">Zero hold time · Emergency handled instantly</p>
-              </div>
-            </div>
-          </div>
+        <!-- HERO Dashboard Image -->
+        <div class="max-w-5xl mx-auto overflow-hidden rounded-t-lg sm:rounded-t-xl border border-black border-[6px] sm:border-[10px] bg-slate-950 shadow-2xl">
+          <img src="media/dash.jpg" alt="Knetic VOI dashboard showing business appointments and call intelligence"
+            class="block h-auto w-full object-contain" loading="eager">
         </div>
 
       </div>
@@ -558,6 +455,37 @@
     </div>
   </section> -->
 
+  <section aria-label="What you can verify before launch" class="py-8 sm:py-10 border-b border-slate-100 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <p class="text-center text-[10px] sm:text-xs font-bold uppercase tracking-[0.07em] text-slate-400 mb-5">
+        See how your receptionist is prepared before go-live
+      </p>
+      <div class="grid gap-3 sm:grid-cols-3">
+        <div class="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
+          <i class="fa-solid fa-sliders text-cyan-600 mt-0.5" aria-hidden="true"></i>
+          <div>
+            <h2 class="text-sm font-bold text-slate-900">Your rules, built in</h2>
+            <p class="mt-1 text-xs leading-relaxed text-slate-600">Service areas, hours, schedules, and dispatch rules are tailored to your shop.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
+          <i class="fa-solid fa-headset text-cyan-600 mt-0.5" aria-hidden="true"></i>
+          <div>
+            <h2 class="text-sm font-bold text-slate-900">Scenarios tested first</h2>
+            <p class="mt-1 text-xs leading-relaxed text-slate-600">Emergency calls, bookings, and warm transfers are tested before launch.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
+          <i class="fa-solid fa-file-lines text-cyan-600 mt-0.5" aria-hidden="true"></i>
+          <div>
+            <h2 class="text-sm font-bold text-slate-900">Context goes with the call</h2>
+            <p class="mt-1 text-xs leading-relaxed text-slate-600">Your team gets the caller's issue and service history before taking over.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================================================================== -->
   <!-- THE HVAC CALL CRISIS                                                  -->
   <!-- ===================================================================== -->
@@ -567,14 +495,14 @@
 
       <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12 md:mb-16 px-4 reveal">
         <div class="inline-flex items-center gap-2 bg-rose-50 border border-rose-200 text-rose-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-5 shadow-3d-sm">
-          <i class="fa-solid fa-triangle-exclamation text-[10px]"></i> The HVAC Revenue Leak
+          <i class="fa-solid fa-triangle-exclamation text-[10px]"></i> The Revenue Leak
         </div>
         <h2 class="font-display font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-slate-950 tracking-tight mb-5 leading-[1.15]">
           Every unanswered call is a job<br class="hidden sm:block">
           <span class="text-3d-dark">booked by your <span class="text-3d-red">competitor.</span></span>
         </h2>
         <p class="text-slate-600 text-base sm:text-lg font-normal leading-relaxed max-w-2xl mx-auto">
-          HVAC customers in distress don't leave voicemails — they call the next number on Google. Here's what your phones are silently costing you every month.
+          Customers in distress don't leave voicemails — they call the next number on Google. Here's what unanswered calls may be costing you every month.
         </p>
       </div>
 
@@ -713,7 +641,7 @@
             </p>
           </div>
           <div class="lg:col-span-4 flex flex-col gap-3 w-full">
-            <a href="index.html#contact"
+            <a href="contact.html"
               class="btn-hvac-grad w-full sm:w-auto text-white font-bold text-sm py-3.5 px-6 rounded-full text-center shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
               Deploy For My HVAC Company
             </a>
@@ -1299,15 +1227,163 @@
     <div class="absolute inset-0 bg-grid-slate opacity-25 pointer-events-none"></div>
     <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
 
+      <div x-data="{ activeCategory: 'all' }" class="mb-14 sm:mb-20">
+        <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14 reveal">
+          <div class="inline-flex items-center gap-2 bg-cyan-50 border border-cyan-200 text-cyan-700 px-3 py-1.5 sm:px-3.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase mb-4 shadow-3d-sm">
+            <i class="fa-solid fa-scale-balanced"></i> Financial &amp; Operational Reality
+          </div>
+          <h2 class="font-display font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-slate-950 tracking-tight mb-4 leading-tight">
+            Compare the real economics.
+          </h2>
+          <p class="text-slate-600 text-sm sm:text-base md:text-lg font-normal leading-relaxed">
+            A front desk has limits on hours and call capacity. See how a tailored Knetic VOI receptionist compares on coverage, call handling, and cost.
+          </p>
+          <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mt-8" role="group" aria-label="Filter comparison metrics">
+            <button type="button" @click="activeCategory = 'all'"
+              :aria-pressed="activeCategory === 'all'"
+              :class="activeCategory === 'all' ? 'bg-slate-900 text-white shadow-3d-sm' : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'"
+              class="px-3 py-2 sm:px-4 rounded-full text-xs font-bold transition-all">All Metrics</button>
+            <button type="button" @click="activeCategory = 'financial'"
+              :aria-pressed="activeCategory === 'financial'"
+              :class="activeCategory === 'financial' ? 'bg-slate-900 text-white shadow-3d-sm' : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'"
+              class="px-3 py-2 sm:px-4 rounded-full text-xs font-bold transition-all">Financial &amp; Cost</button>
+            <button type="button" @click="activeCategory = 'coverage'"
+              :aria-pressed="activeCategory === 'coverage'"
+              :class="activeCategory === 'coverage' ? 'bg-slate-900 text-white shadow-3d-sm' : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'"
+              class="px-3 py-2 sm:px-4 rounded-full text-xs font-bold transition-all">Speed &amp; Coverage</button>
+            <button type="button" @click="activeCategory = 'capabilities'"
+              :aria-pressed="activeCategory === 'capabilities'"
+              :class="activeCategory === 'capabilities' ? 'bg-slate-900 text-white shadow-3d-sm' : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'"
+              class="px-3 py-2 sm:px-4 rounded-full text-xs font-bold transition-all">Capabilities &amp; Setup</button>
+          </div>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-6 md:gap-8 items-stretch">
+          <div class="protrude-card bg-white border border-slate-200/90 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 shadow-3d-card flex flex-col justify-between reveal d-1">
+            <div>
+              <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6 gap-3">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="w-8 h-8 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center text-sm shrink-0"><i class="fa-solid fa-user-clock"></i></span>
+                    <h3 class="font-display font-bold text-base sm:text-lg text-slate-900">Traditional Front Desk</h3>
+                  </div>
+                  <p class="text-xs text-slate-500 mt-1">Limited by human bandwidth and hours</p>
+                </div>
+                <span class="text-[10px] sm:text-[11px] font-bold text-rose-600 bg-rose-50 border border-rose-200 px-2 py-1 rounded-full whitespace-nowrap">Staffing Overhead</span>
+              </div>
+
+              <div class="space-y-3 sm:space-y-4 text-xs sm:text-sm">
+                <div x-show="activeCategory === 'all' || activeCategory === 'coverage'" class="p-3 sm:p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
+                  <div class="flex items-center justify-between gap-3 font-semibold text-slate-700">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-clock text-slate-400"></i> Weekly Hours</span>
+                    <span class="text-rose-600 font-bold text-right">About 40 hrs / week</span>
+                  </div>
+                  <p class="text-[11px] text-slate-500 mt-1">Evenings, nights, weekends, and holidays need separate coverage.</p>
+                </div>
+                <div x-show="activeCategory === 'all' || activeCategory === 'coverage'" class="p-3 sm:p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
+                  <div class="flex items-center justify-between gap-3 font-semibold text-slate-700">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-phone-slash text-slate-400"></i> Call Capacity</span>
+                    <span class="text-rose-600 font-bold text-right">One call at a time</span>
+                  </div>
+                  <p class="text-[11px] text-slate-500 mt-1">Other callers may wait on hold or reach voicemail during busy periods.</p>
+                </div>
+                <div x-show="activeCategory === 'all' || activeCategory === 'coverage'" class="p-3 sm:p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
+                  <div class="flex items-center justify-between gap-3 font-semibold text-slate-700">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-stopwatch text-slate-400"></i> Answer Latency</span>
+                    <span class="text-slate-700 font-bold text-right">20–45 seconds*</span>
+                  </div>
+                  <p class="text-[11px] text-slate-500 mt-1">Can be delayed while staff help customers in person or handle other tasks.</p>
+                </div>
+                <div x-show="activeCategory === 'all' || activeCategory === 'capabilities'" class="p-3 sm:p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
+                  <div class="flex items-center justify-between gap-3 font-semibold text-slate-700">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-list-check text-slate-400"></i> Workflow Execution</span>
+                    <span class="text-slate-700 font-bold text-right">Manual follow-through</span>
+                  </div>
+                  <p class="text-[11px] text-slate-500 mt-1">Scheduling, messages, and dispatch details depend on staff availability and entry.</p>
+                </div>
+                <div x-show="activeCategory === 'all' || activeCategory === 'financial'" class="p-3 sm:p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
+                  <div class="flex items-center justify-between gap-3 font-semibold text-slate-700">
+                    <span class="flex items-center gap-2"><i class="fa-solid fa-sack-dollar text-slate-400"></i> Monthly Overhead</span>
+                    <span class="text-rose-600 font-bold text-right">$3,500–$5,000*</span>
+                  </div>
+                  <p class="text-[11px] text-slate-500 mt-1">Indicative staffing benchmark for salary and associated costs; actual costs vary by market and role.</p>
+                </div>
+              </div>
+            </div>
+            <p class="mt-6 sm:mt-8 pt-4 border-t border-slate-100 text-[11px] text-slate-400 text-center font-medium">*Illustrative comparisons; actual staffing costs and response times vary.</p>
+          </div>
+
+          <div class="protrude-card bg-gradient-to-b from-white to-blue-50/60 border-2 border-blue-500 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 shadow-3d-protrude flex flex-col justify-between relative reveal d-2">
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 sm:right-4 bg-blue-600 text-white font-bold text-[10px] sm:text-xs tracking-wider uppercase px-3 py-1.5 rounded-full shadow-btn-3d flex items-center gap-1.5 whitespace-nowrap z-10">
+              <i class="fa-solid fa-bolt text-amber-300"></i> Done-for-you service
+            </div>
+            <div>
+              <div class="flex items-center justify-between pb-4 border-b border-blue-100 mb-6 gap-3">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <img src="media/logo.png" alt="Knetic VOI" class="w-8 h-8 rounded-md shadow-md border-2 border-zinc-200 object-contain bg-white">
+                    <h3 class="font-display font-extrabold text-base sm:text-lg text-slate-950">KNETIC VOI</h3>
+                  </div>
+                  <p class="text-xs text-blue-700 font-medium mt-1">Configured around your call workflows</p>
+                </div>
+                <span class="text-[10px] sm:text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-1 rounded-full whitespace-nowrap">24/7 Coverage</span>
+              </div>
+
+              <div class="space-y-3 sm:space-y-4 text-xs sm:text-sm">
+                <div x-show="activeCategory === 'all' || activeCategory === 'coverage'" class="p-3 sm:p-3.5 rounded-2xl bg-white border border-blue-200/80 shadow-3d-sm">
+                  <div class="flex items-center justify-between gap-3 font-bold text-slate-900">
+                    <span class="flex items-center gap-2 text-blue-700"><i class="fa-solid fa-clock"></i> Weekly Hours</span>
+                    <span class="text-emerald-600 font-extrabold text-right"><i class="fa-solid fa-check text-[10px]"></i> 168 hrs (24/7/365)</span>
+                  </div>
+                  <p class="text-[11px] text-slate-600 mt-1">Nights, weekends, and holidays covered without building a separate shift.</p>
+                </div>
+                <div x-show="activeCategory === 'all' || activeCategory === 'coverage'" class="p-3 sm:p-3.5 rounded-2xl bg-white border border-blue-200/80 shadow-3d-sm">
+                  <div class="flex items-center justify-between gap-3 font-bold text-slate-900">
+                    <span class="flex items-center gap-2 text-blue-700"><i class="fa-solid fa-infinity"></i> Call Capacity</span>
+                    <span class="text-emerald-600 font-extrabold text-right"><i class="fa-solid fa-check text-[10px]"></i> Multiple calls at once</span>
+                  </div>
+                  <p class="text-[11px] text-slate-600 mt-1">Handles simultaneous callers without putting the next person on hold.</p>
+                </div>
+                <div x-show="activeCategory === 'all' || activeCategory === 'coverage'" class="p-3 sm:p-3.5 rounded-2xl bg-white border border-blue-200/80 shadow-3d-sm">
+                  <div class="flex items-center justify-between gap-3 font-bold text-slate-900">
+                    <span class="flex items-center gap-2 text-blue-700"><i class="fa-solid fa-bolt"></i> Answer Latency</span>
+                    <span class="text-emerald-600 font-extrabold text-right"><i class="fa-solid fa-check text-[10px]"></i> 0.38-second pickup</span>
+                  </div>
+                  <p class="text-[11px] text-slate-600 mt-1">Answers promptly, including while your team is on a job or helping another caller.</p>
+                </div>
+                <div x-show="activeCategory === 'all' || activeCategory === 'capabilities'" class="p-3 sm:p-3.5 rounded-2xl bg-white border border-blue-200/80 shadow-3d-sm">
+                  <div class="flex items-center justify-between gap-3 font-bold text-slate-900">
+                    <span class="flex items-center gap-2 text-blue-700"><i class="fa-solid fa-circle-check"></i> HVAC Workflows</span>
+                    <span class="text-emerald-600 font-extrabold text-right"><i class="fa-solid fa-check text-[10px]"></i> 6 core abilities</span>
+                  </div>
+                  <p class="text-[11px] text-slate-600 mt-1">Books calls, answers questions, handles emergencies, transfers with context, and helps route jobs.</p>
+                </div>
+                <div x-show="activeCategory === 'all' || activeCategory === 'financial'" class="p-3 sm:p-3.5 rounded-2xl bg-white border border-blue-200/80 shadow-3d-sm">
+                  <div class="flex items-center justify-between gap-3 font-bold text-slate-900">
+                    <span class="flex items-center gap-2 text-blue-700"><i class="fa-solid fa-sack-dollar"></i> Direct Investment</span>
+                    <span class="text-blue-700 font-extrabold text-right">Custom quote</span>
+                  </div>
+                  <p class="text-[11px] text-slate-600 mt-1">Pricing is tailored to your workflows and coverage needs. Compare your quote with staffing costs and the value of missed jobs.</p>
+                </div>
+              </div>
+            </div>
+            <div class="mt-6 sm:mt-8 pt-4 border-t border-blue-100 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <span class="text-xs sm:text-sm font-bold text-blue-900 text-center sm:text-left">Get a quote for your shop.</span>
+              <a href="contact.html" class="btn-hvac-grad w-full sm:w-auto text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-full text-center shadow-btn-3d hover:brightness-110 transition-all">Request Pricing</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14 reveal">
         <div class="inline-flex items-center gap-2 bg-cyan-50 border border-cyan-200 text-cyan-700 px-3 py-1.5 sm:px-3.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase mb-4 shadow-3d-sm">
-          <i class="fa-solid fa-scale-balanced"></i> HVAC Business ROI Calculator
+          <i class="fa-solid fa-scale-balanced"></i> Business ROI Calculator
         </div>
         <h2 class="font-display font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-slate-950 tracking-tight mb-4 leading-tight">
-          How much are missed HVAC calls costing you?
+          How much are missed calls costing your business?
         </h2>
         <p class="text-slate-600 text-sm sm:text-base md:text-lg font-normal leading-relaxed">
-          Use the calculator below to see exactly how much revenue your HVAC business loses every month to unanswered calls.
+          Estimate the revenue at risk from unanswered calls using your monthly call volume and average job value.
         </p>
       </div>
 
@@ -1396,7 +1472,7 @@
               </div>
             </div>
             <p class="mt-auto pt-4 sm:pt-6 text-xs leading-relaxed text-slate-500 text-center sm:text-left">
-              Unsure? Most HVAC companies underestimate their missed call volume by 3×. Schedule a call with us <a href="index.html#contact" class="font-semibold text-cyan-600 hover:underline">here</a>.
+              This is an estimate, not a revenue guarantee. Ask us for a tailored quote and compare the cost with the value of one missed emergency job: <a href="contact.html" class="font-semibold text-cyan-600 hover:underline">get pricing</a>.
             </p>
           </div>
 
@@ -1408,7 +1484,7 @@
                   x-text="'$' + lostRevenue.toLocaleString()"></span>
                 <span class="text-sm font-bold text-white/80">/ month</span>
               </div>
-              <p class="mt-2 text-xs sm:text-sm font-bold text-white/90 leading-snug">Estimated monthly HVAC revenue lost to missed calls — jobs VOI can capture for you.</p>
+              <p class="mt-2 text-xs sm:text-sm font-bold text-white/90 leading-snug">Estimated monthly revenue at risk from missed calls. Actual results vary.</p>
             </div>
             <div class="mt-6 sm:mt-8 rounded-2xl bg-white/[0.05] border border-white/5 p-4 sm:p-6 space-y-4 sm:space-y-6 text-xs sm:text-[13px] font-bold text-white">
               <div class="flex items-center justify-between gap-4">
@@ -1447,7 +1523,7 @@
             <div class="mt-auto pt-8 sm:pt-12">
               <p class="text-xs sm:text-sm font-bold text-white/90 text-center sm:text-left">Every unanswered HVAC call — especially emergencies — goes straight to a competitor.</p>
               <div class="mt-5 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
-                <a href="index.html#contact"
+                <a href="contact.html"
                   class="flex items-center justify-center sm:justify-start gap-3 rounded-full bg-cyan-500 py-3 sm:py-2 pl-6 pr-2 text-sm font-bold text-white shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
                   Get My HVAC Receptionist
                   <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cyan-400">
@@ -1477,42 +1553,41 @@
           Test real HVAC call scenarios.
         </h2>
         <p class="text-slate-600 text-base md:text-lg font-normal leading-relaxed">
-          Select any common HVAC call type to hear how your custom Knetic VOI receptionist handles it with natural, confident accuracy.
+          Hear how your custom Knetic VOI receptionist handles a real HVAC service call with natural, confident accuracy.
         </p>
       </div>
 
       <!-- Simulator Shell -->
       <div class="reveal flex-1 flex flex-col bg-[#ebebeb] rounded-[24px] overflow-hidden border border-black/5 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.10)]"
         x-data="{
-          active: 0,
           playing: false,
           audio: null,
-          tabs: [
-            { id: 'emergency', label: 'AC Emergency', dot: '#ef4444', audioSrc: '' },
-            { id: 'booking', label: 'Book Service Call', dot: '#06b6d4', audioSrc: '' },
-            { id: 'question', label: 'Pricing Question', dot: '#8b5cf6', audioSrc: '' }
-          ],
-          palettes: [
-            { base: '#1a0505', c1: '#7f1d1d', c2: '#dc2626', c3: '#f87171', c4: '#450a0a', accent: '#ef4444', label: 'Emergency' },
-            { base: '#041b1f', c1: '#164e63', c2: '#06b6d4', c3: '#67e8f9', c4: '#083344', accent: '#06b6d4', label: 'Booking' },
-            { base: '#13052b', c1: '#4c1d95', c2: '#8b5cf6', c3: '#c4b5fd', c4: '#2e1065', accent: '#8b5cf6', label: 'Pricing' }
-          ],
-          get palette() { return this.palettes[this.active]; },
-          select(i) { this.active = i; this.playing = false; if(this.audio){ this.audio.pause(); this.audio = null; } },
+          palette: { base: '#041b1f', c1: '#164e63', c2: '#06b6d4', c3: '#67e8f9', c4: '#083344', accent: '#06b6d4', label: 'HVAC service call' },
+          initAudio() {
+            if (this.audio) return;
+            this.audio = new Audio('media/hvac.MP3');
+            this.audio.addEventListener('ended', () => { this.playing = false; });
+            this.audio.addEventListener('pause', () => { this.playing = false; });
+            this.audio.addEventListener('play', () => { this.playing = true; });
+          },
           togglePlay() {
-            this.playing = !this.playing;
+            this.initAudio();
+            if (this.playing) {
+              this.audio.pause();
+              return;
+            }
+            if (this.audio.ended) this.audio.currentTime = 0;
+            this.audio.play().catch((error) => {
+              console.warn('HVAC audio playback failed:', error);
+              this.playing = false;
+            });
           }
         }">
-        <!-- Tab Bar -->
-        <header class="grid grid-cols-1 md:grid-cols-3 gap-1.5 md:gap-4 px-3 md:px-6 py-2 md:py-2.5 bg-[#e9e9ea] border-b border-black/5">
-          <template x-for="(tab, i) in tabs" :key="tab.id">
-            <button @click="select(i)"
-              class="flex items-center justify-center gap-2 rounded-xl px-3 py-2 md:py-2.5 text-xs md:text-sm font-medium transition-all duration-300 focus:outline-none"
-              :class="active === i ? 'bg-white text-gray-900 shadow-[0_2px_12px_rgba(0,0,0,0.08)]' : 'text-gray-500 hover:text-gray-800 hover:bg-white/50'">
-              <span class="w-2 h-2 rounded-full shrink-0" :style="`background: ${tab.dot}`"></span>
-              <span x-text="tab.label" class="truncate"></span>
-            </button>
-          </template>
+        <header class="flex justify-center px-3 md:px-6 py-2 md:py-2.5 bg-[#e9e9ea] border-b border-black/5">
+          <span class="flex items-center gap-2 rounded-xl bg-white px-4 py-2 md:py-2.5 text-xs md:text-sm font-medium text-gray-900 shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
+            <span class="w-2 h-2 rounded-full shrink-0 bg-cyan-500"></span>
+            HVAC Service Call
+          </span>
         </header>
 
         <!-- Stage -->
@@ -1567,7 +1642,7 @@
             <span class="font-medium text-gray-900">Voice</span>
             <span class="text-gray-400">(HVAC Specialist Agent)</span>
           </div>
-          <a href="index.html#contact"
+          <a href="contact.html"
             class="group inline-flex items-center justify-center gap-2.5 bg-black text-white text-xs md:text-sm font-semibold pl-5 pr-1.5 py-1.5 rounded-full shadow-lg hover:bg-zinc-800 hover:scale-[1.02] active:scale-95 transition-all duration-300 ease-out focus:outline-none">
             <span>Get Your HVAC Receptionist</span>
             <span class="w-7 h-7 rounded-full bg-white text-black border-[1.5px] border-white flex items-center justify-center shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:rotate-[12deg]">
@@ -1602,7 +1677,7 @@
         <div class="protrude-card bg-white border border-slate-200/90 rounded-3xl p-6 shadow-3d-card reveal d-1 flex flex-col justify-between">
           <div>
             <div class="w-10 h-10 rounded-2xl bg-cyan-600 text-white font-display font-extrabold text-sm flex items-center justify-center mb-4 shadow-btn-3d">1</div>
-            <h3 class="font-display font-bold text-lg text-slate-900 mb-2">HVAC Knowledge Intake</h3>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Knowledge Intake</h3>
             <p class="text-slate-600 text-xs leading-relaxed">We ingest your service catalog, brands serviced, pricing, service area zip codes, warranty info, maintenance plan details, and emergency escalation rules.</p>
           </div>
           <div class="mt-6 pt-4 border-t border-slate-100 text-[11px] text-cyan-600 font-semibold">
@@ -1628,11 +1703,11 @@
         <div class="protrude-card bg-white border border-slate-200/90 rounded-3xl p-6 shadow-3d-card reveal d-3 flex flex-col justify-between">
           <div>
             <div class="w-10 h-10 rounded-2xl bg-cyan-600 text-white font-display font-extrabold text-sm flex items-center justify-center mb-4 shadow-btn-3d">3</div>
-            <h3 class="font-display font-bold text-lg text-slate-900 mb-2">HVAC Scenario Testing</h3>
+            <h3 class="font-display font-bold text-lg text-slate-900 mb-2">Scenario Testing</h3>
             <p class="text-slate-600 text-xs leading-relaxed">We simulate emergency calls, booking flows, multi-zone dispatch, warranty questions, and warm transfers to your actual office phone — fully QA'd before go-live.</p>
           </div>
           <div class="mt-6 pt-4 border-t border-slate-100 text-[11px] text-cyan-600 font-semibold">
-            <i class="fa-solid fa-headset mr-1"></i> HVAC QA Scenarios Passed
+            <i class="fa-solid fa-headset mr-1"></i> QA Scenarios Passed
           </div>
         </div>
         <div class="protrude-card bg-white border border-slate-200/90 rounded-3xl p-6 shadow-3d-card reveal d-4 flex flex-col justify-between">
@@ -1656,10 +1731,10 @@
     <div class="max-w-3xl mx-auto px-6">
       <div class="text-center mb-16 reveal">
         <div class="inline-flex items-center gap-2 bg-cyan-50 border border-cyan-200 text-cyan-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-5 shadow-3d-sm">
-          <i class="fa-solid fa-circle-question text-[10px]"></i> HVAC Frequently Asked Questions
+          <i class="fa-solid fa-circle-question text-[10px]"></i> Frequently Asked Questions
         </div>
         <h2 class="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-slate-950 tracking-tight mb-4">
-          Questions HVAC owners ask us.
+          Questions owners ask us.
         </h2>
       </div>
 
@@ -1725,7 +1800,7 @@
           </button>
           <div x-show="open === 5" x-collapse>
             <div class="px-5 sm:px-6 pb-5 sm:pb-6 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-4">
-              VOI is trained to de-escalate with empathy and professionalism. It acknowledges the frustration, looks up the service history, and either offers an immediate resolution (rebooking) or warm-transfers the call to a manager with full context already briefed. Angry callers never have to repeat themselves.
+              VOI starts by acknowledging the frustration, then checks the caller's service history and prior job notes to understand what happened. If a manager needs to step in, VOI warm-transfers with a concise briefing: the customer's issue, work already completed, and what they were told. Your team can take over with context instead of asking, "What seems to be the problem?"
             </div>
           </div>
         </div>
@@ -1766,7 +1841,7 @@
         Your competitors with 24/7 AI receptionists are already capturing the calls you're missing. Deploy your HVAC receptionist today and capture every emergency, booking, and maintenance inquiry — day or night.
       </p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="index.html#contact"
+        <a href="contact.html"
           class="btn-hvac-grad inline-flex items-center gap-2.5 text-white font-bold text-sm px-8 py-4 rounded-full shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
           <i class="fa-solid fa-bolt text-xs"></i>
           Deploy My HVAC Receptionist
@@ -1804,7 +1879,7 @@
         <a href="index.html" class="hover:text-white transition-colors">General Agency</a>
         <a href="#capabilities" class="hover:text-white transition-colors">Capabilities</a>
         <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
-        <a href="index.html#contact" class="hover:text-white transition-colors">Contact</a>
+        <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
       </div>
       <p class="text-zinc-600 text-[10px]">&copy; 2026 Knetic VOI. All rights reserved.</p>
     </div>

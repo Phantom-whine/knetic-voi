@@ -443,6 +443,63 @@
           </div>
 
           <!-- TAB 2: ORGANIZATIONS DIRECTORY -->
+          <div x-show="activeTab === 'contact_submissions'" class="panel-soft rounded-2xl p-6 space-y-4">
+            <div class="flex flex-col gap-3 border-b border-white/[0.06] pb-3 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h2 class="text-base font-bold text-white">Contact Form Submissions</h2>
+                <p class="text-xs text-neutral-400">New business inquiries submitted through the public contact form.</p>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-xs font-semibold text-neutral-400" x-text="filteredContactSubmissions.length + ' submissions'"></span>
+                <label class="relative block w-full sm:w-64">
+                  <span class="sr-only">Search contact submissions</span>
+                  <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-xs text-neutral-500"></i>
+                  <input type="search" x-model="contactSubmissionSearch" placeholder="Search inquiries..."
+                    class="w-full rounded-xl border border-white/10 bg-black/40 py-1.5 pl-8 pr-3 text-xs text-white placeholder:text-neutral-500 focus:border-indigo-500 focus:outline-none">
+                </label>
+              </div>
+            </div>
+
+            <div class="overflow-x-auto rounded-xl border border-white/[0.06]">
+              <table class="w-full min-w-[1000px] text-left text-xs">
+                <thead class="bg-white/[0.025]">
+                  <tr class="border-b border-white/[0.06] text-[10px] font-semibold uppercase tracking-wider text-neutral-500">
+                    <th class="px-3 py-3">Submitted</th>
+                    <th class="px-3 py-3">Contact</th>
+                    <th class="px-3 py-3">Business</th>
+                    <th class="px-3 py-3">Type</th>
+                    <th class="px-3 py-3">Country</th>
+                    <th class="px-3 py-3">Message</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-white/[0.04]">
+                  <template x-for="submission in filteredContactSubmissions" :key="submission.id">
+                    <tr class="align-top transition-colors hover:bg-white/[0.025]">
+                      <td class="whitespace-nowrap px-3 py-3 text-neutral-400" x-text="formatDate(submission.created_at) + ' ' + formatTime(submission.created_at)"></td>
+                      <td class="px-3 py-3">
+                        <p class="font-semibold text-white" x-text="submission.full_name"></p>
+                        <a :href="'mailto:' + submission.email" class="mt-1 inline-block text-indigo-300 hover:text-indigo-200 hover:underline" x-text="submission.email"></a>
+                      </td>
+                      <td class="px-3 py-3 font-medium text-neutral-200" x-text="submission.business_name"></td>
+                      <td class="px-3 py-3 text-neutral-300" x-text="submission.business_type"></td>
+                      <td class="px-3 py-3 text-neutral-300" x-text="submission.country === 'Other / not listed' ? submission.country_other : submission.country"></td>
+                      <td class="max-w-xs px-3 py-3 text-neutral-400" :title="submission.message">
+                        <p class="line-clamp-3 whitespace-pre-wrap break-words" x-text="submission.message || '—'"></p>
+                      </td>
+                    </tr>
+                  </template>
+                  <template x-if="filteredContactSubmissions.length === 0">
+                    <tr>
+                      <td colspan="6" class="px-3 py-12 text-center text-xs text-neutral-500"
+                        x-text="contactSubmissionSearch ? 'No submissions match your search.' : 'No contact form submissions yet.'"></td>
+                    </tr>
+                  </template>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- TAB 2: ORGANIZATIONS DIRECTORY -->
           <div x-show="activeTab === 'businesses'" class="panel-soft rounded-2xl p-6 space-y-4">
             <div
               class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/[0.06]">
@@ -2747,6 +2804,7 @@
         adminUser: {},
         stats: {},
         businesses: [],
+        contactSubmissions: [],
         staffList: [],
         appointments: [],
         customers: [],
@@ -2766,6 +2824,7 @@
         staffSearch: '',
         apptSearch: '',
         customerSearch: '',
+        contactSubmissionSearch: '',
         callSearch: '',
         callDateFilter: '',
         callSortOrder: 'desc',
@@ -2878,6 +2937,7 @@
         },
         navItems: [
           { id: 'overview', label: 'Overview & Telemetry', icon: 'fa-solid fa-chart-pie' },
+          { id: 'contact_submissions', label: 'Contact Submissions', icon: 'fa-solid fa-inbox' },
           { id: 'businesses', label: 'Organizations', icon: 'fa-solid fa-building' },
           { id: 'staff', label: 'Staff & Engineers', icon: 'fa-solid fa-users-gear' },
           { id: 'appointments', label: 'All Appointments', icon: 'fa-solid fa-calendar-check' },
@@ -2899,6 +2959,15 @@
         get activeNavIcon() {
           const item = this.navItems.find(i => i.id === this.activeTab);
           return item ? item.icon : 'fa-solid fa-chart-pie';
+        },
+        get filteredContactSubmissions() {
+          const query = this.contactSubmissionSearch.trim().toLowerCase();
+          if (!query) return this.contactSubmissions;
+          return this.contactSubmissions.filter(submission =>
+            [submission.full_name, submission.email, submission.business_name, submission.business_type,
+              submission.country, submission.country_other, submission.message]
+              .some(value => (value || '').toLowerCase().includes(query))
+          );
         },
         defaultBusinessHours() {
           return this.hoursDays.reduce((hours, day) => {
@@ -3550,6 +3619,7 @@
             await Promise.allSettled([
               this.loadStats(),
               this.loadBusinesses(),
+              this.loadContactSubmissions(),
               this.loadStaff(),
               this.loadTwilioPresets(),
               this.loadAppointments(),
@@ -3589,6 +3659,24 @@
           if (resp && resp.ok) {
             const data = await resp.json();
             this.businesses = data.businesses || [];
+          }
+        },
+        async loadContactSubmissions() {
+          const resp = await this.authFetch('/api/v1/admin/contact-submissions/');
+          if (!resp) {
+            if (this.token) this.showToast('Could not load contact submissions. Check the connection and refresh.', 'error');
+            return;
+          }
+          if (!resp.ok) {
+            this.showToast('Could not load contact submissions. Please refresh and try again.', 'error');
+            return;
+          }
+          try {
+            const data = await resp.json();
+            this.contactSubmissions = data.submissions || [];
+          } catch (error) {
+            console.error('Could not read contact submissions:', error);
+            this.showToast('The contact submissions response could not be read.', 'error');
           }
         },
         async loadStaff() {

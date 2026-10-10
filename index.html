@@ -513,6 +513,10 @@
           & ROI</a>
         <a href="#faq"
           class="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.08] transition-all">FAQ</a>
+        <a href="pricing.html"
+          class="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.08] transition-all">Pricing</a>
+        <a href="contact.html"
+          class="px-4 py-1.5 rounded-full text-xs font-semibold text-zinc-300 hover:text-white hover:bg-white/[0.08] transition-all">Contact</a>
       </nav>
 
       <!-- CTA and Active Agency Telemetry -->
@@ -521,11 +525,11 @@
           <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
           <span>0.38s Latency</span>
         </div> -->
-        <button onclick="openContactModal()"
+        <a href="contact.html"
           class="btn-brand-grad inline-flex items-center gap-2 text-white text-xs font-bold px-4 sm:px-5 py-2 rounded-full shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
           <span>Get Started</span>
           <i class="fa-solid fa-arrow-right text-[10px]"></i>
-        </button>
+        </a>
         <button @click="mobileNav = !mobileNav" aria-label="Toggle navigation"
           class="md:hidden w-8 h-8 rounded-full bg-white/10 text-zinc-300 hover:text-white flex items-center justify-center">
           <i class="fa-solid" :class="mobileNav ? 'fa-xmark' : 'fa-bars-staggered'"></i>
@@ -552,9 +556,13 @@
         & ROI</a>
       <a @click="mobileNav = false" href="#faq"
         class="px-4 py-2.5 rounded-xl text-sm font-semibold text-zinc-900 hover:text-white hover:bg-white/10">FAQ</a>
-      <button @click="mobileNav = false; openContactModal()"
+      <a @click="mobileNav = false" href="pricing.html"
+        class="px-4 py-2.5 rounded-xl text-sm font-semibold text-zinc-300 hover:text-white hover:bg-white/10">Pricing</a>
+      <a @click="mobileNav = false" href="contact.html"
+        class="px-4 py-2.5 rounded-xl text-sm font-semibold text-zinc-300 hover:text-white hover:bg-white/10">Contact</a>
+      <a @click="mobileNav = false" href="contact.html"
         class="btn-brand-grad mt-2 py-2.5 rounded-xl text-xs font-bold text-white text-center shadow-btn-3d">Deploy AI
-        Receptionist</button>
+        Receptionist</a>
     </div>
   </header>
 
@@ -602,11 +610,11 @@
         <!-- CTA Action Buttons -->
         <div
           class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-3.5 mb-8 sm:mb-10 max-w-md sm:max-w-none mx-auto sm:mx-0">
-          <button onclick="openContactModal()"
+          <a href="contact.html"
             class="btn-brand-grad inline-flex items-center justify-center gap-2.5 text-white font-bold text-sm px-6 sm:px-8 py-3.5 sm:py-4 rounded-full shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
             <i class="fa-solid fa-bolt text-xs text-white"></i>
             <span>Deploy For Your Business</span>
-          </button>
+          </a>
           <a href="#demo"
             class="inline-flex items-center justify-center gap-2.5 bg-white/90 backdrop-blur-md text-slate-800 font-bold text-sm px-6 sm:px-7 py-3.5 sm:py-4 rounded-full border border-slate-200/90 shadow-3d-sm hover:bg-white hover:text-blue-600 hover:border-blue-300 active:translate-y-0.5 transition-all">
             <i class="fa-solid fa-play text-xs text-blue-600"></i>
@@ -1241,10 +1249,10 @@
 
           <!-- Right Actions -->
           <div class="lg:col-span-4 flex flex-col gap-3 w-full">
-            <button onclick="openContactModal()"
+            <a href="contact.html"
               class="btn-brand-grad w-full sm:w-auto text-white font-bold text-sm py-3.5 px-6 rounded-full text-center shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
               Deploy For Your Business Today
-            </button>
+            </a>
 
             <a href="#capabilities"
               class="w-full sm:w-auto bg-white border border-slate-200 text-slate-800 font-bold text-sm py-3.5 px-6 rounded-full text-center hover:bg-slate-50 hover:text-blue-600 hover:border-blue-200 transition-all shadow-sm">
@@ -2580,7 +2588,7 @@
             class="mt-6 sm:mt-8 pt-4 border-t border-blue-100 flex flex-col sm:flex-row items-center sm:items-center justify-between gap-3 sm:gap-0">
             <span class="text-xs sm:text-sm font-bold text-blue-900 text-center sm:text-left">Ready to eliminate missed
               calls?</span>
-            <a href="#contact"
+            <a href="contact.html"
               class="btn-brand-grad w-full sm:w-auto text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-full text-center shadow-btn-3d hover:brightness-110 transition-all">
               Deploy Receptionist
             </a>
@@ -2693,7 +2701,7 @@
             </div>
 
             <p class="mt-auto pt-4 sm:pt-6 text-xs leading-relaxed text-slate-500 text-center sm:text-left">
-              Unsure? Schedule a time with us <a href="#contact"
+              Unsure? Schedule a time with us <a href="contact.html"
                 class="font-semibold text-blue-600 hover:underline">here</a> and our ROI specialist will go over this
               with you.
             </p>
@@ -2761,7 +2769,7 @@
               <p class="text-xs sm:text-sm font-bold text-white/90 text-center sm:text-left">Not sure what to enter?
                 Most businesses underestimate how many calls they miss.</p>
               <div class="mt-5 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
-                <a href="#contact"
+                <a href="contact.html"
                   class="flex items-center justify-center sm:justify-start gap-3 rounded-full bg-[#0a84ff] py-3 sm:py-2 pl-6 pr-2 text-sm font-bold text-white shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
                   Get your own Receptionist
                   <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#4aa3ff]">
@@ -2791,47 +2799,45 @@
   <section id="demo" class="py-24 bg-[#FBFDFE]">
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
 
-      <div class="text-center max-w-3xl mx-auto mb-14 reveal">
+      <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12 reveal">
         <div
           class="inline-flex items-center gap-2 bg-gradient-to-b from-blue-500 to-blue-700 border border-blue-200 text-white px-3.5 py-1 rounded-full text-xs font-bold uppercase mb-4 shadow-3d-sm">
           <i class="fa-solid fa-play text-white"></i> Interactive Voice Simulator
         </div>
         <h2 class="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-slate-950 tracking-tight mb-4">
-          Test real conversation flows.
+          Test a real conversation flow.
         </h2>
         <p class="text-slate-600 text-base md:text-lg font-normal leading-relaxed">
-          Select any common business scenario to hear how your custom Knetic VOI receptionist responds with natural,
-          human accuracy.
+          Hear how your AI receptionist handles an appointment booking, from the caller’s first question to a confirmed time.
         </p>
       </div>
 
       <!-- Voice Orb Simulator Container -->
       <div x-data="voiceOrbApp()" x-init="init()"
-        class="reveal flex-1 flex flex-col bg-[#ebebeb] rounded-[24px] overflow-hidden border border-black/5 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.10)]">
+        class="reveal mx-auto flex w-full max-w-4xl flex-col overflow-hidden rounded-[24px] border border-black/5 bg-[#ebebeb] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.10)]">
 
-        <!-- ===== TOP TAB BAR (3 simulations) ===== -->
-        <header
-          class="grid grid-cols-1 md:grid-cols-3 gap-1.5 md:gap-4 px-3 md:px-6 py-2 md:py-2.5 bg-[#e9e9ea] border-b border-black/5">
-          <template x-for="(tab, i) in tabs" :key="tab.id">
-            <button @click="select(i)"
-              class="flex items-center justify-center gap-2 rounded-xl px-3 py-2 md:py-2.5 text-xs md:text-sm font-medium transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/20"
-              :class="active === i
-              ? 'bg-white text-gray-900 shadow-[0_2px_12px_rgba(0,0,0,0.08)]'
-              : 'text-gray-500 hover:text-gray-800 hover:bg-white/50'">
-              <span class="w-2 h-2 rounded-full shrink-0" :style="`background: ${tab.dot}`"></span>
-              <span x-text="tab.label" class="truncate"></span>
-            </button>
-          </template>
+        <!-- ===== SINGLE DEMO HEADER ===== -->
+        <header class="flex items-center gap-3 border-b border-black/5 bg-[#e9e9ea] px-5 py-3.5 sm:px-7">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white text-emerald-700 shadow-sm">
+            <i class="fa-solid fa-calendar-check"></i>
+          </span>
+          <div class="min-w-0">
+            <p class="text-sm font-semibold text-gray-900">Appointment booking</p>
+            <p class="mt-0.5 text-xs text-gray-500">One sample conversation · Tap play to listen</p>
+          </div>
+          <span class="ml-auto hidden items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[10px] font-semibold text-gray-500 shadow-sm sm:inline-flex">
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span> Voice demo
+          </span>
         </header>
 
         <!-- ===== MAIN STAGE ===== -->
-        <main class="relative flex-1 flex flex-col items-center justify-center bg-[#efefef] px-4 py-10 md:py-12">
+        <main class="relative flex flex-col items-center justify-center bg-[#efefef] px-4 py-8 sm:py-10">
 
           <!-- Animated Orb + Play button -->
           <div class="relative">
             <!-- Outer: glow shadow eases with play state & palette -->
             <div
-              class="orb relative w-[208px] h-[208px] md:w-[240px] md:h-[240px] rounded-full transition-[box-shadow] duration-1000 ease-out"
+              class="orb relative h-[192px] w-[192px] rounded-full transition-[box-shadow] duration-1000 ease-out sm:h-[224px] sm:w-[224px]"
               :style="`box-shadow: 0 20px 56px -20px ${palette.accent}${playing ? 'aa' : '66'}`">
 
               <!-- Pulse layer: smooth inflate / deflate (transition, not keyframes) -->
@@ -2890,8 +2896,8 @@
                   :style="`animation-delay: ${(i - 1) * 0.15}s; background: ${palette.accent}`"></span>
               </template>
             </div>
-            <span x-text="playing ? 'Playing ' + palette.label + ' simulation…'
-                            : 'Tap play to hear the ' + palette.label + ' simulation'"></span>
+            <span x-text="playing ? 'Playing the appointment booking demo…'
+                            : 'Tap play to hear the appointment booking demo'"></span>
           </div>
         </main>
 
@@ -2917,7 +2923,7 @@
           </div>
 
           <!-- CTA -->
-          <a href="#contact"
+          <a href="contact.html"
             class="group inline-flex items-center justify-center gap-2.5 bg-black text-white text-xs md:text-sm font-semibold pl-5 pr-1.5 py-1.5 rounded-full shadow-lg hover:bg-zinc-800 hover:scale-[1.02] active:scale-95 transition-all duration-300 ease-out focus:outline-none focus-visible:ring-4 focus-visible:ring-black/30">
             <span>Get Your Own Receptionist</span>
 
@@ -3646,7 +3652,7 @@
   <!-- ===================================================================== -->
   <!-- FINAL 3D OBSIDIAN CTA TERMINAL                                        -->
   <!-- ===================================================================== -->
-  <footer id="contact" class="bg-white">
+  <footer class="bg-white">
 
     <div class="px-4 md:px- py-26">
       <div
@@ -3669,11 +3675,11 @@
           </p>
 
           <div class="flex flex-col sm:flex-row justify-center gap-3.5 mb-10">
-            <button onclick="openContactModal()"
+            <a href="contact.html"
               class="btn-brand-grad inline-flex items-center justify-center gap-2.5 text-white font-bold text-sm px-8 py-4 rounded-full shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
               <i class="fa-solid fa-bolt text-xs text-white"></i>
               <span>Hire Knetic VOI Agency</span>
-            </button>
+            </a>
             <a href="#demo"
               class="inline-flex items-center justify-center gap-2.5 bg-white/10 border border-white/15 text-white font-bold text-sm px-7 py-4 rounded-full hover:bg-white/20 active:translate-y-0.5 transition-all">
               <i class="fa-solid fa-phone text-xs text-emerald-400"></i>
@@ -3710,242 +3716,15 @@
           &copy; <span id="currentYear"></span> KNETIC VOI Agency. All rights reserved.
         </p>
 
-        <button onclick="openContactModal()"
+        <a href="contact.html"
           class="btn-brand-grad inline-flex items-center justify-center gap-2 text-white font-bold text-xs px-4 py-2.5 rounded-full shadow-btn-3d hover:brightness-110 active:translate-y-0.5 transition-all">
           <span>Hire Knetic VOI</span>
           <i class="fa-solid fa-arrow-right text-[10px]"></i>
-        </button>
+        </a>
       </div>
     </div>
 
   </footer>
-
-  <!-- Contact Modal -->
-  <div id="contactModal"
-    class="fixed inset-0 z-[60] flex items-center justify-center p-4 pointer-events-none opacity-0 transition-opacity duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]">
-    <!-- Backdrop -->
-    <div id="contactModalBackdrop" class="absolute inset-0 bg-black/40 backdrop-blur-sm" onclick="closeContactModal()">
-    </div>
-    <!-- Modal Card -->
-    <div
-      class="relative w-full max-w-sm bg-white rounded-3xl shadow-[0_24px_60px_-12px_rgba(0,0,0,0.25)] border border-slate-100 scale-95 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
-      id="contactModalCard">
-      <!-- Close Button -->
-      <button type="button" onclick="closeContactModal()"
-        class="absolute -top-3 -right-3 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-b from-slate-700 to-slate-800 text-white transition-all duration-200 hover:from-slate-600 hover:to-slate-700 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-slate-400"
-        aria-label="Close contact options">
-        <i class="fa-solid fa-xmark text-sm"></i>
-      </button>
-      <!-- Header -->
-      <div class="px-6 pt-6 pb-4 border-b border-slate-100">
-        <h3 class="text-base font-bold text-slate-800">Contact Knetic VOI</h3>
-        <p class="text-xs text-slate-500 mt-0.5">Choose your preferred way to reach us.</p>
-      </div>
-      <!-- Contact Options -->
-      <div class="flex flex-col gap-1.5 p-3">
-        <a href="mailto:kneticvoi@gmail.com"
-          class="group flex items-center gap-3 rounded-full px-4 py-2.5 transition-all duration-200 hover:bg-slate-50">
-          <span
-            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-blue-50 to-blue-100 border border-blue-200 text-blue-600 transition-all duration-300 group-hover:from-blue-500 group-hover:to-blue-600 group-hover:text-white group-hover:border-blue-700">
-            <i class="fa-solid fa-envelope text-sm"></i>
-          </span>
-          <div class="flex flex-col">
-            <span class="text-sm font-semibold text-slate-800 group-hover:text-blue-700">Email us</span>
-            <span class="text-xs text-slate-500">kneticvoi@gmail.com</span>
-          </div>
-        </a>
-        <a href="https://web.facebook.com/profile.php?id=61594644762094" target="_blank" rel="noopener"
-          class="group flex items-center gap-3 rounded-full px-4 py-2.5 transition-all duration-200 hover:bg-slate-50">
-          <span
-            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-indigo-50 to-indigo-100 border border-indigo-200 text-indigo-600 transition-all duration-300 group-hover:from-indigo-500 group-hover:to-indigo-600 group-hover:text-white group-hover:border-indigo-700">
-            <i class="fa-brands fa-facebook-f text-sm"></i>
-          </span>
-          <div class="flex flex-col">
-            <span class="text-sm font-semibold text-slate-800 group-hover:text-indigo-700">Facebook</span>
-            <span class="text-xs text-slate-500">Send a message</span>
-          </div>
-        </a>
-        <a href="https://www.instagram.com/paul__jessey/" target="_blank" rel="noopener"
-          class="group flex items-center gap-3 rounded-full px-4 py-2.5 transition-all duration-200 hover:bg-slate-50">
-          <span
-            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-pink-50 to-pink-100 border border-pink-200 text-pink-600 transition-all duration-300 group-hover:from-pink-500 group-hover:to-pink-600 group-hover:text-white group-hover:border-pink-700">
-            <i class="fa-brands fa-instagram text-base"></i>
-          </span>
-          <div class="flex flex-col">
-            <span class="text-sm font-semibold text-slate-800 group-hover:text-pink-700">Instagram</span>
-            <span class="text-xs text-slate-500">Send a message</span>
-          </div>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Floating Contact Launcher -->
-  <div
-    class="contact-fab-group fixed bottom-6 right-6 z-50 hidden sm:flex flex-col items-end gap-4 sm:bottom-8 sm:right-8">
-
-    <!-- Contact Menu (Hidden by default) -->
-    <div id="contactMenu"
-      class="pointer-events-none absolute bottom-full right-0 mb-4 flex flex-col opacity-0 translate-y-4 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]">
-      <!-- Menu Container: ONLY this and the trigger button have shadows -->
-      <div
-        class="relative w-72 rounded-3xl bg-white p-2 shadow-[0_12px_40px_-8px_rgba(0,0,0,0.15)] border border-slate-100">
-
-        <!-- Close Button (No shadow) -->
-        <button type="button" onclick="toggleContactMenu()"
-          class="absolute -top-3 -right-3 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-b from-slate-700 to-slate-800 text-white transition-all duration-200 hover:from-slate-600 hover:to-slate-700 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-slate-400"
-          aria-label="Close contact options">
-          <i class="fa-solid fa-xmark text-sm"></i>
-        </button>
-
-        <!-- Header -->
-        <div class="px-4 py-3 border-b border-slate-100 mb-1">
-          <h3 class="text-sm font-bold text-slate-800">Contact Knetic VOI</h3>
-          <p class="text-xs text-slate-500 mt-0.5">Choose your preferred way to reach us.</p>
-        </div>
-
-        <!-- Contact Options (Pill-shaped, 3D-like colors, NO shadows) -->
-        <div class="flex flex-col gap-1.5 py-1.5">
-          <a href="mailto:kneticvoi@gmail.com"
-            class="group flex items-center gap-3 rounded-full px-4 py-2.5 transition-all duration-200 hover:bg-slate-50">
-            <span
-              class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-blue-50 to-blue-100 border border-blue-200 text-blue-600 transition-all duration-300 group-hover:from-blue-500 group-hover:to-blue-600 group-hover:text-white group-hover:border-blue-700">
-              <i class="fa-solid fa-envelope text-sm"></i>
-            </span>
-            <div class="flex flex-col">
-              <span class="text-sm font-semibold text-slate-800 group-hover:text-blue-700">Email us</span>
-              <span class="text-xs text-slate-500">kneticvoi@gmail.com</span>
-            </div>
-          </a>
-
-          <!-- <a href="https://wa.me/1800563842" target="_blank" rel="noopener"
-            class="group flex items-center gap-3 rounded-full px-4 py-2.5 transition-all duration-200 hover:bg-slate-50">
-            <span
-              class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-emerald-50 to-emerald-100 border border-emerald-200 text-emerald-600 transition-all duration-300 group-hover:from-emerald-500 group-hover:to-emerald-600 group-hover:text-white group-hover:border-emerald-700">
-              <i class="fa-brands fa-whatsapp text-base"></i>
-            </span>
-            <div class="flex flex-col">
-              <span class="text-sm font-semibold text-slate-800 group-hover:text-emerald-700">WhatsApp</span>
-              <span class="text-xs text-slate-500">Quick chat support</span>
-            </div>
-          </a> -->
-
-          <a href="https://web.facebook.com/profile.php?id=61594644762094" target="_blank" rel="noopener"
-            class="group flex items-center gap-3 rounded-full px-4 py-2.5 transition-all duration-200 hover:bg-slate-50">
-            <span
-              class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-indigo-50 to-indigo-100 border border-indigo-200 text-indigo-600 transition-all duration-300 group-hover:from-indigo-500 group-hover:to-indigo-600 group-hover:text-white group-hover:border-indigo-700">
-              <i class="fa-brands fa-facebook-f text-sm"></i>
-            </span>
-            <div class="flex flex-col">
-              <span class="text-sm font-semibold text-slate-800 group-hover:text-indigo-700">Facebook</span>
-              <span class="text-xs text-slate-500">Send a message</span>
-            </div>
-          </a>
-
-          <a href="https://www.instagram.com/paul__jessey/" target="_blank" rel="noopener"
-            class="group flex items-center gap-3 rounded-full px-4 py-2.5 transition-all duration-200 hover:bg-slate-50">
-            <span
-              class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-pink-50 to-pink-100 border border-pink-200 text-pink-600 transition-all duration-300 group-hover:from-pink-500 group-hover:to-pink-600 group-hover:text-white group-hover:border-pink-700">
-              <i class="fa-brands fa-instagram text-base"></i>
-            </span>
-            <div class="flex flex-col">
-              <span class="text-sm font-semibold text-slate-800 group-hover:text-pink-700">Instagram</span>
-              <span class="text-xs text-slate-500">Send a message</span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Trigger Button (3D Blue Gradient, White Bordered Icon, Shadow applied here) -->
-    <button type="button" onclick="toggleContactMenu()" id="contactTrigger"
-      class="group flex h-14 items-center gap-3 rounded-full bg-gradient-to-b from-blue-400 via-blue-500 to-blue-700 border-t border-white/20 px-6 py-3 text-sm font-bold text-white transition-all duration-300 hover:from-blue-500 hover:via-blue-600 hover:to-blue-800 hover:-translate-y-0.5 focus:outline-none ring-4 ring-blue-200 shadow-[0_8px_20px_-4px_rgba(37,99,235,0.5)]"
-      aria-label="Open contact options" title="Contact Knetic VOI">
-      <span id="triggerText">Contact Us</span>
-      <!-- Icon with white background and border -->
-      <span
-        class="flex h-8 w-8 items-center justify-center rounded-full bg-white border-2 border-blue-100 text-blue-600 transition-all duration-300 group-hover:border-blue-200 group-hover:text-blue-700 group-hover:scale-105">
-        <i id="triggerIcon" class="fa-solid fa-comment-dots text-sm transition-transform duration-300"></i>
-      </span>
-    </button>
-
-  </div>
-
-  <script>
-    function openContactModal() {
-      const modal = document.getElementById('contactModal');
-      const card = document.getElementById('contactModalCard');
-      modal.classList.remove('pointer-events-none', 'opacity-0');
-      modal.classList.add('pointer-events-auto', 'opacity-100');
-      card.classList.remove('scale-95');
-      card.classList.add('scale-100');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeContactModal() {
-      const modal = document.getElementById('contactModal');
-      const card = document.getElementById('contactModalCard');
-      modal.classList.remove('pointer-events-auto', 'opacity-100');
-      modal.classList.add('pointer-events-none', 'opacity-0');
-      card.classList.remove('scale-100');
-      card.classList.add('scale-95');
-      document.body.style.overflow = '';
-    }
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeContactModal();
-    });
-
-    function toggleContactMenu() {
-      const menu = document.getElementById('contactMenu');
-      const triggerText = document.getElementById('triggerText');
-      const triggerIcon = document.getElementById('triggerIcon');
-      const triggerBtn = document.getElementById('contactTrigger');
-      const iconContainer = triggerBtn.querySelector('span:last-child'); // The white circle
-
-      const isOpen = menu.classList.contains('opacity-100');
-
-      if (isOpen) {
-        // Close menu
-        menu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
-        menu.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
-
-        // Reset trigger button to default 3D blue state
-        triggerText.textContent = 'Contact Us';
-        triggerIcon.className = 'fa-solid fa-comment-dots text-sm transition-transform duration-300';
-
-        // Reset gradient and border
-        triggerBtn.className = "group flex h-14 items-center gap-3 rounded-full bg-gradient-to-b from-blue-400 via-blue-500 to-blue-700 border-t border-white/20 px-6 py-3 text-sm font-bold text-white transition-all duration-300 hover:from-blue-500 hover:via-blue-600 hover:to-blue-800 hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-blue-200 shadow-[0_8px_20px_-4px_rgba(37,99,235,0.5)]";
-        iconContainer.className = "flex h-8 w-8 items-center justify-center rounded-full bg-white border-2 border-blue-100 text-blue-600 transition-all duration-300 group-hover:border-blue-200 group-hover:text-blue-700 group-hover:scale-105";
-
-      } else {
-        // Open menu
-        menu.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
-        menu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
-
-        // Change trigger button to "Close" state (Slate 3D gradient for clear distinction)
-        triggerText.textContent = 'Close';
-        triggerIcon.className = 'fa-solid fa-xmark text-sm transition-transform duration-300 rotate-180';
-
-        // Apply slate gradient for close state, maintaining 3D feel and shadow
-        triggerBtn.className = "group flex h-14 items-center gap-3 rounded-full bg-gradient-to-b from-slate-600 via-slate-700 to-slate-800 border-t border-white/20 px-6 py-3 text-sm font-bold text-white transition-all duration-300 hover:from-slate-500 hover:via-slate-600 hover:to-slate-700 hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-slate-300 shadow-[0_8px_20px_-4px_rgba(30,41,59,0.5)]";
-        iconContainer.className = "flex h-8 w-8 items-center justify-center rounded-full bg-white border-2 border-slate-200 text-slate-700 transition-all duration-300 group-hover:border-slate-300 group-hover:text-slate-800 group-hover:scale-105";
-      }
-    }
-
-    // Close menu when clicking anywhere outside of it
-    document.addEventListener('click', function (event) {
-      const menu = document.getElementById('contactMenu');
-      const trigger = document.getElementById('contactTrigger');
-
-      if (!menu || !trigger) return;
-
-      const isOpen = menu.classList.contains('opacity-100');
-      if (isOpen && !menu.contains(event.target) && !trigger.contains(event.target)) {
-        toggleContactMenu();
-      }
-    });
-  </script>
 
   <!-- ===================================================================== -->
   <!-- SCRIPTS: OBSERVERS, COUNTERS & REALTIME SIMULATION                     -->
@@ -4020,10 +3799,8 @@
     /* ===================================================================== */
     function voiceOrbApp() {
       return {
-        active: 0,
         playing: false,
         audio: null,
-        currentTrack: -1,
 
         /* swirl rotation state (JS-driven for seamless speed changes) */
         angle: 0,
@@ -4031,47 +3808,14 @@
         SPEED_IDLE: 7.5,      // 48s per revolution
         SPEED_PLAY: 22.5,     // 16s per revolution
 
-        tabs: [
-          {
-            id: 'booking',
-            label: 'Appointment Booking',
-            accent: '#6cab5c',
-            dot: 'linear-gradient(135deg, #8fc069, #2e9fe6)',
-            base: '#6fae57',
-            c1: '#8fc069',
-            c2: '#eaf7cf',
-            c3: '#c6ecf4',
-            c4: '#2e9fe6',
-            src: 'media/booking.mp3',
-          },
-          {
-            id: 'rescheduling',
-            label: 'Appointment Rescheduling',
-            accent: '#7c6cf0',
-            dot: 'linear-gradient(135deg, #8b7cf6, #0ea5e9)',
-            base: '#7c6cf0',
-            c1: '#8b7cf6',
-            c2: '#ede9fe',
-            c3: '#cffafe',
-            c4: '#0ea5e9',
-            src: 'media/reschedule.mp3',
-          },
-          {
-            id: 'canceling',
-            label: 'Appointment Canceling',
-            accent: '#e11d48',
-            dot: 'linear-gradient(135deg, #f59e0b, #e11d48)',
-            base: '#ef7b45',
-            c1: '#f59e0b',
-            c2: '#fef3c7',
-            c3: '#ffe4e6',
-            c4: '#e11d48',
-            src: 'media/cancel.mp3',
-          },
-        ],
-
-        get palette() {
-          return this.tabs[this.active];
+        palette: {
+          accent: '#6cab5c',
+          base: '#6fae57',
+          c1: '#8fc069',
+          c2: '#eaf7cf',
+          c3: '#c6ecf4',
+          c4: '#2e9fe6',
+          src: 'media/booking.mp3',
         },
 
         init() {
@@ -4084,7 +3828,6 @@
           this.audio = new Audio();
           this.audio.addEventListener('ended', () => {
             this.playing = false;
-            this.currentTrack = -1;
           });
           this.audio.addEventListener('pause', () => {
             this.playing = false;
@@ -4094,27 +3837,12 @@
           });
         },
 
-        select(i) {
-          if (this.active !== i) {
-            if (this.audio) {
-              this.audio.pause();
-              this.audio.currentTime = 0;
-            }
-            this.active = i;
-            this.playing = false;
-            this.currentTrack = -1;
-          }
-        },
-
         togglePlay() {
           if (!this.audio) {
             this.initAudio();
           }
 
-          if (this.currentTrack !== this.active) {
-            this.audio.src = this.palette.src;
-            this.currentTrack = this.active;
-          }
+          if (!this.audio.src) this.audio.src = this.palette.src;
 
           if (this.playing) {
             this.audio.pause();

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth antialiased">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tell KNETIC VOI about your business and the calls you want to handle better.">
+  <title>Contact KNETIC VOI — Tell Us About Your Business</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="media/logo.png">
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap"
+    rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            display: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          boxShadow: {
+            '3d-sm': '0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(15,23,42,0.05), inset 0 1px 0 rgba(255,255,255,0.9)',
+            '3d-card': '0 0 0 1px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.02), 0 12px 28px -6px rgba(15,23,42,0.06), 0 20px 40px -12px rgba(15,23,42,0.04), inset 0 1px 0 rgba(255,255,255,1), inset 0 -1px 2px rgba(0,0,0,0.03)',
+            'btn-3d': '0 4px 14px 0 rgba(37,99,235,0.35), inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -2px 0 rgba(0,0,0,0.2)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-padding-top: 100px; }
+    body { background-color: #fbfcfe; color: #090d16; overflow-x: hidden; }
+    ::selection { background: #2563eb; color: #ffffff; }
+    [x-cloak] { display: none !important; }
+    .bg-grid-slate {
+      background-image: radial-gradient(rgba(15, 23, 42, 0.07) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    .hero-panel-grad { background: linear-gradient(180deg, #ffffff 0%, #f4f8ff 45%, #e8f1fd 80%, #cfe2fe 100%); }
+    .btn-brand-grad { background: linear-gradient(180deg, #3b82f6 0%, #2563eb 60%, #1d4ed8 100%); }
+    .text-3d-blue {
+      background: linear-gradient(180deg, #3b82f6 0%, #2563eb 55%, #1d4ed8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 2px 4px rgba(37, 99, 235, 0.2));
+    }
+    .field-control {
+      width: 100%;
+      border: 1px solid #cbd5e1;
+      border-radius: 0.75rem;
+      background: #fff;
+      padding: 0.8rem 1rem;
+      color: #0f172a;
+      font-size: 0.875rem;
+      transition: border-color 150ms, box-shadow 150ms;
+    }
+    .field-control:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+    .field-control::placeholder { color: #94a3b8; }
+  </style>
+</head>
+
+<body class="relative bg-[#fbfcfe] text-slate-900 antialiased" x-data="{ mobileNav: false }">
+  <header class="fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-3 md:px-6 md:pt-4">
+    <div class="pointer-events-auto flex w-full max-w-5xl items-center justify-between rounded-full border border-white/10 bg-zinc-950/95 py-2 pl-5 pr-2 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] backdrop-blur-2xl">
+      <a href="index.html" class="group flex shrink-0 items-center gap-3" aria-label="KNETIC VOI home">
+        <img src="media/logo.png" alt="KNETIC VOI" class="h-8 w-8 rounded-full border border-white/10 shadow-sm transition-all group-hover:shadow-md">
+        <span class="flex items-center gap-1.5">
+          <span class="font-display text-base font-extrabold tracking-tight text-white">KNETIC</span>
+          <span class="rounded-md border border-blue-400/20 bg-blue-500/10 px-1.5 py-0.5 font-display text-xs font-bold tracking-wider text-blue-400">VOI</span>
+        </span>
+      </a>
+
+      <nav class="hidden items-center gap-1 md:flex" aria-label="Main navigation">
+        <a href="index.html#capabilities" class="rounded-full px-4 py-1.5 text-xs font-semibold text-zinc-300 transition-all hover:bg-white/[0.08] hover:text-white">Capabilities</a>
+        <a href="index.html#demo" class="rounded-full px-4 py-1.5 text-xs font-semibold text-zinc-300 transition-all hover:bg-white/[0.08] hover:text-white">Live Simulator</a>
+        <a href="index.html#compare" class="rounded-full px-4 py-1.5 text-xs font-semibold text-zinc-300 transition-all hover:bg-white/[0.08] hover:text-white">Economics &amp; ROI</a>
+        <a href="index.html#faq" class="rounded-full px-4 py-1.5 text-xs font-semibold text-zinc-300 transition-all hover:bg-white/[0.08] hover:text-white">FAQ</a>
+        <a href="pricing.html" class="rounded-full px-4 py-1.5 text-xs font-semibold text-zinc-300 transition-all hover:bg-white/[0.08] hover:text-white">Pricing</a>
+        <a href="contact.html" aria-current="page" class="rounded-full bg-white/[0.08] px-4 py-1.5 text-xs font-semibold text-white transition-all">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <a href="contact.html" class="btn-brand-grad inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold text-white shadow-btn-3d transition hover:brightness-110 active:translate-y-0.5 sm:px-5">
+          <span>Get Started</span><i class="fa-solid fa-arrow-right text-[10px]"></i>
+        </a>
+        <button type="button" @click="mobileNav = !mobileNav" aria-label="Toggle navigation" :aria-expanded="mobileNav.toString()" class="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-zinc-300 transition hover:text-white md:hidden">
+          <i class="fa-solid" :class="mobileNav ? 'fa-xmark' : 'fa-bars-staggered'"></i>
+        </button>
+      </div>
+    </div>
+
+    <nav x-cloak x-show="mobileNav" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2 scale-98" x-transition:enter-end="opacity-100 translate-y-0 scale-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0 scale-100" x-transition:leave-end="opacity-0 -translate-y-2 scale-98" class="pointer-events-auto absolute top-full mt-2 flex w-[94%] max-w-sm flex-col gap-1 rounded-2xl border border-white/15 bg-zinc-950/98 p-4 shadow-2xl backdrop-blur-2xl md:hidden" aria-label="Mobile navigation">
+      <a @click="mobileNav = false" href="index.html#capabilities" class="rounded-xl px-4 py-2.5 text-sm font-semibold text-zinc-300 hover:bg-white/10 hover:text-white">Capabilities</a>
+      <a @click="mobileNav = false" href="index.html#demo" class="rounded-xl px-4 py-2.5 text-sm font-semibold text-zinc-300 hover:bg-white/10 hover:text-white">Live Simulator</a>
+      <a @click="mobileNav = false" href="index.html#compare" class="rounded-xl px-4 py-2.5 text-sm font-semibold text-zinc-300 hover:bg-white/10 hover:text-white">Economics &amp; ROI</a>
+      <a @click="mobileNav = false" href="index.html#faq" class="rounded-xl px-4 py-2.5 text-sm font-semibold text-zinc-300 hover:bg-white/10 hover:text-white">FAQ</a>
+      <a @click="mobileNav = false" href="pricing.html" class="rounded-xl px-4 py-2.5 text-sm font-semibold text-zinc-300 hover:bg-white/10 hover:text-white">Pricing</a>
+      <a @click="mobileNav = false" href="contact.html" aria-current="page" class="rounded-xl bg-white/[0.08] px-4 py-2.5 text-sm font-semibold text-white">Contact</a>
+    </nav>
+  </header>
+
+  <main class="px-4 pb-16 pt-24 sm:px-6 sm:pb-24 sm:pt-28">
+    <section class="hero-panel-grad relative mx-auto max-w-7xl overflow-visible rounded-[1.75rem] border border-blue-200/80 shadow-3d-card sm:rounded-[2.5rem]">
+      <div class="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]">
+        <div class="bg-grid-slate absolute inset-0 opacity-40"></div>
+        <div class="absolute -right-20 -top-24 h-72 w-72 rounded-full bg-blue-300/25 blur-3xl"></div>
+      </div>
+
+      <div class="relative z-10 mx-auto grid max-w-6xl gap-10 px-5 py-10 sm:px-8 sm:py-14 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-14 lg:px-12 lg:py-16">
+        <div class="text-center lg:text-left">
+          <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-200/90 bg-white/90 px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-800 shadow-3d-sm sm:text-xs">
+            <span class="h-2 w-2 rounded-full bg-blue-500"></span> Let's talk about your business
+          </div>
+          <h1 class="mb-5 font-display text-3xl font-extrabold leading-tight tracking-tight text-slate-950 sm:text-4xl md:text-5xl">
+            Tell us what your<br class="hidden lg:block"> team needs.
+          </h1>
+          <p class="mx-auto max-w-xl text-sm leading-relaxed text-slate-600 sm:text-base lg:mx-0">
+            Share a few details about your business and the calls you handle. We'll use them to understand whether KNETIC VOI is a good fit.
+          </p>
+
+          <div class="mt-8 hidden space-y-4 text-left lg:block">
+            <div class="flex items-start gap-3">
+              <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-blue-200 bg-white text-blue-600 shadow-sm"><i class="fa-solid fa-phone-volume text-sm"></i></span>
+              <div>
+                <p class="text-sm font-bold text-slate-900">Built around your calls</p>
+                <p class="mt-1 text-xs leading-relaxed text-slate-500">Tell us about your booking, scheduling, and customer support workflows.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-blue-200 bg-white text-blue-600 shadow-sm"><i class="fa-solid fa-shield-halved text-sm"></i></span>
+              <div>
+                <p class="text-sm font-bold text-slate-900">A direct conversation</p>
+                <p class="mt-1 text-xs leading-relaxed text-slate-500">Your details are submitted securely to our team so we can follow up.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-[1.5rem] border border-slate-200/90 bg-white p-5 shadow-[0_24px_60px_-30px_rgba(15,23,42,0.35)] sm:rounded-[2rem] sm:p-8 md:p-9">
+          <div class="mb-7">
+            <p class="mb-2 text-[10px] font-bold uppercase tracking-[0.16em] text-blue-600">Contact form</p>
+            <h2 class="font-display text-2xl font-extrabold tracking-tight text-slate-950 sm:text-3xl">Start the conversation</h2>
+            <p class="mt-2 text-sm leading-relaxed text-slate-500">Fields marked <span class="text-blue-600">*</span> are required.</p>
+          </div>
+
+          <form class="space-y-5" x-data="contactForm()" @keydown.escape.window="businessTypeOpen = false; countryOpen = false" @submit.prevent="submitContact($event)">
+            <div class="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label for="full-name" class="mb-2 block text-xs font-bold text-slate-700">Full name <span class="text-blue-600">*</span></label>
+                <input id="full-name" name="Full name" type="text" autocomplete="name" required maxlength="120" placeholder="Your name" class="field-control">
+              </div>
+              <div>
+                <label for="email" class="mb-2 block text-xs font-bold text-slate-700">Email address <span class="text-blue-600">*</span></label>
+                <input id="email" name="Email" type="email" autocomplete="email" required maxlength="254" placeholder="you@company.com" class="field-control">
+              </div>
+            </div>
+
+            <div class="grid gap-5 sm:grid-cols-2">
+              <div class="relative" @click.outside="businessTypeOpen = false">
+                <label id="business-type-label" class="mb-2 block text-xs font-bold text-slate-700">Business type <span class="text-blue-600">*</span></label>
+                <input type="hidden" name="Business type" :value="businessType">
+                <button type="button" @click="businessTypeOpen = !businessTypeOpen; countryOpen = false" :aria-expanded="businessTypeOpen.toString()" aria-labelledby="business-type-label" aria-haspopup="listbox" class="field-control flex items-center justify-between gap-3 text-left" :class="businessType ? 'text-slate-900' : 'text-slate-400'">
+                  <span x-text="businessType || 'Choose your business type'"></span>
+                  <i class="fa-solid fa-chevron-down shrink-0 text-[11px] text-slate-400 transition-transform" :class="businessTypeOpen ? 'rotate-180' : ''"></i>
+                </button>
+                <div x-cloak x-show="businessTypeOpen" x-transition.origin.top.left class="absolute z-30 mt-2 max-h-60 w-full overflow-y-auto rounded-xl border border-slate-200 bg-white p-1.5 shadow-xl" role="listbox" aria-labelledby="business-type-label">
+                  <template x-for="type in businessTypes" :key="type">
+                    <button type="button" role="option" :aria-selected="businessType === type" @click="businessType = type; businessTypeOpen = false; selectionError = ''" class="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm text-slate-700 transition hover:bg-blue-50 hover:text-blue-700" :class="businessType === type ? 'bg-blue-50 font-semibold text-blue-700' : ''">
+                      <span x-text="type"></span><i x-show="businessType === type" class="fa-solid fa-check text-xs text-blue-600"></i>
+                    </button>
+                  </template>
+                </div>
+              </div>
+
+              <div>
+                <label for="business-name" class="mb-2 block text-xs font-bold text-slate-700">Business name <span class="text-blue-600">*</span></label>
+                <input id="business-name" name="Business name" type="text" autocomplete="organization" required maxlength="160" placeholder="Your company" class="field-control">
+              </div>
+            </div>
+
+            <div class="relative" @click.outside="countryOpen = false">
+              <label id="country-label" class="mb-2 block text-xs font-bold text-slate-700">Country <span class="text-blue-600">*</span></label>
+              <input type="hidden" name="Country" :value="country">
+              <button type="button" @click="countryOpen = !countryOpen; businessTypeOpen = false; countryQuery = ''" :aria-expanded="countryOpen.toString()" aria-labelledby="country-label" aria-haspopup="listbox" class="field-control flex items-center justify-between gap-3 text-left" :class="country ? 'text-slate-900' : 'text-slate-400'">
+                <span x-text="country || 'Choose your country'"></span>
+                <i class="fa-solid fa-chevron-down shrink-0 text-[11px] text-slate-400 transition-transform" :class="countryOpen ? 'rotate-180' : ''"></i>
+              </button>
+              <div x-cloak x-show="countryOpen" x-transition.origin.top.left class="absolute z-30 mt-2 w-full rounded-xl border border-slate-200 bg-white p-2 shadow-xl">
+                <label for="country-search" class="sr-only">Search countries</label>
+                <div class="relative mb-1.5">
+                  <i class="fa-solid fa-magnifying-glass pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i>
+                  <input id="country-search" type="search" x-model="countryQuery" placeholder="Search countries..." class="w-full rounded-lg border border-slate-200 bg-slate-50 py-2.5 pl-9 pr-3 text-sm text-slate-800 outline-none transition focus:border-blue-400 focus:ring-2 focus:ring-blue-100">
+                </div>
+                <div class="max-h-48 overflow-y-auto" role="listbox" aria-labelledby="country-label">
+                  <template x-for="option in filteredCountries" :key="option">
+                    <button type="button" role="option" :aria-selected="country === option" @click="country = option; countryOpen = false; countryQuery = ''; selectionError = ''" class="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm text-slate-700 transition hover:bg-blue-50 hover:text-blue-700" :class="country === option ? 'bg-blue-50 font-semibold text-blue-700' : ''">
+                      <span x-text="option"></span><i x-show="country === option" class="fa-solid fa-check text-xs text-blue-600"></i>
+                    </button>
+                  </template>
+                  <p x-show="filteredCountries.length === 0" class="px-3 py-3 text-sm text-slate-500">No matching country. Choose “Other / not listed”.</p>
+                </div>
+              </div>
+            </div>
+
+            <div x-cloak x-show="country === 'Other / not listed'" x-transition>
+              <label for="country-other" class="mb-2 block text-xs font-bold text-slate-700">Enter your country <span class="text-blue-600">*</span></label>
+              <input id="country-other" name="Country (please specify)" type="text" maxlength="100" placeholder="Your country" class="field-control" :required="country === 'Other / not listed'">
+            </div>
+
+            <div>
+              <label for="message" class="mb-2 block text-xs font-bold text-slate-700">Additional message <span class="font-normal text-slate-400">(optional)</span></label>
+              <textarea id="message" name="Additional message" rows="4" maxlength="3000" placeholder="What would you like your receptionist to help with?" class="field-control resize-y"></textarea>
+            </div>
+
+            <p x-cloak x-show="selectionError" x-text="selectionError" role="alert" class="text-xs font-semibold text-rose-600"></p>
+            <p x-cloak x-show="submissionError" x-text="submissionError" role="alert" class="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-xs leading-relaxed text-rose-700"></p>
+            <p x-cloak x-show="submissionSuccess" role="status" class="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold leading-relaxed text-emerald-800">
+              <i class="fa-solid fa-circle-check mr-1.5"></i>Thanks for reaching out. Your information has been received, and our team will follow up.
+            </p>
+            <p class="rounded-xl border border-blue-100 bg-blue-50/70 px-4 py-3 text-xs leading-relaxed text-slate-600">
+              Your information will be sent to our team and stored so we can follow up about your request.
+            </p>
+
+            <button type="submit" :disabled="submitting" class="btn-brand-grad flex w-full items-center justify-center gap-2.5 rounded-full px-6 py-3.5 text-sm font-bold text-white shadow-btn-3d transition hover:brightness-110 active:translate-y-0.5 disabled:cursor-wait disabled:opacity-70">
+              <i class="fa-solid" :class="submitting ? 'fa-circle-notch fa-spin' : 'fa-arrow-right'"></i>
+              <span x-text="submitting ? 'Sending...' : 'Send message'"></span>
+            </button>
+
+            <div class="border-t border-slate-100 pt-5">
+              <p class="mb-3 text-center text-xs font-semibold text-slate-500">Prefer social? Message us directly.</p>
+              <div class="grid gap-2 sm:grid-cols-2">
+                <a href="https://web.facebook.com/profile.php?id=61594644762094" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-3 rounded-xl border border-slate-200 px-3 py-3 transition hover:border-indigo-200 hover:bg-indigo-50/50">
+                  <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-indigo-200 bg-gradient-to-b from-indigo-50 to-indigo-100 text-indigo-600 transition group-hover:from-indigo-500 group-hover:to-indigo-600 group-hover:text-white"><i class="fa-brands fa-facebook-f text-sm"></i></span>
+                  <span>
+                    <span class="block text-sm font-semibold text-slate-800 group-hover:text-indigo-700">Facebook</span>
+                    <span class="block text-[11px] text-slate-500">Send a message</span>
+                  </span>
+                  <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-[10px] text-slate-400"></i>
+                </a>
+                <a href="https://www.instagram.com/paul__jessey/" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-3 rounded-xl border border-slate-200 px-3 py-3 transition hover:border-pink-200 hover:bg-pink-50/50">
+                  <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-pink-200 bg-gradient-to-b from-pink-50 to-pink-100 text-pink-600 transition group-hover:from-pink-500 group-hover:to-pink-600 group-hover:text-white"><i class="fa-brands fa-instagram text-base"></i></span>
+                  <span>
+                    <span class="block text-sm font-semibold text-slate-800 group-hover:text-pink-700">Instagram</span>
+                    <span class="block text-[11px] text-slate-500">Send a message</span>
+                  </span>
+                  <i class="fa-solid fa-arrow-up-right-from-square ml-auto text-[10px] text-slate-400"></i>
+                </a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 text-center sm:flex-row sm:text-left">
+      <a href="index.html" class="flex items-center gap-2.5">
+        <img src="media/logo.png" alt="KNETIC VOI" class="h-8 w-8 rounded-full border border-slate-200">
+        <span class="font-display text-sm font-extrabold text-slate-900">KNETIC VOI</span>
+      </a>
+      <p class="text-[11px] font-medium text-slate-400">&copy; <span id="currentYear"></span> KNETIC VOI Agency. All rights reserved.</p>
+      <a href="mailto:kneticvoi@gmail.com" class="text-xs font-semibold text-blue-600 hover:text-blue-800">kneticvoi@gmail.com</a>
+    </div>
+  </footer>
+
+  <script>
+    function contactForm() {
+      return {
+        businessTypeOpen: false,
+        countryOpen: false,
+        businessType: '',
+        country: '',
+        countryQuery: '',
+        selectionError: '',
+        submissionError: '',
+        submissionSuccess: false,
+        submitting: false,
+        businessTypes: ['HVAC & Home Services', 'Healthcare & Clinics', 'Law Firm & Legal', 'Salon, Spa & Wellness', 'Automotive & Dealership', 'Real Estate', 'Professional Services', 'Other'],
+        countries: ['Australia', 'Brazil', 'Canada', 'France', 'Germany', 'India', 'Ireland', 'Italy', 'Japan', 'Mexico', 'Netherlands', 'New Zealand', 'Nigeria', 'Philippines', 'Singapore', 'South Africa', 'Spain', 'United Arab Emirates', 'United Kingdom', 'United States', 'Other / not listed'],
+        get filteredCountries() {
+          const query = this.countryQuery.trim().toLowerCase();
+          return query ? this.countries.filter(country => country.toLowerCase().includes(query)) : this.countries;
+        },
+        async submitContact(event) {
+          if (!this.businessType || !this.country) {
+            this.selectionError = 'Please choose a business type and country to continue.';
+            event.target.querySelector(!this.businessType ? '[aria-labelledby=business-type-label]' : '[aria-labelledby=country-label]').focus();
+            return;
+          }
+
+          this.selectionError = '';
+          this.submissionError = '';
+          this.submissionSuccess = false;
+          this.submitting = true;
+          const formData = new FormData(event.target);
+          const payload = {
+            full_name: formData.get('Full name'),
+            email: formData.get('Email'),
+            business_type: this.businessType,
+            business_name: formData.get('Business name'),
+            country: this.country,
+            country_other: formData.get('Country (please specify)') || '',
+            message: formData.get('Additional message') || '',
+          };
+
+          try {
+            const apiBase = window.location.origin.includes('8000') ? window.location.origin : 'http://127.0.0.1:8000';
+            const response = await fetch(`${apiBase}/api/v1/contact-submissions/`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            });
+            const result = await response.json();
+            if (!response.ok) {
+              const validationErrors = result.errors ? Object.values(result.errors).flat().join(' ') : '';
+              throw new Error(validationErrors || result.message || 'We could not send your message. Please try again.');
+            }
+
+            this.submissionSuccess = true;
+            this.businessType = '';
+            this.country = '';
+            this.countryQuery = '';
+            event.target.reset();
+          } catch (error) {
+            console.error('Contact form submission failed:', error);
+            this.submissionError = error.message || 'We could not send your message. Please try again.';
+          } finally {
+            this.submitting = false;
+          }
+        }
+      };
+    }
+
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html>
